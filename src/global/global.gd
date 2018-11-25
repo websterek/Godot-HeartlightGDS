@@ -7,12 +7,12 @@ const tile_typ = {
 	"block": [0]
 }
 
-var currentPlayer = null
+var current_player = null
 
 func set_current_player(playerId):
-	currentPlayer = playerId	
+	current_player = playerId	
 	print("Current player set to: " + playerId)
 	
 func get_current_player():
-	print("Current player is: " + currentPlayer)
-	return currentPlayer
+	print("Current player is: " + current_player) 
+	return current_player
