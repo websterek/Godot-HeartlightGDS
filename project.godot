@@ -10,12 +10,20 @@ config_version=3
 
 [application]
 
-config/name="Heartlight_PC"
+config/name="GDS_Heartlight"
+run/main_scene="res://src/main_menu/main_menu.tscn"
+boot_splash/image="res://Assets/Images/splash.png"
 config/icon="res://icon.png"
 
 [autoload]
 
-globals="*res://other/globals.gd"
+globals="*res://src/global/global.gd"
+
+[display]
+
+window/size/width=1280
+window/size/height=720
+window/size/resizable=false
 
 [editor_plugins]
 
@@ -23,4 +31,7 @@ enabled=PoolStringArray( "level" )
 
 [rendering]
 
+quality/intended_usage/framebuffer_allocation=0
+quality/intended_usage/framebuffer_allocation.mobile=1
+quality/2d/use_pixel_snap=true
 environment/default_environment="res://default_env.tres"
