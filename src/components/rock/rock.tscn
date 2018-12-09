@@ -1,20 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Src/components/rock/rock.gd" type="Script" id=1]
+[ext_resource path="res://src/components/rock/rock.gd" type="Script" id=1]
 [ext_resource path="res://assets/images/rock/rock.png" type="Texture" id=2]
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -70,6 +57,7 @@ playback_speed = 1.0
 playback/active = false
 playback/repeat = false
 playback/speed = 1.0
+_sections_unfolded = [ "playback" ]
 
 [node name="tim" type="Timer" parent="." index="4"]
 

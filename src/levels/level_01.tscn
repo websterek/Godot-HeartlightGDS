@@ -6,7 +6,7 @@
 [ext_resource path="res://src/components/rock/rock.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/components/player/player.tscn" type="PackedScene" id=5]
 
-[node name="Node" type="Node2D"]
+[node name="Node" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 

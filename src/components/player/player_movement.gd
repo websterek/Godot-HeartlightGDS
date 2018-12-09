@@ -23,7 +23,7 @@ func _input(event):
 		move(Vector2(0, globals.tile_size.y))
 
 func coll_test(dir, body=self):
-	return Physics2DServer.body_test_motion(body, body.get_transform(), dir, 0.16, coll_stats)
+	return Physics2DServer.body_test_motion(body, body.get_global_transform(), dir, 0.16, coll_stats)
 
 
 func tile_num(dir):

@@ -1,17 +1,9 @@
-tool
-extends TileMap
+extends Node2D
 
-var tile_siz = globals.tile_size
-var tile_pos = []
-var tile_typ = globals.tile_typ
-
+onready var tilemap = get_node("level")
 
 func _ready():
-	tile_pos = get_used_cells()
+	pass
 
-
-func _process(delta):
-	if Engine.is_editor_hint():
-		self.set_position(Vector2(0, 0))
-	else:
-		pass
+func calculate_bounds():
+	return tilemap.calculate_bounds()
