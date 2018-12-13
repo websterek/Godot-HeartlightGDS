@@ -23,7 +23,7 @@ func _input(event):
 		move(Vector2(0, globals.tile_size.y))
 
 func coll_test(dir, body=self):
-	return Physics2DServer.body_test_motion(body, body.get_transform(), dir, 0.16, coll_stats)
+	return Physics2DServer.body_test_motion(body, body.get_global_transform(), dir, 0.16, coll_stats)
 
 
 func tile_num(dir):
@@ -53,14 +53,17 @@ func move(dir):
 					anim(dir)
 				else:
 					pass
-			if collider.is_in_group("sphere"):
-				
+			if collider.is_in_group("sphere") or collider.is_in_group("grenade"):
 				if coll_test(-dir, collider):
 					pass
-				elif collider.get_node("ray").is_colliding():
+				elif collider.get_node("ray_d").is_colliding() and dir.y <= 0:
 					collider.set_position(collider.get_position() - dir)
 					set_position(get_position() - dir)
 					anim(dir, $shape, collider)
+			if collider.is_in_group("heart"):
+				collider.free_me()
+				set_position(get_position() - dir)
+				anim(dir)
 		if pos_a != get_position():
 			$tim.start()
 

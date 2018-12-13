@@ -1,0 +1,137 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/components/grenade/grenade.gd" type="Script" id=1]
+[ext_resource path="res://assets/objects/001_dyniomit.png" type="Texture" id=2]
+
+[sub_resource type="CircleShape2D" id=1]
+
+custom_solver_bias = 0.0
+radius = 62.0
+
+[node name="lvl_granade" type="RigidBody2D" groups=[
+"rigid",
+"grenade",
+]]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+mode = 3
+mass = 1.0
+friction = 1.0
+bounce = 0.0
+gravity_scale = 1.0
+custom_integrator = false
+continuous_cd = 2
+contacts_reported = 1
+contact_monitor = true
+sleeping = false
+can_sleep = true
+linear_velocity = Vector2( 0, 0 )
+linear_damp = -1.0
+angular_velocity = 0.0
+angular_damp = -1.0
+script = ExtResource( 1 )
+_sections_unfolded = [ "collision" ]
+
+[node name="shape" type="Sprite" parent="." index="0"]
+
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Transform", "Visibility" ]
+
+[node name="col" type="CollisionShape2D" parent="." index="1"]
+
+shape = SubResource( 1 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="ray_d" type="RayCast2D" parent="." index="2"]
+
+position = Vector2( 0, 64 )
+enabled = true
+exclude_parent = true
+cast_to = Vector2( 0, 32 )
+collision_mask = 1
+_sections_unfolded = [ "Transform" ]
+
+[node name="ray" type="RayCast2D" parent="." index="3"]
+
+position = Vector2( 0, 64 )
+enabled = true
+exclude_parent = true
+cast_to = Vector2( 0, 32 )
+collision_mask = 1
+_sections_unfolded = [ "Transform" ]
+
+[node name="ray_u" type="RayCast2D" parent="." index="4"]
+
+position = Vector2( 0, -64 )
+enabled = true
+exclude_parent = true
+cast_to = Vector2( 0, -32 )
+collision_mask = 1
+_sections_unfolded = [ "Transform" ]
+
+[node name="ray_l" type="RayCast2D" parent="." index="5"]
+
+position = Vector2( -64, 0 )
+enabled = true
+exclude_parent = true
+cast_to = Vector2( -32, 0 )
+collision_mask = 1
+_sections_unfolded = [ "Transform" ]
+
+[node name="ray_ld" type="RayCast2D" parent="." index="6"]
+
+position = Vector2( -64, 64 )
+enabled = true
+exclude_parent = true
+cast_to = Vector2( -32, 32 )
+collision_mask = 1
+_sections_unfolded = [ "Transform" ]
+
+[node name="ray_lu" type="RayCast2D" parent="." index="7"]
+
+position = Vector2( -64, -64 )
+enabled = true
+exclude_parent = true
+cast_to = Vector2( -32, -32 )
+collision_mask = 1
+_sections_unfolded = [ "Transform" ]
+
+[node name="ray_rd" type="RayCast2D" parent="." index="8"]
+
+position = Vector2( 64, 64 )
+enabled = true
+exclude_parent = true
+cast_to = Vector2( 32, 32 )
+collision_mask = 1
+_sections_unfolded = [ "Transform" ]
+
+[node name="ray_ru" type="RayCast2D" parent="." index="9"]
+
+position = Vector2( 64, -64 )
+enabled = true
+exclude_parent = true
+cast_to = Vector2( 32, -32 )
+collision_mask = 1
+_sections_unfolded = [ "Transform" ]
+
+[node name="ray_r" type="RayCast2D" parent="." index="10"]
+
+position = Vector2( 64, 0 )
+enabled = true
+exclude_parent = true
+cast_to = Vector2( 32, 0 )
+collision_mask = 1
+_sections_unfolded = [ "Transform" ]
+
+[node name="twe_grv" type="Tween" parent="." index="11"]
+
+repeat = false
+playback_process_mode = 1
+playback_speed = 1.0
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
+
+
