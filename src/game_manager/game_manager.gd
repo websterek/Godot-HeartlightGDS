@@ -8,12 +8,12 @@ func _input(event):
 	if !event:
 		pass
 	elif Input.is_action_pressed("ui_accept"):
-		set_level("level_01")
+		set_level("lvl_template")
 
 func instantiate_level(levelFilename, position = Vector2(0, 0)):
 	var scene = load("res://src/levels/" + levelFilename + ".tscn")
 	var scene_instance = scene.instance()
-	var scene_instance_bounds = scene_instance.get_node("level").calculate_bounds()
+	var scene_instance_bounds = scene_instance.calculate_bounds()
 
 	scene_instance.set_name(levelFilename)
 	scene_instance.global_position = Vector2(position.x, position.y - scene_instance_bounds.height / 2)

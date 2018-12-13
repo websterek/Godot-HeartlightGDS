@@ -15,7 +15,7 @@ func align_camera_to_level(levelInstance, duration = 0):
 	var zoom_x = tilemap_bounds.width / screen_width
 	var zoom_y = tilemap_bounds.height / screen_height
 	var zoom = zoom_x if zoom_x > zoom_y else zoom_y
-	
+
 	self.zoom = Vector2(zoom, zoom)
 	
 	var new_position = Vector2(
