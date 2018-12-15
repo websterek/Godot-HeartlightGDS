@@ -8,8 +8,8 @@ const tile_size = Vector2(128, 128)
 
 var tile_typ = {
 	"grass": range(0, 10),
-	"block": range(10, 22),
-	"wall": range(22, 32)
+	"block": range(10, 21),
+	"wall": range(21, 32)
 }
 
 var current_player = null

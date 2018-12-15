@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://src/levels/level.gd" type="Script" id=1]
 [ext_resource path="res://assets/tiles_back.tres" type="TileSet" id=2]
@@ -10,28 +10,7 @@
 [ext_resource path="res://src/components/player/player.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/components/grenade/grenade.tscn" type="PackedScene" id=9]
 
-[sub_resource type="GDScript" id=1]
-
-script/source = "extends Node
-
-# class member variables go here, for example:
-# var a = 2
-# var b = \"textvar\"
-
-func _ready():
-	get_tree().paused = true
-	$Timer.start()
-
-
-
-
-
-
-func _on_Timer_timeout():
-	get_tree().paused = false
-"
-
-[node name="level" type="Node2D" index="0"]
+[node name="level" type="Node2D"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Pause" ]
@@ -331,26 +310,5 @@ _sections_unfolded = [ "Material", "Transform", "Visibility", "collision" ]
 
 position = Vector2( 64, 192 )
 _sections_unfolded = [ "Material", "Transform", "Visibility", "collision" ]
-
-[node name="delay" type="Node" parent="." index="50"]
-
-pause_mode = 2
-editor/display_folded = true
-script = SubResource( 1 )
-_sections_unfolded = [ "Pause" ]
-
-[node name="Timer" type="Timer" parent="delay" index="0"]
-
-process_mode = 1
-wait_time = 1.0
-one_shot = true
-autostart = false
-
-[node name="Position2D" type="Position2D" parent="." index="51"]
-
-position = Vector2( 64, 640 )
-_sections_unfolded = [ "Transform" ]
-
-[connection signal="timeout" from="delay/Timer" to="delay" method="_on_Timer_timeout"]
 
 

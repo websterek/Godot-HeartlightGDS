@@ -6,11 +6,11 @@
 [sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
-radius = 60.0
+radius = 62.0
 
-[node name="lvl_sphere" type="RigidBody2D" groups=[
-"sphere",
+[node name="lvl_sphere" type="RigidBody2D" index="0" groups=[
 "rigid",
+"sphere",
 ]]
 
 input_pickable = false

@@ -27,12 +27,7 @@ func explode(traveled_d):
 
 
 func tilemap_clean(tilemap, collision_point):
-	var offset = get_owner().get_position()
-	var collision_point_offset = collision_point - offset
-	var dir = (collision_point_offset - get_position()).normalized()
-	collision_point_offset += dir * globals.tile_size/2
-	var cell = tilemap.world_to_map(collision_point_offset)
+	var cell = tilemap_coll(tilemap, collision_point)
 	
 	if !globals.tile_typ["wall"].has(tilemap.get_cellv(cell)):
 		tilemap.set_cellv(cell, -1)
-#

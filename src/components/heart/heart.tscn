@@ -3,16 +3,14 @@
 [ext_resource path="res://src/components/heart/heart.gd" type="Script" id=1]
 [ext_resource path="res://assets/objects/004_rzodkiewka_01.png" type="Texture" id=2]
 
-
-
 [sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
-radius = 62.0
+radius = 64.0
 
 [node name="lvl_heart" type="RigidBody2D" groups=[
-"heart",
 "rigid",
+"heart",
 ]]
 
 input_pickable = false
