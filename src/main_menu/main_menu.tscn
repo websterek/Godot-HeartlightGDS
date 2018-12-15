@@ -5,7 +5,7 @@
 [ext_resource path="res://assets/interface/main_menu/logo.png" type="Texture" id=3]
 [ext_resource path="res://assets/themes/default_theme.tres" type="Theme" id=4]
 
-[node name="Root" type="Node"]
+[node name="Root" type="Node" index="0"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Pause" ]
