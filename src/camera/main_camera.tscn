@@ -36,5 +36,6 @@ playback_speed = 1.0
 playback/active = false
 playback/repeat = false
 playback/speed = 1.0
+_sections_unfolded = [ "Pause", "playback" ]
 
 

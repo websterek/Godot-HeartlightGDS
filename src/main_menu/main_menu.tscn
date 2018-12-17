@@ -1,9 +1,83 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://src/main.gd" type="Script" id=1]
 [ext_resource path="res://src/main_menu/main_menu.gd" type="Script" id=2]
-[ext_resource path="res://assets/interface/main_menu/logo.png" type="Texture" id=3]
-[ext_resource path="res://assets/themes/default_theme.tres" type="Theme" id=4]
+[ext_resource path="res://assets/interface/main_menu/background.png" type="Texture" id=3]
+[ext_resource path="res://assets/interface/main_menu/chmurka_01.png" type="Texture" id=4]
+[ext_resource path="res://assets/interface/main_menu/chmurka_02.png" type="Texture" id=5]
+[ext_resource path="res://assets/interface/main_menu/chmurka_03.png" type="Texture" id=6]
+[ext_resource path="res://assets/interface/main_menu/chmurka_05.png" type="Texture" id=7]
+[ext_resource path="res://assets/interface/main_menu/chmurka_07.png" type="Texture" id=8]
+[ext_resource path="res://assets/interface/main_menu/logo.png" type="Texture" id=9]
+[ext_resource path="res://assets/interface/main_menu/menu_window.png" type="Texture" id=10]
+[ext_resource path="res://assets/themes/default_theme.tres" type="Theme" id=11]
+
+[sub_resource type="Animation" id=1]
+
+resource_name = "CloudsLoop"
+length = 20.0
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("chmurka_01:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 15.6, 16, 20 ),
+"transitions": PoolRealArray( 1, 0, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 330, 0 ), Vector2( 1500, 0 ), Vector2( 0, 0 ), Vector2( 330, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("chmurka_02:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 6.8, 7.2, 20 ),
+"transitions": PoolRealArray( 1, 0, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 990, 0 ), Vector2( 1500, 0 ), Vector2( 0, 0 ), Vector2( 990, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("chmurka_03:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 17.6, 18, 20 ),
+"transitions": PoolRealArray( 1, 0, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 180, 0 ), Vector2( 1500, 0 ), Vector2( 0, 0 ), Vector2( 180, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("chmurka_04:offset")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 3.6, 4, 20 ),
+"transitions": PoolRealArray( 1, 0, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1230, 0 ), Vector2( 1500, 0 ), Vector2( 0, 0 ), Vector2( 1230, 0 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("chmurka_05:offset")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 9.9, 10, 20 ),
+"transitions": PoolRealArray( 1, 0, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 757.5, 0 ), Vector2( 1500, 0 ), Vector2( 0, 0 ), Vector2( 757.5, 0 ) ]
+}
 
 [node name="Root" type="Node"]
 
@@ -52,47 +126,187 @@ size_flags_vertical = 1
 script = ExtResource( 2 )
 _sections_unfolded = [ "Anchor", "Rect" ]
 
-[node name="Logo" type="TextureRect" parent="MainCamera/HUD" index="0"]
+[node name="background" type="TextureRect" parent="MainCamera/HUD" index="0"]
 
-anchor_left = 0.2
-anchor_top = 0.1
-anchor_right = 0.8
-anchor_bottom = 0.6
-margin_left = -0.799988
-margin_right = -1.20001
-margin_bottom = -1.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource( 3 )
-stretch_mode = 4
-_sections_unfolded = [ "Anchor", "Margin", "Rect", "Size Flags" ]
-
-[node name="Options" type="HBoxContainer" parent="MainCamera/HUD" index="1"]
-
-anchor_left = 0.2
-anchor_top = 0.7
-anchor_right = 0.8
-anchor_bottom = 0.9
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -183.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-alignment = 0
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 7
+_sections_unfolded = [ "Material", "Transform" ]
 
-[node name="Player1" type="Button" parent="MainCamera/HUD/Options" index="0"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MainCamera/HUD/background" index="0"]
+
+root_node = NodePath("..")
+autoplay = "CloudsLoop"
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+anims/CloudsLoop = SubResource( 1 )
+blend_times = [  ]
+_sections_unfolded = [ "Pause", "Playback Options" ]
+
+[node name="chmurka_01" type="Sprite" parent="MainCamera/HUD/background" index="1"]
+
+position = Vector2( -180, 203 )
+texture = ExtResource( 4 )
+centered = false
+offset = Vector2( 330, 0 )
+region_rect = Rect2( 0, 0, 1280, 720 )
+_sections_unfolded = [ "Offset", "Region", "Transform" ]
+
+[node name="chmurka_02" type="Sprite" parent="MainCamera/HUD/background" index="2"]
+
+position = Vector2( -180, 320 )
+texture = ExtResource( 5 )
+centered = false
+offset = Vector2( 990, 0 )
+_sections_unfolded = [ "Offset", "Region", "Transform" ]
+
+[node name="chmurka_03" type="Sprite" parent="MainCamera/HUD/background" index="3"]
+
+position = Vector2( -171.633, 384 )
+texture = ExtResource( 6 )
+centered = false
+offset = Vector2( 180, 0 )
+region_rect = Rect2( 0, -100, 1280, 720 )
+_sections_unfolded = [ "Offset", "Region", "Transform" ]
+
+[node name="chmurka_04" type="Sprite" parent="MainCamera/HUD/background" index="4"]
+
+position = Vector2( -180, 443 )
+texture = ExtResource( 7 )
+centered = false
+offset = Vector2( 1230, 0 )
+region_rect = Rect2( 0, -100, 1280, 720 )
+_sections_unfolded = [ "Offset", "Region", "Transform" ]
+
+[node name="chmurka_05" type="Sprite" parent="MainCamera/HUD/background" index="5"]
+
+position = Vector2( -180, 523 )
+texture = ExtResource( 8 )
+centered = false
+offset = Vector2( 757.5, 0 )
+region_rect = Rect2( 0, -100, 1280, 720 )
+_sections_unfolded = [ "Offset", "Region", "Transform" ]
+
+[node name="Container" type="Container" parent="MainCamera/HUD" index="1"]
+
+anchor_left = 0.5
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 50.0
+margin_right = -50.0
+margin_bottom = -50.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+_sections_unfolded = [ "Anchor", "Margin", "Rect" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Logo" type="TextureRect" parent="MainCamera/HUD/Container" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+margin_bottom = 250.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 9 )
+expand = true
+stretch_mode = 6
+_sections_unfolded = [ "Anchor", "Margin" ]
+
+[node name="Panel" type="NinePatchRect" parent="MainCamera/HUD/Container" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 60.0
+margin_top = 250.0
+margin_right = -60.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+texture = ExtResource( 10 )
+patch_margin_left = 49
+patch_margin_top = 49
+patch_margin_right = 49
+patch_margin_bottom = 49
+_sections_unfolded = [ "Anchor", "Axis Stretch", "Grow Direction", "Margin", "Theme", "custom_styles" ]
+
+[node name="Margins" type="MarginContainer" parent="MainCamera/HUD/Container/Panel" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+custom_constants/margin_right = 20
+custom_constants/margin_top = 20
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 20
+_sections_unfolded = [ "Margin", "Theme", "custom_constants" ]
+
+[node name="Menu_Main" type="VBoxContainer" parent="MainCamera/HUD/Container/Panel/Margins" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 253.0
-margin_bottom = 144.0
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 450.0
+margin_bottom = 350.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 7
+size_flags_vertical = 7
+theme = ExtResource( 11 )
+alignment = 0
+_sections_unfolded = [ "Visibility" ]
+
+[node name="Start" type="Button" parent="MainCamera/HUD/Container/Panel/Margins/Menu_Main" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 430.0
+margin_bottom = 107.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_neighbour_right = NodePath("../Player2")
@@ -102,45 +316,25 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme = ExtResource( 4 )
+theme = ExtResource( 11 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
+text = "Start"
 flat = false
 align = 1
+_sections_unfolded = [ "Margin", "Theme" ]
 
-[node name="Label" type="Label" parent="MainCamera/HUD/Options/Player1" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme = ExtResource( 4 )
-text = "Player1"
-align = 1
-valign = 1
-autowrap = true
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "Anchor", "Rect", "Theme" ]
-
-[node name="Player2" type="Button" parent="MainCamera/HUD/Options" index="1"]
+[node name="HowTo" type="Button" parent="MainCamera/HUD/Container/Panel/Margins/Menu_Main" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 257.0
-margin_right = 510.0
-margin_bottom = 144.0
+margin_top = 111.0
+margin_right = 430.0
+margin_bottom = 218.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_neighbour_left = NodePath("../Player1")
@@ -152,45 +346,25 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme = ExtResource( 4 )
+theme = ExtResource( 11 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
+text = "Instrukcje"
 flat = false
 align = 1
 _sections_unfolded = [ "Focus", "Theme" ]
 
-[node name="Label" type="Label" parent="MainCamera/HUD/Options/Player2" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-text = "Player2"
-align = 1
-valign = 1
-autowrap = true
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "Anchor", "Margin", "Rect", "Theme" ]
-
-[node name="Player3" type="Button" parent="MainCamera/HUD/Options" index="2"]
+[node name="Exit" type="Button" parent="MainCamera/HUD/Container/Panel/Margins/Menu_Main" index="2"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 514.0
-margin_right = 768.0
-margin_bottom = 144.0
+margin_top = 222.0
+margin_right = 430.0
+margin_bottom = 330.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_neighbour_left = NodePath("../Player2")
@@ -200,33 +374,130 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme = ExtResource( 4 )
+theme = ExtResource( 11 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
+text = "Wyjście"
 flat = false
 align = 1
 _sections_unfolded = [ "Textures", "Theme" ]
 
-[node name="Label" type="Label" parent="MainCamera/HUD/Options/Player3" index="0"]
+[node name="Menu_Start" type="VBoxContainer" parent="MainCamera/HUD/Container/Panel/Margins" index="1"]
+
+editor/display_folded = true
+visible = false
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 450.0
+margin_bottom = 350.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 7
+size_flags_vertical = 7
+theme = ExtResource( 11 )
+alignment = 0
+
+[node name="Player1" type="Button" parent="MainCamera/HUD/Container/Panel/Margins/Menu_Start" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 430.0
+margin_bottom = 107.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
-mouse_filter = 2
+focus_neighbour_right = NodePath("../Player2")
+focus_next = NodePath("../Player2")
+focus_mode = 2
+mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "Player3"
+theme = ExtResource( 11 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "Player1"
+flat = false
 align = 1
-valign = 1
-autowrap = true
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
+_sections_unfolded = [ "Margin", "Theme" ]
+
+[node name="Player2" type="Button" parent="MainCamera/HUD/Container/Panel/Margins/Menu_Start" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 111.0
+margin_right = 430.0
+margin_bottom = 218.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_neighbour_left = NodePath("../Player1")
+focus_neighbour_right = NodePath("../Player3")
+focus_next = NodePath("../Player3")
+focus_previous = NodePath("../Player1")
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 11 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "Player 2"
+flat = false
+align = 1
+_sections_unfolded = [ "Focus", "Theme" ]
+
+[node name="Player3" type="Button" parent="MainCamera/HUD/Container/Panel/Margins/Menu_Start" index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 222.0
+margin_right = 430.0
+margin_bottom = 330.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_neighbour_left = NodePath("../Player2")
+focus_previous = NodePath("../Player2")
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 11 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "Player 3"
+flat = false
+align = 1
+_sections_unfolded = [ "Textures", "Theme" ]
+
+[connection signal="pressed" from="MainCamera/HUD/Container/Panel/Margins/Menu_Main/Start" to="MainCamera/HUD" method="activateMenu" flags=6 binds= [ "Menu_Start" ]]
+
+[connection signal="pressed" from="MainCamera/HUD/Container/Panel/Margins/Menu_Main/Exit" to="MainCamera/HUD" method="exitGame"]
+
+[connection signal="pressed" from="MainCamera/HUD/Container/Panel/Margins/Menu_Start/Player1" to="MainCamera/HUD" method="startGame" flags=6 binds= [ "Player1" ]]
+
+[connection signal="pressed" from="MainCamera/HUD/Container/Panel/Margins/Menu_Start/Player2" to="MainCamera/HUD" method="startGame" flags=6 binds= [ "Player2" ]]
+
+[connection signal="pressed" from="MainCamera/HUD/Container/Panel/Margins/Menu_Start/Player3" to="MainCamera/HUD" method="startGame" flags=6 binds= [ "Player3" ]]
 
 
