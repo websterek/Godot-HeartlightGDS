@@ -10,7 +10,7 @@
 [ext_resource path="res://src/components/player/player.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/components/grenade/grenade.tscn" type="PackedScene" id=9]
 
-[node name="level" type="Node2D"]
+[node name="level" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Pause" ]

@@ -58,8 +58,6 @@ func _physics_process(delta):
 				var point = $ray_d.get_collision_point()
 				var cell_pos = tilemap_coll(coll, point)
 				var cell_typ = coll.get_cellv(cell_pos)
-				print("cell_typ")
-				print(cell_typ)
 				if globals.tile_typ["wall"].has(cell_typ):
 					movement(Vector2(-1, 0))
 		elif !tween and !$ray_r.is_colliding() and !$ray_rd.is_colliding() and $ray_d.is_colliding() and globals.tictoc == 2 and collide_d:
@@ -70,8 +68,6 @@ func _physics_process(delta):
 				var point = $ray_d.get_collision_point()
 				var cell_pos = tilemap_coll(coll, point)
 				var cell_typ = coll.get_cellv(cell_pos)
-				print("cell_typ")
-				print(cell_typ)
 				if globals.tile_typ["wall"].has(cell_typ):
 					movement(Vector2(1, 0))
 
