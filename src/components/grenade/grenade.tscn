@@ -44,7 +44,37 @@ _sections_unfolded = [ "Transform", "Visibility" ]
 shape = SubResource( 1 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="ray_d" type="RayCast2D" parent="." index="2"]
+[node name="ray_lu" type="RayCast2D" parent="." index="2"]
+
+visible = false
+position = Vector2( -64, -64 )
+enabled = false
+exclude_parent = true
+cast_to = Vector2( -32, -32 )
+collision_mask = 1
+_sections_unfolded = [ "Transform" ]
+
+[node name="ray_ru" type="RayCast2D" parent="." index="3"]
+
+visible = false
+position = Vector2( 64, -64 )
+enabled = false
+exclude_parent = true
+cast_to = Vector2( 32, -32 )
+collision_mask = 1
+_sections_unfolded = [ "Transform" ]
+
+[node name="ray_u" type="RayCast2D" parent="." index="4"]
+
+visible = false
+position = Vector2( 0, -64 )
+enabled = false
+exclude_parent = true
+cast_to = Vector2( 0, -32 )
+collision_mask = 1
+_sections_unfolded = [ "Transform" ]
+
+[node name="ray_d" type="RayCast2D" parent="." index="5"]
 
 position = Vector2( 0, 64 )
 enabled = true
@@ -53,16 +83,7 @@ cast_to = Vector2( 0, 32 )
 collision_mask = 1
 _sections_unfolded = [ "Transform" ]
 
-[node name="ray_u" type="RayCast2D" parent="." index="3"]
-
-position = Vector2( 0, -64 )
-enabled = true
-exclude_parent = true
-cast_to = Vector2( 0, -32 )
-collision_mask = 1
-_sections_unfolded = [ "Transform" ]
-
-[node name="ray_l" type="RayCast2D" parent="." index="4"]
+[node name="ray_l" type="RayCast2D" parent="." index="6"]
 
 position = Vector2( -64, 0 )
 enabled = true
@@ -71,7 +92,7 @@ cast_to = Vector2( -32, 0 )
 collision_mask = 1
 _sections_unfolded = [ "Transform" ]
 
-[node name="ray_ld" type="RayCast2D" parent="." index="5"]
+[node name="ray_ld" type="RayCast2D" parent="." index="7"]
 
 position = Vector2( -64, 64 )
 enabled = true
@@ -80,30 +101,12 @@ cast_to = Vector2( -32, 32 )
 collision_mask = 1
 _sections_unfolded = [ "Transform" ]
 
-[node name="ray_lu" type="RayCast2D" parent="." index="6"]
-
-position = Vector2( -64, -64 )
-enabled = true
-exclude_parent = true
-cast_to = Vector2( -32, -32 )
-collision_mask = 1
-_sections_unfolded = [ "Transform" ]
-
-[node name="ray_rd" type="RayCast2D" parent="." index="7"]
+[node name="ray_rd" type="RayCast2D" parent="." index="8"]
 
 position = Vector2( 64, 64 )
 enabled = true
 exclude_parent = true
 cast_to = Vector2( 32, 32 )
-collision_mask = 1
-_sections_unfolded = [ "Transform" ]
-
-[node name="ray_ru" type="RayCast2D" parent="." index="8"]
-
-position = Vector2( 64, -64 )
-enabled = true
-exclude_parent = true
-cast_to = Vector2( 32, -32 )
 collision_mask = 1
 _sections_unfolded = [ "Transform" ]
 

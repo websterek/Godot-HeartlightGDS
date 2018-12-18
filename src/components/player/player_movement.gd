@@ -57,9 +57,12 @@ func move(dir):
 				if coll_test(-dir, collider):
 					pass
 				elif collider.get_node("ray_d").is_colliding() and dir.y <= 0:
-					collider.set_position(collider.get_position() - dir)
+					collider.movement(-moving.normalized())
 					set_position(get_position() - dir)
 					anim(dir, $shape, collider)
+#					collider.set_position(collider.get_position() - dir)
+#					set_position(get_position() - dir)
+#					anim(dir, $shape, collider)
 			if collider.is_in_group("heart"):
 				collider.free_me()
 				set_position(get_position() - dir)

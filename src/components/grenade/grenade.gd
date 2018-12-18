@@ -1,7 +1,5 @@
 extends "../obj_falling.gd"
 
-onready var ray = get_node("ray")
-
 
 func _ready():
 	type = "granade"
@@ -9,7 +7,17 @@ func _ready():
 
 var gui_position = null
 
-func explode(traveled_d):
+func explode(traveled_d, collider_input, collider_point):
+	if collider_input.get_class() == "TileMap":
+		if globals.tile_typ["grass"].has( collider_input.get_cellv( (tilemap_coll(collider_input, collider_point)) ) ) and traveled_d <= 2:
+			pass
+		else:
+			print(traveled_d)
+			boom()
+	else:
+		boom()
+
+func boom():
 	var pos = get_position().snapped(globals.tile_size-Vector2(64, 64))
 	lock = true
 	set_position(pos)

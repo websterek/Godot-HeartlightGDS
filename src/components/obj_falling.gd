@@ -26,20 +26,19 @@ func _physics_process(delta):
 		spawned = true
 	
 	elif !lock:
-		if $ray_d.is_colliding() and globals.tictoc == 0 and type == "granade": # czy jest granatem nie moze byc tutaj bo blokuje sprawdzanie spadania!!!
-			if $ray_d.get_collider().is_in_group("rigid"):
-				collide_d = $ray_d.get_collider().collide_d
-			else:
-				collide_d = true
-				
-			if travel_d > 0 and collide_d == true:
-				emit_signal("traveled_d", travel_d)
-				travel_d = 0
-			set_position(get_position().snapped(Vector2(64, 64)))
+		if $ray_d.is_colliding() and globals.tictoc == 0:
+			var collider = $ray_d.get_collider()
+			if collider != null:
+				if $ray_d.get_collider().is_in_group("rigid"):
+					collide_d = $ray_d.get_collider().collide_d
+				else:
+					collide_d = true
+				if travel_d > 0 and collide_d == true:
+					emit_signal("traveled_d", travel_d, $ray_d.get_collider(), $ray_d.get_collision_point())
+				set_position(get_position().snapped(Vector2(64, 64)))
 			
 		if $ray_d.is_colliding() and globals.tictoc == 0 and type != "granade":
 			collide_d = true
-		
 		
 		elif !tween and !$ray_d.is_colliding() and globals.tictoc == 0:
 			collide_d = false
@@ -58,7 +57,7 @@ func _physics_process(delta):
 				var point = $ray_d.get_collision_point()
 				var cell_pos = tilemap_coll(coll, point)
 				var cell_typ = coll.get_cellv(cell_pos)
-				if globals.tile_typ["wall"].has(cell_typ):
+				if globals.tile_typ["block"].has(cell_typ):
 					movement(Vector2(-1, 0))
 		elif !tween and !$ray_r.is_colliding() and !$ray_rd.is_colliding() and $ray_d.is_colliding() and globals.tictoc == 2 and collide_d:
 			var coll = $ray_d.get_collider()
@@ -68,7 +67,7 @@ func _physics_process(delta):
 				var point = $ray_d.get_collision_point()
 				var cell_pos = tilemap_coll(coll, point)
 				var cell_typ = coll.get_cellv(cell_pos)
-				if globals.tile_typ["wall"].has(cell_typ):
+				if globals.tile_typ["block"].has(cell_typ):
 					movement(Vector2(1, 0))
 
 
@@ -79,6 +78,8 @@ func anim(dir, obj=$shape):
 
 func _on_twe_grv_tween_completed(object, key):
 	tween = false
+	if travel_d > 0 and collide_d == true:
+		travel_d = 0
 
 
 func tilemap_type(tilemap, pos):
@@ -91,7 +92,7 @@ func movement(dir):
 	var rot = rand_range(45, 135) * (dir.x + dir.y)
 	set_position(get_position() + dir)
 	$twe_grv.interpolate_property($shape, "position", Vector2(0, 0) - dir, Vector2(0, 0), 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-	$twe_grv.interpolate_property($shape, "rotation_degrees", get_rotation_degrees(), get_rotation_degrees() + rot, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+#	$twe_grv.interpolate_property($shape, "rotation_degrees", get_rotation_degrees(), get_rotation_degrees() + rot, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$twe_grv.start()
 
 
