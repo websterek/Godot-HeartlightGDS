@@ -5,6 +5,8 @@ var tween = false
 var moving = false
 var travel_d = 0
 var collide_d = true
+var collide_u = true
+var collider_u
 var lock = false
 var tile_size = globals.tile_size
 var roll = false
@@ -26,6 +28,7 @@ func _physics_process(delta):
 		spawned = true
 	
 	elif !lock:
+		# ray down calculations
 		if $ray_d.is_colliding() and globals.tictoc == 0:
 			var collider = $ray_d.get_collider()
 			if collider != null:
@@ -36,10 +39,19 @@ func _physics_process(delta):
 				if travel_d > 0 and collide_d == true:
 					emit_signal("traveled_d", travel_d, $ray_d.get_collider(), $ray_d.get_collision_point())
 				set_position(get_position().snapped(Vector2(64, 64)))
-			
+				
+		# ray up calculations
+		if $ray_u.is_colliding():
+			collide_u = true
+			collider_u = $ray_u.get_collider()
+		else:
+			collide_u = false
+		
+
 		if $ray_d.is_colliding() and globals.tictoc == 0 and type != "granade":
 			collide_d = true
 		
+		# falling operations
 		elif !tween and !$ray_d.is_colliding() and globals.tictoc == 0:
 			collide_d = false
 			tween = true
@@ -48,6 +60,7 @@ func _physics_process(delta):
 			$twe_grv.start()
 			travel_d += 1
 		
+		# movement operations
 		if !tween and !$ray_l.is_colliding() and !$ray_ld.is_colliding() and $ray_d.is_colliding() and globals.tictoc == 1 and collide_d:
 			var coll = $ray_d.get_collider()
 			var poin = $ray_d.get_collision_point()

@@ -29,7 +29,7 @@ func boom():
 			var collider = ray.get_collider()
 			if collider.get_class() == "TileMap":
 				tilemap_clean(collider, ray.get_collision_point())
-			elif collider.is_in_group("rigid"):
+			elif collider.is_in_group("rigid") or collider.is_in_group("character"):
 				collider.queue_free()
 	self.queue_free()
 

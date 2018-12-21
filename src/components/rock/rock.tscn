@@ -9,8 +9,8 @@ custom_solver_bias = 0.0
 radius = 62.0
 
 [node name="lvl_sphere" type="RigidBody2D" groups=[
-"sphere",
 "rigid",
+"sphere",
 ]]
 
 input_pickable = false
@@ -46,7 +46,7 @@ shape = SubResource( 1 )
 [node name="ray_u" type="RayCast2D" parent="." index="2"]
 
 position = Vector2( 0, -64 )
-enabled = false
+enabled = true
 exclude_parent = true
 cast_to = Vector2( 0, -32 )
 collision_mask = 1
