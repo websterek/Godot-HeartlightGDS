@@ -1,6 +1,20 @@
 extends Node2D
 
+signal heart_added
+signal all_hearts_taken
+
 var tile_size = globals.tile_size
+var remainingHearts = []
+
+func register_heart(name):
+	remainingHearts.append(name)
+	emit_signal("heart_added")
+
+func remove_heart(name):
+	remainingHearts.erase(name)
+	if (remainingHearts.size() <= 0):
+		emit_signal("all_hearts_taken")
+
 
 func _ready():
 	pass

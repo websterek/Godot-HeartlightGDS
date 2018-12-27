@@ -1,0 +1,7 @@
+[gd_scene format=2]
+
+[node name="character_spawn_point" type="Node2D" groups=[
+"player",
+]]
+
+

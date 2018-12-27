@@ -1,11 +1,13 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://src/levels/level.gd" type="Script" id=1]
 [ext_resource path="res://assets/tiles_back.tres" type="TileSet" id=2]
 [ext_resource path="res://src/components/tools/level_positionLock.gd" type="Script" id=3]
 [ext_resource path="res://assets/tiles_decal.tres" type="TileSet" id=4]
 [ext_resource path="res://assets/tiles_front.tres" type="TileSet" id=5]
-[ext_resource path="res://assets/tiles_addon.tres" type="TileSet" id=6]
+[ext_resource path="res://src/components/player/player_spawn_point.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/components/door/door.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/components/door/door.gd" type="Script" id=8]
 
 [node name="level" type="Node2D"]
 
@@ -84,28 +86,25 @@ tile_data = PoolIntArray( 0, 25, 0, 1, 21, 0, 2, 21, 0, 3, 21, 0, 4, 21, 0, 5, 2
 script = ExtResource( 3 )
 _sections_unfolded = [ "Cell", "Collision", "Pause", "Transform" ]
 
-[node name="tile_objects" type="TileMap" parent="." index="3" groups=[
-"level",
-]]
+[node name="character_spawn_point" type="Node2D" parent="." index="3" groups=[
+"player",
+] instance=ExtResource( 6 )]
 
-mode = 0
-tile_set = ExtResource( 6 )
-cell_size = Vector2( 128, 128 )
-cell_quadrant_size = 16
-cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-cell_half_offset = 2
-cell_tile_origin = 0
-cell_y_sort = false
-cell_clip_uv = false
-collision_use_kinematic = false
-collision_friction = 1.0
-collision_bounce = 0.0
+position = Vector2( 320, 320 )
+
+[node name="door" type="StaticBody2D" parent="." index="4" groups=[
+"can_be_pushed",
+] instance=ExtResource( 7 )]
+
+position = Vector2( 2496, 1216 )
+input_pickable = false
 collision_layer = 1
 collision_mask = 1
-occluder_light_mask = 1
-format = 1
-tile_data = PoolIntArray( 65541, 3, 0, 65547, 3, 0, 65549, 2, 0, 131074, 4, 0, 131077, 3, 0, 131078, 2, 0, 131082, 3, 0, 131083, 3, 0, 131084, 3, 0, 131085, 3, 0, 131089, 3, 0, 196613, 3, 0, 196617, 2, 0, 196625, 3, 0, 262161, 2, 0, 327685, 3, 0, 327686, 3, 0, 327690, 3, 0, 327695, 3, 0, 393218, 3, 0, 393222, 2, 0, 393225, 3, 0, 393229, 2, 0, 393231, 3, 0, 458754, 3, 0, 524289, 2, 0, 524291, 3, 0, 524295, 3, 0, 524297, 3, 0, 524301, 2, 0, 524302, 3, 0, 589829, 3, 0, 589830, 3, 0, 589833, 3, 0, 589834, 2, 0, 589838, 3, 0, 589839, 2, 0, 589842, 3, 0, 589843, 5, 0, 655362, 2, 0, 655367, 3, 0, 655369, 3, 0, 655372, 3, 0, 655375, 2, 0, 655378, 3, 0 )
-script = ExtResource( 3 )
-_sections_unfolded = [ "Cell", "Collision", "Pause", "Transform" ]
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+script = ExtResource( 8 )
+_sections_unfolded = [ "collision" ]
 
 

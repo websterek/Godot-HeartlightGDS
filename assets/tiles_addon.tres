@@ -1,10 +1,11 @@
-[gd_resource type="TileSet" load_steps=6 format=2]
+[gd_resource type="TileSet" load_steps=7 format=2]
 
 [ext_resource path="res://assets/objects/006_sowa_still_01.png" type="Texture" id=1]
 [ext_resource path="res://assets/objects/001_dyniomit.png" type="Texture" id=2]
 [ext_resource path="res://assets/objects/004_rzodkiewka_01.png" type="Texture" id=3]
 [ext_resource path="res://assets/objects/000_glaz_01.png" type="Texture" id=4]
 [ext_resource path="res://assets/player/chr_player.png" type="Texture" id=5]
+[ext_resource path="res://assets/tiles_front/005_wyjscie_02_Za.png" type="Texture" id=6]
 
 [resource]
 
@@ -53,5 +54,13 @@
 4/occluder_offset = Vector2( 64, 64 )
 4/navigation_offset = Vector2( 64, 64 )
 4/shapes = [  ]
-_sections_unfolded = [ "0", "1", "2", "3", "4" ]
+5/name = "door"
+5/texture = ExtResource( 6 )
+5/tex_offset = Vector2( 0, 0 )
+5/modulate = Color( 1, 1, 1, 1 )
+5/region = Rect2( 0, 0, 128, 128 )
+5/is_autotile = false
+5/occluder_offset = Vector2( 64, 64 )
+5/navigation_offset = Vector2( 64, 64 )
+5/shapes = [  ]
 

@@ -1,119 +1,161 @@
-extends RigidBody2D
+extends Node2D
 
-var spawned = false
-var tween = false
-var moving = false
-var travel_d = 0
-var collide_d = true
-var collide_u = true
-var collider_u
-var lock = false
-var tile_size = globals.tile_size
-var roll = false
-var type = null
+# ###########
+# Node references
+# ###########
+onready var object_sprite = $shape
+onready var movement_animator = $movement_animator
 
-signal traveled_d
+# ###########
+# Object configuration
+# ###########
+var is_rollable = true
+var movement_delay = 0.4
 
+# ###########
+# Helper variables
+# ###########
+var space_state = null # Current physics state
+var current_position = null # Current object position to use during one physics frame
+var is_moving = false
+var is_grounded = false
 
-func _ready():
-	randomize()
-	$twe_grv.connect("tween_completed", self, "_on_twe_grv_tween_completed")
-	if $ray_d.is_colliding():
-		set_position(get_position())
-
+# ###########
+# Lifecycle Hooks
+# ###########
+func _ready ():
+	pass
 
 func _physics_process(delta):
-	if !spawned:
-		set_position(get_position())
-		spawned = true
-	
-	elif !lock:
-		# ray down calculations
-		if $ray_d.is_colliding() and globals.tictoc == 0:
-			var collider = $ray_d.get_collider()
-			if collider != null:
-				if $ray_d.get_collider().is_in_group("rigid"):
-					collide_d = $ray_d.get_collider().collide_d
-				else:
-					collide_d = true
-				if travel_d > 0 and collide_d == true:
-					emit_signal("traveled_d", travel_d, $ray_d.get_collider(), $ray_d.get_collision_point())
-				set_position(get_position().snapped(Vector2(64, 64)))
-				
-		# ray up calculations
-		if $ray_u.is_colliding():
-			collide_u = true
-			collider_u = $ray_u.get_collider()
+	# Handle object physics only if it is not currently moving
+	if !is_moving:
+		update_world_state()
+		var collision_at_bottom = get_collision_at(globals.directions.BOTTOM)
+		if collision_at_bottom:
+			handle_bottom_collision(collision_at_bottom)
 		else:
-			collide_u = false
+			move(globals.directions.BOTTOM, true)
+
+# ###########
+# Physics handlers
+# ###########
+func handle_bottom_collision(collision):
+	if (can_roll()):
+		try_rolling_sideways()
+
+func try_rolling_sideways():
+	# First try rolling left
+	if has_space_to_roll("left"):
+		move(globals.directions.LEFT)
+	# If left side is blocked, try rolling right
+	elif has_space_to_roll("right"):
+		move(globals.directions.RIGHT)	
+
+func move(direction, handle_impact = false):
+	# Block physics calculation for movement duration
+	is_moving = true
+
+	set_global_position(current_position + direction)
+	current_position = get_global_position()
+
+	# Animate sprite after changing position and check on impact the such option was provided
+	movement_animator.connect("tween_completed", self, "_on_movement_finished", [handle_impact], CONNECT_ONESHOT)
+	movement_animator.interpolate_property(
+		object_sprite, 
+		"position",
+		-direction,
+		Vector2(0,0),
+		movement_delay,
+		Tween.TRANS_LINEAR,
+		Tween.EASE_IN_OUT
+	)
+	movement_animator.start()
+
+func push(direction):
+	var can_player_move = can_be_pushed(direction)
+
+	if can_player_move:
+		match direction:
+			"left":
+				move(globals.directions.LEFT)
+			"right":
+				move(globals.directions.RIGHT)
+
+	return can_player_move
+
+func _on_movement_finished(object, key, handle_impact):
+	is_moving = false
+	# Add "bottom_impact" function in a script that extends obj_falling to handle impact
+	if handle_impact and has_method("bottom_impact"):
+		var collision_after_move = get_collision_at(globals.directions.BOTTOM)
+		if collision_after_move:
+			bottom_impact(collision_after_move)
+
+# ###########
+# Physics state helpers
+# ###########
+func update_world_state():
+	# Save current physics state and Node2D position for collision detection
+	space_state = get_world_2d().direct_space_state
+	current_position = get_global_position()
+	update_grounded_state()
+
+func update_grounded_state():
+	var collision = get_collision_at(globals.directions.BOTTOM)
+	if collision:
+		var collider = collision.collider
+		if collider.get_class() == "TileMap":
+			is_grounded = true
+		elif collider.is_in_group("can_roll_down"):
+			is_grounded = collider.is_grounded
+		else:
+			is_grounded = false
+
+# ###########
+# Assertions
+# ###########	
+func can_be_pushed(direction):
+	var side_collision = null
+	match direction:
+		"left":
+			side_collision =  get_collision_at(globals.directions.LEFT)
+		"right":
+			side_collision =  get_collision_at(globals.directions.RIGHT)
+		_:
+			return false
+	return !is_moving and !side_collision
+
+func can_roll():
+	var bottom_collision = get_collision_at(globals.directions.BOTTOM)
+	var is_ground_slippery = true 
+
+	if (bottom_collision.collider.get_class() == "TileMap"):
+		var tilemap = bottom_collision.collider
+		var collision_local_position = bottom_collision.position - tilemap.get_global_position()
+		var tile_coordinates = tilemap.world_to_map(collision_local_position)
+		var tile_index = tilemap.get_cellv(tile_coordinates)
 		
+		if (globals.tile_typ["grass"].has(tile_index)):
+			is_ground_slippery = false
+	elif bottom_collision.collider.is_in_group("player"):
+		is_ground_slippery = false
 
-		if $ray_d.is_colliding() and globals.tictoc == 0 and type != "granade":
-			collide_d = true
-		
-		# falling operations
-		elif !tween and !$ray_d.is_colliding() and globals.tictoc == 0:
-			collide_d = false
-			tween = true
-			set_position(get_position() + Vector2(0, 128))
-			$twe_grv.interpolate_property($shape, "position", Vector2(0, 0) - Vector2(0, 128), Vector2(0, 0), 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-			$twe_grv.start()
-			travel_d += 1
-		
-		# movement operations
-		if !tween and !$ray_l.is_colliding() and !$ray_ld.is_colliding() and $ray_d.is_colliding() and globals.tictoc == 1 and collide_d:
-			var coll = $ray_d.get_collider()
-			var poin = $ray_d.get_collision_point()
-			if coll.is_in_group("rigid"):
-				movement(Vector2(-1, 0))
-			elif coll.get_class() == "TileMap":
-				var point = $ray_d.get_collision_point()
-				var cell_pos = tilemap_coll(coll, point)
-				var cell_typ = coll.get_cellv(cell_pos)
-				if globals.tile_typ["block"].has(cell_typ):
-					movement(Vector2(-1, 0))
-		elif !tween and !$ray_r.is_colliding() and !$ray_rd.is_colliding() and $ray_d.is_colliding() and globals.tictoc == 2 and collide_d:
-			var coll = $ray_d.get_collider()
-			if coll.is_in_group("rigid"):
-				movement(Vector2(1, 0))
-			elif coll.get_class() == "TileMap":
-				var point = $ray_d.get_collision_point()
-				var cell_pos = tilemap_coll(coll, point)
-				var cell_typ = coll.get_cellv(cell_pos)
-				if globals.tile_typ["block"].has(cell_typ):
-					movement(Vector2(1, 0))
+	return is_grounded and is_rollable and is_ground_slippery
 
+func has_space_to_roll(direction):
+	var side_collision = null
+	var bottom_collision = null
+	match direction:
+		"left":
+			side_collision =  get_collision_at(globals.directions.LEFT)
+			bottom_collision =  get_collision_at(globals.directions.BOTTOM_LEFT)
+		"right":
+			side_collision =  get_collision_at(globals.directions.RIGHT)
+			bottom_collision =  get_collision_at(globals.directions.BOTTOM_RIGHT)
+		_:
+			printerr("Wrong argument provided for 'has_space_to_roll' function!")
+			return false
+	return !side_collision and !bottom_collision
 
-func anim(dir, obj=$shape):
-	$twe.interpolate_property(obj, "position", $shape.get_position() + dir, $shape.get_position(), 0.075, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-	$twe.start()
-
-
-func _on_twe_grv_tween_completed(object, key):
-	tween = false
-	if travel_d > 0 and collide_d == true:
-		travel_d = 0
-
-
-func tilemap_type(tilemap, pos):
-	var cell_pos =  ((get_position() + pos)-tile_size/2)/tile_size
-
-
-func movement(dir):
-	tween = true
-	dir = dir * globals.tile_size
-	var rot = rand_range(45, 135) * (dir.x + dir.y)
-	set_position(get_position() + dir)
-	$twe_grv.interpolate_property($shape, "position", Vector2(0, 0) - dir, Vector2(0, 0), 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-#	$twe_grv.interpolate_property($shape, "rotation_degrees", get_rotation_degrees(), get_rotation_degrees() + rot, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-	$twe_grv.start()
-
-
-func tilemap_coll(tilemap, collision_point):
-	var offset = get_owner().get_position()
-	var collision_point_offset = collision_point - offset
-	var dir = (collision_point_offset - get_position()).normalized()
-	collision_point_offset += dir * globals.tile_size/2
-	var cell = tilemap.world_to_map(collision_point_offset)
-	
-	return cell
+func get_collision_at(direction):
+	return space_state.intersect_ray(current_position, current_position + direction)
