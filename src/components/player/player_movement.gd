@@ -31,9 +31,12 @@ func tile_num(dir):
 
 
 func anim(dir, obj=$shape, add=null):
-	if add != null:
-		$twe.interpolate_property(add, "position", add.get_position() + dir, add.get_position(), 0.1, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
+	if dir.x > 0 and dir.y == 0:
+		$shape.set_flip_h(true)
+	elif dir.x < 0 and dir.y == 0:
+		$shape.set_flip_h(false)
 	$twe.interpolate_property(obj, "position", $shape.get_position() + dir, $shape.get_position(), 0.1, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
+	$twe.interpolate_property($shape, "frame", 0, 13, 0.15, Tween.TRANS_CIRC, Tween.EASE_OUT)
 	$twe.start()
 
 func move(direction):
@@ -53,16 +56,16 @@ func move(direction):
 			var can_collider_roll = (collider.is_in_group("can_roll_down") and collider.is_grounded) or !collider.is_in_group("can_roll_down") 
 			if can_push:
 				match direction:
-					globals.directions.TOP:						
+					globals.directions.TOP:
 						if collider.push("top"):
 							set_player_position(direction)
-					globals.directions.BOTTOM:						
+					globals.directions.BOTTOM:
 						if collider.push("bottom"):
 							set_player_position(direction) 
 					globals.directions.LEFT:
 						if can_collider_roll && collider.push("left"):
 							set_player_position(direction)
-					globals.directions.RIGHT:						
+					globals.directions.RIGHT:
 						if can_collider_roll && collider.push("right"):
 							set_player_position(direction)
 
@@ -76,3 +79,4 @@ func set_player_position(direction):
 
 func _on_twe_tween_completed(object, key):
 	set_position(get_position().snapped(tile_size) - tile_size/2)
+	$shape.set_frame(0)
