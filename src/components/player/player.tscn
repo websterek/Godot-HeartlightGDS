@@ -1,22 +1,21 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://src/components/player/player_movement.gd" type="Script" id=1]
-[ext_resource path="res://assets/player/008_player_anim_01.png" type="Texture" id=2]
-[ext_resource path="res://assets/player/008_player_anim_02.png" type="Texture" id=3]
-[ext_resource path="res://assets/player/008_player_anim_03.png" type="Texture" id=4]
-[ext_resource path="res://assets/player/008_player_anim_04.png" type="Texture" id=5]
-[ext_resource path="res://assets/player/008_player_anim_05.png" type="Texture" id=6]
-[ext_resource path="res://assets/player/008_player_anim_06.png" type="Texture" id=7]
-[ext_resource path="res://assets/player/008_player_anim_07.png" type="Texture" id=8]
-[ext_resource path="res://assets/player/008_player_anim_08.png" type="Texture" id=9]
-[ext_resource path="res://assets/player/008_player_anim_09.png" type="Texture" id=10]
-[ext_resource path="res://assets/player/008_player_anim_10.png" type="Texture" id=11]
-[ext_resource path="res://assets/player/008_player_anim_11.png" type="Texture" id=12]
-[ext_resource path="res://assets/player/008_player_anim_12.png" type="Texture" id=13]
-[ext_resource path="res://assets/player/008_player_anim_13.png" type="Texture" id=14]
-[ext_resource path="res://assets/player/008_player_anim_14.png" type="Texture" id=15]
-[ext_resource path="res://assets/player/007_player_still_01.png" type="Texture" id=16]
-[ext_resource path="res://assets/player/chr_player.png" type="Texture" id=17]
+[ext_resource path="res://assets/player/007_player_still_01.png" type="Texture" id=2]
+[ext_resource path="res://assets/player/008_player_anim_01.png" type="Texture" id=3]
+[ext_resource path="res://assets/player/008_player_anim_02.png" type="Texture" id=4]
+[ext_resource path="res://assets/player/008_player_anim_03.png" type="Texture" id=5]
+[ext_resource path="res://assets/player/008_player_anim_04.png" type="Texture" id=6]
+[ext_resource path="res://assets/player/008_player_anim_05.png" type="Texture" id=7]
+[ext_resource path="res://assets/player/008_player_anim_06.png" type="Texture" id=8]
+[ext_resource path="res://assets/player/008_player_anim_07.png" type="Texture" id=9]
+[ext_resource path="res://assets/player/008_player_anim_08.png" type="Texture" id=10]
+[ext_resource path="res://assets/player/008_player_anim_09.png" type="Texture" id=11]
+[ext_resource path="res://assets/player/008_player_anim_10.png" type="Texture" id=12]
+[ext_resource path="res://assets/player/008_player_anim_11.png" type="Texture" id=13]
+[ext_resource path="res://assets/player/008_player_anim_12.png" type="Texture" id=14]
+[ext_resource path="res://assets/player/008_player_anim_13.png" type="Texture" id=15]
+[ext_resource path="res://assets/player/008_player_anim_14.png" type="Texture" id=16]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -26,18 +25,18 @@ radius = 48.0
 [sub_resource type="SpriteFrames" id=2]
 
 animations = [ {
-"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ) ],
-"loop": true,
-"name": "jump",
-"speed": 52.0
-}, {
-"frames": [ ExtResource( 16 ) ],
+"frames": [ ExtResource( 2 ) ],
 "loop": true,
 "name": "still",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ) ],
+"loop": true,
+"name": "jump",
+"speed": 52.0
 } ]
 
-[node name="character" type="RigidBody2D" index="0" groups=[
+[node name="character" type="RigidBody2D" groups=[
 "player",
 ]]
 
@@ -60,6 +59,7 @@ linear_damp = -1.0
 angular_velocity = 0.0
 angular_damp = -1.0
 script = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
 
 [node name="coll" type="CollisionShape2D" parent="." index="0"]
 
@@ -70,12 +70,7 @@ shape = SubResource( 1 )
 frames = SubResource( 2 )
 animation = "jump"
 
-[node name="shape_old" type="Sprite" parent="." index="2"]
-
-visible = false
-texture = ExtResource( 17 )
-
-[node name="twe" type="Tween" parent="." index="3"]
+[node name="twe" type="Tween" parent="." index="2"]
 
 repeat = false
 playback_process_mode = 1
@@ -84,22 +79,11 @@ playback/active = false
 playback/repeat = false
 playback/speed = 1.0
 
-[node name="tim" type="Timer" parent="." index="4"]
+[node name="tim" type="Timer" parent="." index="3"]
 
 process_mode = 1
 wait_time = 0.15
 one_shot = true
 autostart = false
-
-[node name="ray_u" type="RayCast2D" parent="." index="5"]
-
-position = Vector2( 0, -48 )
-enabled = false
-exclude_parent = true
-cast_to = Vector2( 0, -32 )
-collision_mask = 1
-_sections_unfolded = [ "Transform" ]
-
-[connection signal="tween_completed" from="twe" to="." method="_on_twe_tween_completed"]
 
 

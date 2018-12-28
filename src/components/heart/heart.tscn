@@ -9,10 +9,10 @@ custom_solver_bias = 0.0
 radius = 64.0
 
 [node name="lvl_heart" type="RigidBody2D" groups=[
+"can_be_pushed",
+"can_roll_down",
 "rigid",
 "heart",
-"can_roll_down",
-"can_be_pushed",
 ]]
 
 input_pickable = false

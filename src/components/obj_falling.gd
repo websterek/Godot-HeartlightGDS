@@ -1,4 +1,4 @@
-extends Node2D
+extends PhysicsBody2D
 
 # ###########
 # Node references
@@ -23,7 +23,10 @@ var is_grounded = false
 # ###########
 # Lifecycle Hooks
 # ###########
-func _ready ():
+func _init():
+	set_collision_layer_bit(4, true)
+
+func _ready():
 	pass
 
 func _physics_process(delta):
@@ -123,7 +126,7 @@ func can_be_pushed(direction):
 			side_collision =  get_collision_at(globals.directions.RIGHT)
 		_:
 			return false
-	return !is_moving and !side_collision
+	return is_grounded and !is_moving and !side_collision
 
 func can_roll():
 	var bottom_collision = get_collision_at(globals.directions.BOTTOM)
@@ -135,7 +138,7 @@ func can_roll():
 		var tile_coordinates = tilemap.world_to_map(collision_local_position)
 		var tile_index = tilemap.get_cellv(tile_coordinates)
 		
-		if (globals.tile_typ["grass"].has(tile_index)):
+		if (tile_index == -1 or globals.tile_typ["grass"].has(tile_index)):
 			is_ground_slippery = false
 	elif bottom_collision.collider.is_in_group("player"):
 		is_ground_slippery = false
@@ -145,17 +148,30 @@ func can_roll():
 func has_space_to_roll(direction):
 	var side_collision = null
 	var bottom_collision = null
+	var top_collision = null
 	match direction:
 		"left":
 			side_collision =  get_collision_at(globals.directions.LEFT)
 			bottom_collision =  get_collision_at(globals.directions.BOTTOM_LEFT)
+			top_collision =  get_collision_at(globals.directions.TOP_LEFT, true)
 		"right":
 			side_collision =  get_collision_at(globals.directions.RIGHT)
 			bottom_collision =  get_collision_at(globals.directions.BOTTOM_RIGHT)
+			top_collision =  get_collision_at(globals.directions.TOP_RIGHT, true)
 		_:
 			printerr("Wrong argument provided for 'has_space_to_roll' function!")
 			return false
-	return !side_collision and !bottom_collision
 
-func get_collision_at(direction):
-	return space_state.intersect_ray(current_position, current_position + direction)
+	var something_is_above = top_collision and top_collision.collider.is_in_group("can_roll_down")
+
+	return !side_collision and !bottom_collision and !something_is_above
+
+func get_collision_at(direction, ignoreTileMap = false):
+	var origin = current_position
+	var target = current_position + direction
+	if !ignoreTileMap:
+		return space_state.intersect_ray(origin, target)
+	else:
+		# Bit mask to check collisions only with other falling objects
+		var collision_bitmask = 16
+		return space_state.intersect_ray(origin, target, [], collision_bitmask)
