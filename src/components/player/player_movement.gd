@@ -1,19 +1,28 @@
 extends RigidBody2D
 
+# ###########
+# Node references
+# ###########
+onready var object_sprite = $shape
+onready var movement_animator = $twe
+onready var movement_delay_timer = $tim
+
 var coll_stats = Physics2DTestMotionResult.new()
 var tile_size = globals.tile_size
 var tile_typ = globals.tile_typ
 
+var movement_duration = 0.3
+var anim_first_frame = 0
+var anim_last_frame = 13
+
 func _ready():
-	pass
+	movement_delay_timer.set_wait_time(movement_duration)
 
 func kill():
 	print("Player dies")
 
-func _input(event):
-	if !event:
-		pass
-	elif Input.is_action_pressed("ui_up"):
+func _physics_process(event):
+	if Input.is_action_pressed("ui_up"):
 		move(globals.directions.TOP)
 	elif Input.is_action_pressed("ui_down"):
 		move(globals.directions.BOTTOM)
@@ -29,19 +38,8 @@ func coll_test(dir, body=self):
 func tile_num(dir):
 	return (get_position() + dir - (tile_size/2)) / tile_size
 
-
-func anim(dir, obj=$shape, add=null):
-	if dir.x > 0 and dir.y == 0:
-		$shape.set_flip_h(true)
-	elif dir.x < 0 and dir.y == 0:
-		$shape.set_flip_h(false)
-	$twe.interpolate_property(obj, "position", $shape.get_position() + dir, $shape.get_position(), 0.1, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
-	$twe.interpolate_property($shape, "frame", 0, 13, 0.15, Tween.TRANS_CIRC, Tween.EASE_OUT)
-	$twe.start()
-
 func move(direction):
-	if $tim.time_left == 0:
-		var pos_a = get_position()
+	if movement_delay_timer.is_stopped():
 		if !coll_test(direction):
 			set_player_position(direction)
 		else:
@@ -69,14 +67,37 @@ func move(direction):
 						if can_collider_roll && collider.push("right"):
 							set_player_position(direction)
 
-		if pos_a != get_position():
-			$tim.start()
-
 func set_player_position(direction):
+	movement_delay_timer.start()
 	set_position(get_position() + direction)
-	anim(-direction)
+	anim(direction)
 	
+func anim(direction, add=null):
+	if direction == globals.directions.RIGHT:
+		object_sprite.set_flip_h(false)
+	elif direction == globals.directions.LEFT:
+		object_sprite.set_flip_h(true)
 
-func _on_twe_tween_completed(object, key):
-	set_position(get_position().snapped(tile_size) - tile_size/2)
-	$shape.set_frame(0)
+	movement_animator.connect("tween_completed", self, "_on_movement_finished", [], CONNECT_ONESHOT)
+	movement_animator.interpolate_property(
+		object_sprite,
+		"position",
+		-direction,
+		Vector2(0,0),
+		movement_duration,
+		Tween.TRANS_SINE,
+		Tween.EASE_IN_OUT
+	)
+	movement_animator.interpolate_property(
+		object_sprite,
+		"frame",
+		anim_first_frame,
+		anim_last_frame,
+		movement_duration,
+		Tween.TRANS_CIRC,
+		Tween.EASE_OUT
+	)
+	movement_animator.start()
+
+func _on_movement_finished(object, key):
+	object_sprite.set_frame(0)

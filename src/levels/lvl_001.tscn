@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://src/levels/level.gd" type="Script" id=1]
 [ext_resource path="res://assets/tiles_back.tres" type="TileSet" id=2]
@@ -6,12 +6,9 @@
 [ext_resource path="res://assets/tiles_decal.tres" type="TileSet" id=4]
 [ext_resource path="res://assets/tiles_front.tres" type="TileSet" id=5]
 [ext_resource path="res://src/components/heart/heart.tscn" type="PackedScene" id=6]
-[ext_resource path="res://src/components/heart/heart.gd" type="Script" id=7]
-[ext_resource path="res://src/components/rock/rock.tscn" type="PackedScene" id=8]
-[ext_resource path="res://src/components/rock/rock.gd" type="Script" id=9]
-[ext_resource path="res://src/components/player/player_spawn_point.tscn" type="PackedScene" id=10]
-[ext_resource path="res://src/components/door/door.tscn" type="PackedScene" id=11]
-[ext_resource path="res://src/components/door/door.gd" type="Script" id=12]
+[ext_resource path="res://src/components/rock/rock.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/components/player/player_spawn_point.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/components/door/door.tscn" type="PackedScene" id=9]
 
 [node name="level" type="Node2D"]
 
@@ -90,838 +87,186 @@ tile_data = PoolIntArray( 0, 25, 0, 1, 21, 0, 2, 21, 0, 3, 21, 0, 4, 21, 0, 5, 2
 script = ExtResource( 3 )
 _sections_unfolded = [ "Cell", "Collision", "Pause", "Transform" ]
 
-[node name="lvl_heart" type="RigidBody2D" parent="." index="3" groups=[
-"can_be_pushed",
-"heart",
-"rigid",
-"can_roll_down",
-] instance=ExtResource( 6 )]
+[node name="lvl_heart" parent="." index="3" instance=ExtResource( 6 )]
 
 position = Vector2( 1728, 192 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-mode = 3
-mass = 1.0
-friction = 1.0
-bounce = 0.0
-gravity_scale = 1.0
-custom_integrator = false
-continuous_cd = 2
-contacts_reported = 1
-contact_monitor = true
-sleeping = false
-can_sleep = true
-linear_velocity = Vector2( 0, 0 )
-linear_damp = -1.0
-angular_velocity = 0.0
-angular_damp = -1.0
-script = ExtResource( 7 )
-_sections_unfolded = [ "collision" ]
 
-[node name="lvl_heart2" type="RigidBody2D" parent="." index="4" groups=[
-"can_be_pushed",
-"heart",
-"rigid",
-"can_roll_down",
-] instance=ExtResource( 6 )]
+[node name="lvl_heart2" parent="." index="4" instance=ExtResource( 6 )]
 
 position = Vector2( 832, 320 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-mode = 3
-mass = 1.0
-friction = 1.0
-bounce = 0.0
-gravity_scale = 1.0
-custom_integrator = false
-continuous_cd = 2
-contacts_reported = 1
-contact_monitor = true
-sleeping = false
-can_sleep = true
-linear_velocity = Vector2( 0, 0 )
-linear_damp = -1.0
-angular_velocity = 0.0
-angular_damp = -1.0
-script = ExtResource( 7 )
-_sections_unfolded = [ "collision" ]
+_sections_unfolded = [ "Collision", "collision" ]
 
-[node name="lvl_heart3" type="RigidBody2D" parent="." index="5" groups=[
-"can_be_pushed",
-"heart",
-"rigid",
-"can_roll_down",
-] instance=ExtResource( 6 )]
+[node name="lvl_heart3" parent="." index="5" instance=ExtResource( 6 )]
 
 position = Vector2( 1216, 448 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-mode = 3
-mass = 1.0
-friction = 1.0
-bounce = 0.0
-gravity_scale = 1.0
-custom_integrator = false
-continuous_cd = 2
-contacts_reported = 1
-contact_monitor = true
-sleeping = false
-can_sleep = true
-linear_velocity = Vector2( 0, 0 )
-linear_damp = -1.0
-angular_velocity = 0.0
-angular_damp = -1.0
-script = ExtResource( 7 )
-_sections_unfolded = [ "collision" ]
 
-[node name="lvl_heart4" type="RigidBody2D" parent="." index="6" groups=[
-"can_be_pushed",
-"heart",
-"rigid",
-"can_roll_down",
-] instance=ExtResource( 6 )]
+[node name="lvl_heart4" parent="." index="6" instance=ExtResource( 6 )]
 
 position = Vector2( 2240, 576 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-mode = 3
-mass = 1.0
-friction = 1.0
-bounce = 0.0
-gravity_scale = 1.0
-custom_integrator = false
-continuous_cd = 2
-contacts_reported = 1
-contact_monitor = true
-sleeping = false
-can_sleep = true
-linear_velocity = Vector2( 0, 0 )
-linear_damp = -1.0
-angular_velocity = 0.0
-angular_damp = -1.0
-script = ExtResource( 7 )
-_sections_unfolded = [ "collision" ]
 
-[node name="lvl_heart5" type="RigidBody2D" parent="." index="7" groups=[
-"can_be_pushed",
-"heart",
-"rigid",
-"can_roll_down",
-] instance=ExtResource( 6 )]
+[node name="lvl_heart5" parent="." index="7" instance=ExtResource( 6 )]
 
 position = Vector2( 832, 832 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-mode = 3
-mass = 1.0
-friction = 1.0
-bounce = 0.0
-gravity_scale = 1.0
-custom_integrator = false
-continuous_cd = 2
-contacts_reported = 1
-contact_monitor = true
-sleeping = false
-can_sleep = true
-linear_velocity = Vector2( 0, 0 )
-linear_damp = -1.0
-angular_velocity = 0.0
-angular_damp = -1.0
-script = ExtResource( 7 )
-_sections_unfolded = [ "collision" ]
 
-[node name="lvl_heart6" type="RigidBody2D" parent="." index="8" groups=[
-"can_be_pushed",
-"heart",
-"rigid",
-"can_roll_down",
-] instance=ExtResource( 6 )]
+[node name="lvl_heart6" parent="." index="8" instance=ExtResource( 6 )]
 
 position = Vector2( 1728, 832 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-mode = 3
-mass = 1.0
-friction = 1.0
-bounce = 0.0
-gravity_scale = 1.0
-custom_integrator = false
-continuous_cd = 2
-contacts_reported = 1
-contact_monitor = true
-sleeping = false
-can_sleep = true
-linear_velocity = Vector2( 0, 0 )
-linear_damp = -1.0
-angular_velocity = 0.0
-angular_damp = -1.0
-script = ExtResource( 7 )
-_sections_unfolded = [ "collision" ]
 
-[node name="lvl_heart7" type="RigidBody2D" parent="." index="9" groups=[
-"can_be_pushed",
-"heart",
-"rigid",
-"can_roll_down",
-] instance=ExtResource( 6 )]
+[node name="lvl_heart7" parent="." index="9" instance=ExtResource( 6 )]
 
 position = Vector2( 192, 1088 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-mode = 3
-mass = 1.0
-friction = 1.0
-bounce = 0.0
-gravity_scale = 1.0
-custom_integrator = false
-continuous_cd = 2
-contacts_reported = 1
-contact_monitor = true
-sleeping = false
-can_sleep = true
-linear_velocity = Vector2( 0, 0 )
-linear_damp = -1.0
-angular_velocity = 0.0
-angular_damp = -1.0
-script = ExtResource( 7 )
-_sections_unfolded = [ "collision" ]
 
-[node name="lvl_heart8" type="RigidBody2D" parent="." index="10" groups=[
-"can_be_pushed",
-"heart",
-"rigid",
-"can_roll_down",
-] instance=ExtResource( 6 )]
+[node name="lvl_heart8" parent="." index="10" instance=ExtResource( 6 )]
 
 position = Vector2( 1728, 1088 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-mode = 3
-mass = 1.0
-friction = 1.0
-bounce = 0.0
-gravity_scale = 1.0
-custom_integrator = false
-continuous_cd = 2
-contacts_reported = 1
-contact_monitor = true
-sleeping = false
-can_sleep = true
-linear_velocity = Vector2( 0, 0 )
-linear_damp = -1.0
-angular_velocity = 0.0
-angular_damp = -1.0
-script = ExtResource( 7 )
-_sections_unfolded = [ "collision" ]
+_sections_unfolded = [ "Collision", "collision" ]
 
-[node name="lvl_heart9" type="RigidBody2D" parent="." index="11" groups=[
-"can_be_pushed",
-"heart",
-"rigid",
-"can_roll_down",
-] instance=ExtResource( 6 )]
+[node name="lvl_heart9" parent="." index="11" instance=ExtResource( 6 )]
 
 position = Vector2( 1344, 1216 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-mode = 3
-mass = 1.0
-friction = 1.0
-bounce = 0.0
-gravity_scale = 1.0
-custom_integrator = false
-continuous_cd = 2
-contacts_reported = 1
-contact_monitor = true
-sleeping = false
-can_sleep = true
-linear_velocity = Vector2( 0, 0 )
-linear_damp = -1.0
-angular_velocity = 0.0
-angular_damp = -1.0
-script = ExtResource( 7 )
-_sections_unfolded = [ "collision" ]
 
-[node name="lvl_heart10" type="RigidBody2D" parent="." index="12" groups=[
-"can_be_pushed",
-"heart",
-"rigid",
-"can_roll_down",
-] instance=ExtResource( 6 )]
+[node name="lvl_heart10" parent="." index="12" instance=ExtResource( 6 )]
 
 position = Vector2( 1984, 1216 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-mode = 3
-mass = 1.0
-friction = 1.0
-bounce = 0.0
-gravity_scale = 1.0
-custom_integrator = false
-continuous_cd = 2
-contacts_reported = 1
-contact_monitor = true
-sleeping = false
-can_sleep = true
-linear_velocity = Vector2( 0, 0 )
-linear_damp = -1.0
-angular_velocity = 0.0
-angular_damp = -1.0
-script = ExtResource( 7 )
-_sections_unfolded = [ "collision" ]
 
-[node name="lvl_heart11" type="RigidBody2D" parent="." index="13" groups=[
-"can_be_pushed",
-"heart",
-"rigid",
-"can_roll_down",
-] instance=ExtResource( 6 )]
+[node name="lvl_heart11" parent="." index="13" instance=ExtResource( 6 )]
 
 position = Vector2( 320, 1344 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-mode = 3
-mass = 1.0
-friction = 1.0
-bounce = 0.0
-gravity_scale = 1.0
-custom_integrator = false
-continuous_cd = 2
-contacts_reported = 1
-contact_monitor = true
-sleeping = false
-can_sleep = true
-linear_velocity = Vector2( 0, 0 )
-linear_damp = -1.0
-angular_velocity = 0.0
-angular_damp = -1.0
-script = ExtResource( 7 )
-_sections_unfolded = [ "collision" ]
 
-[node name="lvl_heart12" type="RigidBody2D" parent="." index="14" groups=[
-"can_be_pushed",
-"heart",
-"rigid",
-"can_roll_down",
-] instance=ExtResource( 6 )]
+[node name="lvl_heart12" parent="." index="14" instance=ExtResource( 6 )]
 
 position = Vector2( 1984, 1344 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-mode = 3
-mass = 1.0
-friction = 1.0
-bounce = 0.0
-gravity_scale = 1.0
-custom_integrator = false
-continuous_cd = 2
-contacts_reported = 1
-contact_monitor = true
-sleeping = false
-can_sleep = true
-linear_velocity = Vector2( 0, 0 )
-linear_damp = -1.0
-angular_velocity = 0.0
-angular_damp = -1.0
-script = ExtResource( 7 )
-_sections_unfolded = [ "collision" ]
 
-[node name="lvl_sphere" type="KinematicBody2D" parent="." index="15" groups=[
-"can_be_pushed",
-"rigid",
-"can_roll_down",
-"sphere",
-] instance=ExtResource( 8 )]
+[node name="lvl_sphere" parent="." index="15" instance=ExtResource( 7 )]
 
 position = Vector2( 704, 192 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-collision/safe_margin = 0.08
-script = ExtResource( 9 )
-_sections_unfolded = [ "Collision", "Transform", "collision" ]
 
-[node name="lvl_sphere2" type="KinematicBody2D" parent="." index="16" groups=[
-"can_be_pushed",
-"rigid",
-"can_roll_down",
-"sphere",
-] instance=ExtResource( 8 )]
+[node name="lvl_sphere2" parent="." index="16" instance=ExtResource( 7 )]
 
 position = Vector2( 1472, 192 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-collision/safe_margin = 0.08
-script = ExtResource( 9 )
-_sections_unfolded = [ "Collision", "Transform", "collision" ]
 
-[node name="lvl_sphere3" type="KinematicBody2D" parent="." index="17" groups=[
-"can_be_pushed",
-"rigid",
-"can_roll_down",
-"sphere",
-] instance=ExtResource( 8 )]
+[node name="lvl_sphere3" parent="." index="17" instance=ExtResource( 7 )]
 
 position = Vector2( 704, 320 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-collision/safe_margin = 0.08
-script = ExtResource( 9 )
-_sections_unfolded = [ "Collision", "Transform", "collision" ]
 
-[node name="lvl_sphere4" type="KinematicBody2D" parent="." index="18" groups=[
-"can_be_pushed",
-"rigid",
-"can_roll_down",
-"sphere",
-] instance=ExtResource( 8 )]
+[node name="lvl_sphere4" parent="." index="18" instance=ExtResource( 7 )]
 
 position = Vector2( 1344, 320 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-collision/safe_margin = 0.08
-script = ExtResource( 9 )
-_sections_unfolded = [ "Collision", "Transform", "collision" ]
 
-[node name="lvl_sphere5" type="KinematicBody2D" parent="." index="19" groups=[
-"can_be_pushed",
-"rigid",
-"can_roll_down",
-"sphere",
-] instance=ExtResource( 8 )]
+[node name="lvl_sphere5" parent="." index="19" instance=ExtResource( 7 )]
 
 position = Vector2( 1472, 320 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-collision/safe_margin = 0.08
-script = ExtResource( 9 )
-_sections_unfolded = [ "Collision", "Transform", "collision" ]
 
-[node name="lvl_sphere6" type="KinematicBody2D" parent="." index="20" groups=[
-"can_be_pushed",
-"rigid",
-"can_roll_down",
-"sphere",
-] instance=ExtResource( 8 )]
+[node name="lvl_sphere6" parent="." index="20" instance=ExtResource( 7 )]
 
 position = Vector2( 1600, 320 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-collision/safe_margin = 0.08
-script = ExtResource( 9 )
-_sections_unfolded = [ "Collision", "Transform", "collision" ]
 
-[node name="lvl_sphere7" type="KinematicBody2D" parent="." index="21" groups=[
-"can_be_pushed",
-"rigid",
-"can_roll_down",
-"sphere",
-] instance=ExtResource( 8 )]
+[node name="lvl_sphere7" parent="." index="21" instance=ExtResource( 7 )]
 
 position = Vector2( 1728, 320 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-collision/safe_margin = 0.08
-script = ExtResource( 9 )
-_sections_unfolded = [ "Collision", "Transform", "collision" ]
 
-[node name="lvl_sphere8" type="KinematicBody2D" parent="." index="22" groups=[
-"can_be_pushed",
-"rigid",
-"can_roll_down",
-"sphere",
-] instance=ExtResource( 8 )]
+[node name="lvl_sphere8" parent="." index="22" instance=ExtResource( 7 )]
 
 position = Vector2( 2240, 320 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-collision/safe_margin = 0.08
-script = ExtResource( 9 )
-_sections_unfolded = [ "Collision", "Transform", "collision" ]
 
-[node name="lvl_sphere9" type="KinematicBody2D" parent="." index="23" groups=[
-"can_be_pushed",
-"rigid",
-"can_roll_down",
-"sphere",
-] instance=ExtResource( 8 )]
+[node name="lvl_sphere9" parent="." index="23" instance=ExtResource( 7 )]
 
 position = Vector2( 704, 448 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-collision/safe_margin = 0.08
-script = ExtResource( 9 )
-_sections_unfolded = [ "Collision", "Transform", "collision" ]
 
-[node name="lvl_sphere10" type="KinematicBody2D" parent="." index="24" groups=[
-"can_be_pushed",
-"rigid",
-"can_roll_down",
-"sphere",
-] instance=ExtResource( 8 )]
+[node name="lvl_sphere10" parent="." index="24" instance=ExtResource( 7 )]
 
 position = Vector2( 2240, 448 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-collision/safe_margin = 0.08
-script = ExtResource( 9 )
-_sections_unfolded = [ "Collision", "Transform", "collision" ]
 
-[node name="lvl_sphere11" type="KinematicBody2D" parent="." index="25" groups=[
-"can_be_pushed",
-"rigid",
-"can_roll_down",
-"sphere",
-] instance=ExtResource( 8 )]
+[node name="lvl_sphere11" parent="." index="25" instance=ExtResource( 7 )]
 
 position = Vector2( 704, 704 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-collision/safe_margin = 0.08
-script = ExtResource( 9 )
-_sections_unfolded = [ "Collision", "Transform", "collision" ]
 
-[node name="lvl_sphere12" type="KinematicBody2D" parent="." index="26" groups=[
-"can_be_pushed",
-"rigid",
-"can_roll_down",
-"sphere",
-] instance=ExtResource( 8 )]
+[node name="lvl_sphere12" parent="." index="26" instance=ExtResource( 7 )]
 
 position = Vector2( 832, 704 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-collision/safe_margin = 0.08
-script = ExtResource( 9 )
-_sections_unfolded = [ "Collision", "Transform", "collision" ]
 
-[node name="lvl_sphere13" type="KinematicBody2D" parent="." index="27" groups=[
-"can_be_pushed",
-"rigid",
-"can_roll_down",
-"sphere",
-] instance=ExtResource( 8 )]
+[node name="lvl_sphere13" parent="." index="27" instance=ExtResource( 7 )]
 
 position = Vector2( 1344, 704 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-collision/safe_margin = 0.08
-script = ExtResource( 9 )
-_sections_unfolded = [ "Collision", "Transform", "collision" ]
 
-[node name="lvl_sphere14" type="KinematicBody2D" parent="." index="28" groups=[
-"can_be_pushed",
-"rigid",
-"can_roll_down",
-"sphere",
-] instance=ExtResource( 8 )]
+[node name="lvl_sphere14" parent="." index="28" instance=ExtResource( 7 )]
 
-position = Vector2( 1984, 704 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-collision/safe_margin = 0.08
-script = ExtResource( 9 )
-_sections_unfolded = [ "Collision", "Transform", "collision" ]
+position = Vector2( 1980, 700 )
 
-[node name="lvl_sphere15" type="KinematicBody2D" parent="." index="29" groups=[
-"can_be_pushed",
-"rigid",
-"can_roll_down",
-"sphere",
-] instance=ExtResource( 8 )]
+[node name="lvl_sphere15" parent="." index="29" instance=ExtResource( 7 )]
 
 position = Vector2( 320, 832 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-collision/safe_margin = 0.08
-script = ExtResource( 9 )
-_sections_unfolded = [ "Collision", "Transform", "collision" ]
 
-[node name="lvl_sphere16" type="KinematicBody2D" parent="." index="30" groups=[
-"can_be_pushed",
-"rigid",
-"can_roll_down",
-"sphere",
-] instance=ExtResource( 8 )]
+[node name="lvl_sphere16" parent="." index="30" instance=ExtResource( 7 )]
 
 position = Vector2( 1216, 832 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-collision/safe_margin = 0.08
-script = ExtResource( 9 )
-_sections_unfolded = [ "Collision", "Transform", "collision" ]
 
-[node name="lvl_sphere17" type="KinematicBody2D" parent="." index="31" groups=[
-"can_be_pushed",
-"rigid",
-"can_roll_down",
-"sphere",
-] instance=ExtResource( 8 )]
+[node name="lvl_sphere17" parent="." index="31" instance=ExtResource( 7 )]
 
 position = Vector2( 1984, 832 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-collision/safe_margin = 0.08
-script = ExtResource( 9 )
-_sections_unfolded = [ "Collision", "Transform", "collision" ]
 
-[node name="lvl_sphere18" type="KinematicBody2D" parent="." index="32" groups=[
-"can_be_pushed",
-"rigid",
-"can_roll_down",
-"sphere",
-] instance=ExtResource( 8 )]
+[node name="lvl_sphere18" parent="." index="32" instance=ExtResource( 7 )]
 
 position = Vector2( 320, 960 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-collision/safe_margin = 0.08
-script = ExtResource( 9 )
-_sections_unfolded = [ "Collision", "Transform", "collision" ]
 
-[node name="lvl_sphere19" type="KinematicBody2D" parent="." index="33" groups=[
-"can_be_pushed",
-"rigid",
-"can_roll_down",
-"sphere",
-] instance=ExtResource( 8 )]
+[node name="lvl_sphere19" parent="." index="33" instance=ExtResource( 7 )]
 
 position = Vector2( 448, 1088 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-collision/safe_margin = 0.08
-script = ExtResource( 9 )
-_sections_unfolded = [ "Collision", "Transform", "collision" ]
 
-[node name="lvl_sphere20" type="KinematicBody2D" parent="." index="34" groups=[
-"can_be_pushed",
-"rigid",
-"can_roll_down",
-"sphere",
-] instance=ExtResource( 8 )]
+[node name="lvl_sphere20" parent="." index="34" instance=ExtResource( 7 )]
 
 position = Vector2( 960, 1088 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-collision/safe_margin = 0.08
-script = ExtResource( 9 )
-_sections_unfolded = [ "Collision", "Transform", "collision" ]
 
-[node name="lvl_sphere21" type="KinematicBody2D" parent="." index="35" groups=[
-"can_be_pushed",
-"rigid",
-"can_roll_down",
-"sphere",
-] instance=ExtResource( 8 )]
+[node name="lvl_sphere21" parent="." index="35" instance=ExtResource( 7 )]
 
 position = Vector2( 1216, 1088 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-collision/safe_margin = 0.08
-script = ExtResource( 9 )
-_sections_unfolded = [ "Collision", "Transform", "collision" ]
 
-[node name="lvl_sphere22" type="KinematicBody2D" parent="." index="36" groups=[
-"can_be_pushed",
-"rigid",
-"can_roll_down",
-"sphere",
-] instance=ExtResource( 8 )]
+[node name="lvl_sphere22" parent="." index="36" instance=ExtResource( 7 )]
 
 position = Vector2( 1856, 1088 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-collision/safe_margin = 0.08
-script = ExtResource( 9 )
-_sections_unfolded = [ "Collision", "Transform", "collision" ]
 
-[node name="lvl_sphere23" type="KinematicBody2D" parent="." index="37" groups=[
-"can_be_pushed",
-"rigid",
-"can_roll_down",
-"sphere",
-] instance=ExtResource( 8 )]
+[node name="lvl_sphere23" parent="." index="37" instance=ExtResource( 7 )]
 
 position = Vector2( 704, 1216 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-collision/safe_margin = 0.08
-script = ExtResource( 9 )
-_sections_unfolded = [ "Collision", "Transform", "collision" ]
 
-[node name="lvl_sphere24" type="KinematicBody2D" parent="." index="38" groups=[
-"can_be_pushed",
-"rigid",
-"can_roll_down",
-"sphere",
-] instance=ExtResource( 8 )]
+[node name="lvl_sphere24" parent="." index="38" instance=ExtResource( 7 )]
 
 position = Vector2( 832, 1216 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-collision/safe_margin = 0.08
-script = ExtResource( 9 )
-_sections_unfolded = [ "Collision", "Transform", "collision" ]
 
-[node name="lvl_sphere25" type="KinematicBody2D" parent="." index="39" groups=[
-"can_be_pushed",
-"rigid",
-"can_roll_down",
-"sphere",
-] instance=ExtResource( 8 )]
+[node name="lvl_sphere25" parent="." index="39" instance=ExtResource( 7 )]
 
 position = Vector2( 1216, 1216 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-collision/safe_margin = 0.08
-script = ExtResource( 9 )
-_sections_unfolded = [ "Collision", "Transform", "collision" ]
 
-[node name="lvl_sphere26" type="KinematicBody2D" parent="." index="40" groups=[
-"can_be_pushed",
-"rigid",
-"can_roll_down",
-"sphere",
-] instance=ExtResource( 8 )]
+[node name="lvl_sphere26" parent="." index="40" instance=ExtResource( 7 )]
 
 position = Vector2( 1856, 1216 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-collision/safe_margin = 0.08
-script = ExtResource( 9 )
-_sections_unfolded = [ "Collision", "Transform", "collision" ]
 
-[node name="lvl_sphere27" type="KinematicBody2D" parent="." index="41" groups=[
-"can_be_pushed",
-"rigid",
-"can_roll_down",
-"sphere",
-] instance=ExtResource( 8 )]
+[node name="lvl_sphere27" parent="." index="41" instance=ExtResource( 7 )]
 
 position = Vector2( 2368, 1216 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-collision/safe_margin = 0.08
-script = ExtResource( 9 )
-_sections_unfolded = [ "Collision", "Transform", "collision" ]
 
-[node name="lvl_sphere28" type="KinematicBody2D" parent="." index="42" groups=[
-"can_be_pushed",
-"rigid",
-"can_roll_down",
-"sphere",
-] instance=ExtResource( 8 )]
+[node name="lvl_sphere28" parent="." index="42" instance=ExtResource( 7 )]
 
 position = Vector2( 960, 1344 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-collision/safe_margin = 0.08
-script = ExtResource( 9 )
-_sections_unfolded = [ "Collision", "Transform", "collision" ]
 
-[node name="lvl_sphere29" type="KinematicBody2D" parent="." index="43" groups=[
-"can_be_pushed",
-"rigid",
-"can_roll_down",
-"sphere",
-] instance=ExtResource( 8 )]
+[node name="lvl_sphere29" parent="." index="43" instance=ExtResource( 7 )]
 
 position = Vector2( 1216, 1344 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-collision/safe_margin = 0.08
-script = ExtResource( 9 )
-_sections_unfolded = [ "Collision", "Transform", "collision" ]
 
-[node name="lvl_sphere30" type="KinematicBody2D" parent="." index="44" groups=[
-"can_be_pushed",
-"rigid",
-"can_roll_down",
-"sphere",
-] instance=ExtResource( 8 )]
+[node name="lvl_sphere30" parent="." index="44" instance=ExtResource( 7 )]
 
 position = Vector2( 1600, 1344 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-collision/safe_margin = 0.08
-script = ExtResource( 9 )
-_sections_unfolded = [ "Collision", "Transform", "collision" ]
 
-[node name="lvl_sphere31" type="KinematicBody2D" parent="." index="45" groups=[
-"can_be_pushed",
-"rigid",
-"can_roll_down",
-"sphere",
-] instance=ExtResource( 8 )]
+[node name="lvl_sphere31" parent="." index="45" instance=ExtResource( 7 )]
 
 position = Vector2( 2368, 1344 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-collision/safe_margin = 0.08
-script = ExtResource( 9 )
-_sections_unfolded = [ "Collision", "Transform", "collision" ]
 
-[node name="character_spawn_point" type="Node2D" parent="." index="46" groups=[
-"player",
-] instance=ExtResource( 10 )]
+[node name="character_spawn_point" parent="." index="46" instance=ExtResource( 8 )]
 
 position = Vector2( 320, 320 )
 
-[node name="door" type="StaticBody2D" parent="." index="47" groups=[
-"can_be_pushed",
-] instance=ExtResource( 11 )]
+[node name="door" parent="." index="47" instance=ExtResource( 9 )]
 
 position = Vector2( 2496, 1216 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-constant_linear_velocity = Vector2( 0, 0 )
-constant_angular_velocity = 0.0
-friction = 1.0
-bounce = 0.0
-script = ExtResource( 12 )
-_sections_unfolded = [ "collision" ]
 
 

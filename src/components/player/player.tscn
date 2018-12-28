@@ -36,7 +36,7 @@ animations = [ {
 "speed": 52.0
 } ]
 
-[node name="character" type="RigidBody2D" groups=[
+[node name="character" type="RigidBody2D" index="0" groups=[
 "player",
 ]]
 
@@ -69,6 +69,7 @@ shape = SubResource( 1 )
 
 frames = SubResource( 2 )
 animation = "jump"
+offset = Vector2( 0, -20 )
 
 [node name="twe" type="Tween" parent="." index="2"]
 
