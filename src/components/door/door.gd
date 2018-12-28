@@ -1,6 +1,7 @@
 extends StaticBody2D
 
 onready var levelInstance = get_node("../")
+onready var gameManager = get_node("/root/Root")
 
 var is_open = false
 
@@ -18,6 +19,7 @@ func close():
 
 func push(direction = null):
 	if is_open:
+		gameManager.go_to_next_level()
 		return true
 	else:
 		return false
