@@ -1,16 +1,13 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/levels/level.gd" type="Script" id=1]
 [ext_resource path="res://assets/tiles_back.tres" type="TileSet" id=2]
 [ext_resource path="res://src/components/tools/level_positionLock.gd" type="Script" id=3]
 [ext_resource path="res://assets/tiles_decal.tres" type="TileSet" id=4]
 [ext_resource path="res://assets/tiles_front.tres" type="TileSet" id=5]
-[ext_resource path="res://src/components/player/player_spawn_point.tscn" type="PackedScene" id=6]
-[ext_resource path="res://src/components/heart/heart.tscn" type="PackedScene" id=7]
-[ext_resource path="res://src/components/rock/rock.tscn" type="PackedScene" id=8]
-[ext_resource path="res://src/components/door/door_h.tscn" type="PackedScene" id=9]
+[ext_resource path="res://assets/tiles_addon.tres" type="TileSet" id=6]
 
-[node name="level" type="Node2D"]
+[node name="level" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Pause" ]
@@ -87,184 +84,28 @@ tile_data = PoolIntArray( 0, 25, 0, 1, 21, 0, 2, 21, 0, 3, 21, 0, 4, 21, 0, 5, 2
 script = ExtResource( 3 )
 _sections_unfolded = [ "Cell", "Collision", "Pause", "Transform" ]
 
-[node name="character_spawn_point" parent="." index="3" instance=ExtResource( 6 )]
-
-position = Vector2( 320, 320 )
-
-[node name="lvl_heart" parent="." index="4" instance=ExtResource( 7 )]
-
-position = Vector2( 1728, 192 )
-
-[node name="lvl_heart2" parent="." index="5" instance=ExtResource( 7 )]
-
-position = Vector2( 832, 320 )
-
-[node name="lvl_heart3" parent="." index="6" instance=ExtResource( 7 )]
-
-position = Vector2( 1216, 448 )
-
-[node name="lvl_heart4" parent="." index="7" instance=ExtResource( 7 )]
-
-position = Vector2( 2240, 576 )
-
-[node name="lvl_heart5" parent="." index="8" instance=ExtResource( 7 )]
-
-position = Vector2( 832, 832 )
-
-[node name="lvl_heart6" parent="." index="9" instance=ExtResource( 7 )]
-
-position = Vector2( 1728, 832 )
-
-[node name="lvl_heart7" parent="." index="10" instance=ExtResource( 7 )]
-
-position = Vector2( 192, 1088 )
-
-[node name="lvl_heart8" parent="." index="11" instance=ExtResource( 7 )]
-
-position = Vector2( 1728, 1088 )
-
-[node name="lvl_heart9" parent="." index="12" instance=ExtResource( 7 )]
-
-position = Vector2( 1344, 1216 )
-
-[node name="lvl_heart10" parent="." index="13" instance=ExtResource( 7 )]
-
-position = Vector2( 1984, 1216 )
-
-[node name="lvl_heart11" parent="." index="14" instance=ExtResource( 7 )]
-
-position = Vector2( 320, 1344 )
-
-[node name="lvl_heart12" parent="." index="15" instance=ExtResource( 7 )]
-
-position = Vector2( 1984, 1344 )
-
-[node name="lvl_sphere" parent="." index="16" instance=ExtResource( 8 )]
-
-position = Vector2( 704, 192 )
-
-[node name="lvl_sphere2" parent="." index="17" instance=ExtResource( 8 )]
-
-position = Vector2( 1472, 192 )
-
-[node name="lvl_sphere3" parent="." index="18" instance=ExtResource( 8 )]
-
-position = Vector2( 704, 320 )
-
-[node name="lvl_sphere4" parent="." index="19" instance=ExtResource( 8 )]
-
-position = Vector2( 1344, 320 )
-
-[node name="lvl_sphere5" parent="." index="20" instance=ExtResource( 8 )]
-
-position = Vector2( 1472, 320 )
-
-[node name="lvl_sphere6" parent="." index="21" instance=ExtResource( 8 )]
-
-position = Vector2( 1600, 320 )
-
-[node name="lvl_sphere7" parent="." index="22" instance=ExtResource( 8 )]
-
-position = Vector2( 1728, 320 )
-
-[node name="lvl_sphere8" parent="." index="23" instance=ExtResource( 8 )]
-
-position = Vector2( 2240, 320 )
-
-[node name="lvl_sphere9" parent="." index="24" instance=ExtResource( 8 )]
-
-position = Vector2( 704, 448 )
-
-[node name="lvl_sphere10" parent="." index="25" instance=ExtResource( 8 )]
-
-position = Vector2( 2240, 448 )
-
-[node name="lvl_sphere11" parent="." index="26" instance=ExtResource( 8 )]
-
-position = Vector2( 704, 704 )
-
-[node name="lvl_sphere12" parent="." index="27" instance=ExtResource( 8 )]
-
-position = Vector2( 832, 704 )
-
-[node name="lvl_sphere13" parent="." index="28" instance=ExtResource( 8 )]
-
-position = Vector2( 1344, 704 )
-
-[node name="lvl_sphere14" parent="." index="29" instance=ExtResource( 8 )]
-
-position = Vector2( 1984, 704 )
-
-[node name="lvl_sphere15" parent="." index="30" instance=ExtResource( 8 )]
-
-position = Vector2( 320, 832 )
-
-[node name="lvl_sphere16" parent="." index="31" instance=ExtResource( 8 )]
-
-position = Vector2( 1216, 832 )
-
-[node name="lvl_sphere17" parent="." index="32" instance=ExtResource( 8 )]
-
-position = Vector2( 1984, 832 )
-
-[node name="lvl_sphere18" parent="." index="33" instance=ExtResource( 8 )]
-
-position = Vector2( 320, 960 )
-
-[node name="lvl_sphere19" parent="." index="34" instance=ExtResource( 8 )]
-
-position = Vector2( 448, 1088 )
-
-[node name="lvl_sphere20" parent="." index="35" instance=ExtResource( 8 )]
-
-position = Vector2( 960, 1088 )
-
-[node name="lvl_sphere21" parent="." index="36" instance=ExtResource( 8 )]
-
-position = Vector2( 1216, 1088 )
-
-[node name="lvl_sphere22" parent="." index="37" instance=ExtResource( 8 )]
-
-position = Vector2( 1856, 1088 )
-
-[node name="lvl_sphere23" parent="." index="38" instance=ExtResource( 8 )]
-
-position = Vector2( 704, 1216 )
-
-[node name="lvl_sphere24" parent="." index="39" instance=ExtResource( 8 )]
-
-position = Vector2( 832, 1216 )
-
-[node name="lvl_sphere25" parent="." index="40" instance=ExtResource( 8 )]
-
-position = Vector2( 1216, 1216 )
-
-[node name="lvl_sphere26" parent="." index="41" instance=ExtResource( 8 )]
-
-position = Vector2( 1856, 1216 )
-
-[node name="lvl_sphere27" parent="." index="42" instance=ExtResource( 8 )]
-
-position = Vector2( 2368, 1216 )
-
-[node name="lvl_sphere28" parent="." index="43" instance=ExtResource( 8 )]
-
-position = Vector2( 960, 1344 )
-
-[node name="lvl_sphere29" parent="." index="44" instance=ExtResource( 8 )]
-
-position = Vector2( 1216, 1344 )
-
-[node name="lvl_sphere30" parent="." index="45" instance=ExtResource( 8 )]
-
-position = Vector2( 1600, 1344 )
-
-[node name="lvl_sphere31" parent="." index="46" instance=ExtResource( 8 )]
-
-position = Vector2( 2368, 1344 )
-
-[node name="door" parent="." index="47" instance=ExtResource( 9 )]
-
-position = Vector2( 2496, 1216 )
+[node name="tile_objects" type="TileMap" parent="." index="3" groups=[
+"level",
+]]
+
+mode = 0
+tile_set = ExtResource( 6 )
+cell_size = Vector2( 128, 128 )
+cell_quadrant_size = 16
+cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+cell_half_offset = 2
+cell_tile_origin = 0
+cell_y_sort = false
+cell_clip_uv = false
+collision_use_kinematic = false
+collision_friction = 1.0
+collision_bounce = 0.0
+collision_layer = 1
+collision_mask = 1
+occluder_light_mask = 1
+format = 1
+tile_data = PoolIntArray( 65541, 3, 0, 65547, 3, 0, 65549, 2, 0, 131074, 4, 0, 131077, 3, 0, 131078, 2, 0, 131082, 3, 0, 131083, 3, 0, 131084, 3, 0, 131085, 3, 0, 131089, 3, 0, 196613, 3, 0, 196617, 2, 0, 196625, 3, 0, 262161, 2, 0, 327685, 3, 0, 327686, 3, 0, 327690, 3, 0, 327695, 3, 0, 393218, 3, 0, 393222, 2, 0, 393225, 3, 0, 393229, 2, 0, 393231, 3, 0, 458754, 3, 0, 524289, 2, 0, 524291, 3, 0, 524295, 3, 0, 524297, 3, 0, 524301, 2, 0, 524302, 3, 0, 589829, 3, 0, 589830, 3, 0, 589833, 3, 0, 589834, 2, 0, 589838, 3, 0, 589839, 2, 0, 589842, 3, 0, 589843, 5, 0, 655362, 2, 0, 655367, 3, 0, 655369, 3, 0, 655372, 3, 0, 655375, 2, 0, 655378, 3, 0 )
+script = ExtResource( 3 )
+_sections_unfolded = [ "Cell", "Collision", "Pause", "Transform" ]
 
 

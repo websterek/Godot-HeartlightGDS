@@ -104,7 +104,7 @@ collision_layer = 1
 collision_mask = 1
 occluder_light_mask = 1
 format = 1
-tile_data = PoolIntArray( 131074, 4, 0, 589843, 5, 0 )
+tile_data = PoolIntArray( 131074, 4, 0, 196613, 2, 0, 524301, 2, 0, 589843, 6, 0 )
 script = ExtResource( 3 )
 _sections_unfolded = [ "Cell", "Collision", "Pause", "Transform" ]
 
