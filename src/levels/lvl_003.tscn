@@ -10,8 +10,9 @@
 [ext_resource path="res://src/components/rock/rock.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/components/rock/rock.gd" type="Script" id=9]
 [ext_resource path="res://src/components/player/player_spawn_point.tscn" type="PackedScene" id=10]
-[ext_resource path="res://src/components/door/door.tscn" type="PackedScene" id=11]
+[ext_resource path="res://src/components/door/door_v.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/components/door/door.gd" type="Script" id=12]
+
 
 [node name="level" type="Node2D" index="0"]
 

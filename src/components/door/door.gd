@@ -11,11 +11,10 @@ func _ready():
 
 func open():
 	is_open = true
-	set_visible(false)
+	$shape.play("default")
 	
 func close():
 	is_open = false
-	set_visible(true)
 
 func push(direction = null):
 	if is_open:

@@ -11,7 +11,7 @@ var coll_stats = Physics2DTestMotionResult.new()
 var tile_size = globals.tile_size
 var tile_typ = globals.tile_typ
 
-var movement_duration = 0.3
+var movement_duration = 0.15
 var anim_first_frame = 0
 var anim_last_frame = 13
 

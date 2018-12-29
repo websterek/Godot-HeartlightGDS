@@ -6,8 +6,9 @@
 [ext_resource path="res://assets/tiles_decal.tres" type="TileSet" id=4]
 [ext_resource path="res://assets/tiles_front.tres" type="TileSet" id=5]
 [ext_resource path="res://src/components/player/player_spawn_point.tscn" type="PackedScene" id=6]
-[ext_resource path="res://src/components/door/door.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/components/door/door_v.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/components/door/door.gd" type="Script" id=8]
+
 
 [node name="level" type="Node2D"]
 

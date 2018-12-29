@@ -10,7 +10,7 @@ onready var movement_animator = $movement_animator
 # Object configuration
 # ###########
 var is_rollable = true
-var movement_delay = 0.4
+var movement_delay = 0.2
 
 # ###########
 # Helper variables
