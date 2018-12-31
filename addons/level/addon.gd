@@ -46,7 +46,7 @@ func level_finalise():
 	
 	var tile_objects = scene.get_node("tile_objects")
 	var objects = { 0: load("res://src/components/baloon/baloon.tscn"),
-					4: load("res://src/components/character_spawn_point.tscn"),
+					4: load("res://src/components/player/player_spawn_point.tscn"),
 					1: load("res://src/components/grenade/grenade.tscn"),
 					2: load("res://src/components/heart/heart.tscn"),
 					3: load("res://src/components/rock/rock.tscn"),

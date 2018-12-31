@@ -1,6 +1,6 @@
 [gd_scene format=2]
 
-[node name="character_spawn_point" type="Node2D" groups=[
+[node name="character_spawn_point" type="Node2D" index="0" groups=[
 "player",
 ]]
 

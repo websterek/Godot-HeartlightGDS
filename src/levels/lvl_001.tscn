@@ -5,7 +5,7 @@
 [ext_resource path="res://src/components/tools/level_positionLock.gd" type="Script" id=3]
 [ext_resource path="res://assets/tiles_decal.tres" type="TileSet" id=4]
 [ext_resource path="res://assets/tiles_front.tres" type="TileSet" id=5]
-[ext_resource path="res://src/components/character_spawn_point.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/components/player/player_spawn_point.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/components/heart/heart.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/components/heart/heart.gd" type="Script" id=8]
 [ext_resource path="res://src/components/rock/rock.tscn" type="PackedScene" id=9]
@@ -90,10 +90,11 @@ tile_data = PoolIntArray( 0, 25, 0, 1, 21, 0, 2, 21, 0, 3, 21, 0, 4, 21, 0, 5, 2
 script = ExtResource( 3 )
 _sections_unfolded = [ "Cell", "Collision", "Pause", "Transform" ]
 
-[node name="character_spawn_point" type="Position2D" parent="." index="3" instance=ExtResource( 6 )]
+[node name="character_spawn_point" type="Node2D" parent="." index="3" groups=[
+"player",
+] instance=ExtResource( 6 )]
 
 position = Vector2( 320, 320 )
-_sections_unfolded = [ "Transform" ]
 
 [node name="lvl_heart" type="RigidBody2D" parent="." index="4" instance=ExtResource( 7 )]
 
