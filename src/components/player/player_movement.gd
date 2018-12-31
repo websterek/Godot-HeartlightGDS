@@ -18,8 +18,6 @@ var is_locked = false
 var movement_duration = 0.15
 var jump_anim_first_frame = 0
 var jump_anim_last_frame = 13
-var win_anim_first_frame = 0
-var win_anim_last_frame = 8
 
 func _ready():
 	movement_delay_timer.set_wait_time(movement_duration)
