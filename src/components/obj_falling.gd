@@ -1,5 +1,7 @@
 extends PhysicsBody2D
 
+const Util = preload("res://src/global/utils.gd")
+
 # ###########
 # Node references
 # ###########
@@ -10,6 +12,7 @@ onready var movement_animator = $movement_animator
 # Object configuration
 # ###########
 var is_rollable = true
+var is_pushable = true
 var movement_delay = 0.2
 
 # ###########
@@ -18,16 +21,18 @@ var movement_delay = 0.2
 var space_state = null # Current physics state
 var current_position = null # Current object position to use during one physics frame
 var is_moving = false
+var is_moving_direction = null
 var is_grounded = false
 
 # ###########
 # Lifecycle Hooks
 # ###########
-func _init():
-	set_collision_layer_bit(4, true)
-
 func _ready():
-	pass
+	add_to_group("can_fall")
+	if is_rollable:
+		add_to_group("can_roll_down")
+	if is_pushable:
+		add_to_group("can_be_pushed")
 
 func _physics_process(delta):
 	# Handle object physics only if it is not currently moving
@@ -49,6 +54,13 @@ func handle_bottom_collision(collision):
 func try_rolling_sideways():
 	# First try rolling left
 	if has_space_to_roll("left"):
+		# Check if there is no element on the other side rolling to the same spot
+		var far_left_collision = get_collision_at(globals.directions.LEFT + globals.directions.LEFT)
+		if far_left_collision:
+			var collider = far_left_collision.collider
+			if collider.is_in_group("can_roll_down") and collider.is_moving and collider.is_moving_direction == globals.directions.RIGHT:
+				return
+
 		move(globals.directions.LEFT)
 	# If left side is blocked, try rolling right
 	elif has_space_to_roll("right"):
@@ -57,6 +69,7 @@ func try_rolling_sideways():
 func move(direction, handle_impact = false):
 	# Block physics calculation for movement duration
 	is_moving = true
+	is_moving_direction = direction
 
 	set_global_position(current_position + direction)
 	current_position = get_global_position()
@@ -88,6 +101,7 @@ func push(direction):
 
 func _on_movement_finished(object, key, handle_impact):
 	is_moving = false
+	is_moving_direction = null
 	# Add "bottom_impact" function in a script that extends obj_falling to handle impact
 	if handle_impact and has_method("bottom_impact"):
 		var collision_after_move = get_collision_at(globals.directions.BOTTOM)
@@ -109,7 +123,7 @@ func update_grounded_state():
 		var collider = collision.collider
 		if collider.get_class() == "TileMap":
 			is_grounded = true
-		elif collider.is_in_group("can_roll_down"):
+		elif collider.is_in_group("can_fall"):
 			is_grounded = collider.is_grounded
 		else:
 			is_grounded = false
@@ -133,11 +147,7 @@ func can_roll():
 	var is_ground_slippery = true 
 
 	if (bottom_collision.collider.get_class() == "TileMap"):
-		var tilemap = bottom_collision.collider
-		var collision_local_position = bottom_collision.position - tilemap.get_global_position()
-		var tile_coordinates = tilemap.world_to_map(collision_local_position)
-		var tile_index = tilemap.get_cellv(tile_coordinates)
-		
+		var tile_index = Util.get_tile_id_by_collision(bottom_collision)		
 		if (tile_index == -1 or globals.tile_typ["grass"].has(tile_index)):
 			is_ground_slippery = false
 	elif bottom_collision.collider.is_in_group("player"):
@@ -153,25 +163,24 @@ func has_space_to_roll(direction):
 		"left":
 			side_collision =  get_collision_at(globals.directions.LEFT)
 			bottom_collision =  get_collision_at(globals.directions.BOTTOM_LEFT)
-			top_collision =  get_collision_at(globals.directions.TOP_LEFT, true)
+			top_collision =  get_collision_at(globals.directions.TOP_LEFT)
 		"right":
 			side_collision =  get_collision_at(globals.directions.RIGHT)
 			bottom_collision =  get_collision_at(globals.directions.BOTTOM_RIGHT)
-			top_collision =  get_collision_at(globals.directions.TOP_RIGHT, true)
+			top_collision =  get_collision_at(globals.directions.TOP_RIGHT)
 		_:
 			printerr("Wrong argument provided for 'has_space_to_roll' function!")
 			return false
 
-	var something_is_above = top_collision and top_collision.collider.is_in_group("can_roll_down")
+	var something_is_above = top_collision and top_collision.collider.is_in_group("can_fall")
 
 	return !side_collision and !bottom_collision and !something_is_above
 
-func get_collision_at(direction, ignoreTileMap = false):
-	var origin = current_position
+func get_collision_at(direction):
 	var target = current_position + direction
-	if !ignoreTileMap:
-		return space_state.intersect_ray(origin, target)
+	var result = space_state.intersect_point(target)
+
+	if result:
+		return { "position": target, "collider": result[0].collider }
 	else:
-		# Bit mask to check collisions only with other falling objects
-		var collision_bitmask = 16
-		return space_state.intersect_ray(origin, target, [], collision_bitmask)
+		return {}

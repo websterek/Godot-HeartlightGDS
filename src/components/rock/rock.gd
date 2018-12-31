@@ -11,3 +11,5 @@ func bottom_impact(collision):
 	var collider = collision.collider
 	if (collider.is_in_group("player")):
 		collider.kill()
+	if (collider.is_in_group("grenade")):
+		collider.explode()

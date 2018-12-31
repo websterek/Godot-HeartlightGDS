@@ -1,5 +1,7 @@
 extends RigidBody2D
 
+onready var game_manager = get_node("/root/Root")
+
 # ###########
 # Node references
 # ###########
@@ -11,31 +13,37 @@ var coll_stats = Physics2DTestMotionResult.new()
 var tile_size = globals.tile_size
 var tile_typ = globals.tile_typ
 
+var is_locked = false
+
 var movement_duration = 0.15
-var anim_first_frame = 0
-var anim_last_frame = 13
+var jump_anim_first_frame = 0
+var jump_anim_last_frame = 13
+var win_anim_first_frame = 0
+var win_anim_last_frame = 8
 
 func _ready():
 	movement_delay_timer.set_wait_time(movement_duration)
 
 func kill():
 	print("Player dies")
+	game_manager.reset_current_level()
 
 func _physics_process(event):
-	if Input.is_action_pressed("ui_up"):
-		move(globals.directions.TOP)
-	elif Input.is_action_pressed("ui_down"):
-		move(globals.directions.BOTTOM)
-	elif Input.is_action_pressed("ui_left"):
-		move(globals.directions.LEFT)
-	elif Input.is_action_pressed("ui_right"):
-		move(globals.directions.RIGHT)
+	if !is_locked:
+		if Input.is_action_pressed("ui_up"):
+			move(globals.directions.TOP)
+		elif Input.is_action_pressed("ui_down"):
+			move(globals.directions.BOTTOM)
+		elif Input.is_action_pressed("ui_left"):
+			move(globals.directions.LEFT)
+		elif Input.is_action_pressed("ui_right"):
+			move(globals.directions.RIGHT)
 
 func coll_test(dir, body=self):
 	return Physics2DServer.body_test_motion(body, body.get_global_transform(), dir, 0.16, coll_stats)
 
 
-func tile_num(dir):
+func get_tile_coordinates(dir):
 	return (get_position() + dir - (tile_size/2)) / tile_size
 
 func move(direction):
@@ -44,10 +52,10 @@ func move(direction):
 			set_player_position(direction)
 		else:
 			var collider = coll_stats.get_collider()
-			if collider.is_in_group("level"):
-				var tile_number = tile_num(direction)
-				if collider.get_cellv(tile_number) in tile_typ["grass"]:
-					collider.set_cellv(tile_number, -1)
+			if collider.is_in_group("level"):				
+				var tile_coordinates = collider.world_to_map(get_position() + direction)
+				if collider.get_cellv(tile_coordinates) in tile_typ["grass"]:
+					collider.set_cellv(tile_coordinates, -1)
 					set_player_position(direction)
 			
 			var can_push = collider.is_in_group("can_be_pushed") and collider.has_method("push")
@@ -91,8 +99,8 @@ func anim(direction, add=null):
 	movement_animator.interpolate_property(
 		object_sprite,
 		"frame",
-		anim_first_frame,
-		anim_last_frame,
+		jump_anim_first_frame,
+		jump_anim_last_frame,
 		movement_duration,
 		Tween.TRANS_CIRC,
 		Tween.EASE_OUT
@@ -101,3 +109,14 @@ func anim(direction, add=null):
 
 func _on_movement_finished(object, key):
 	object_sprite.set_frame(0)
+
+func _on_win_finished():	
+	is_locked = false
+	object_sprite.stop()
+	object_sprite.set_animation("jump")
+	game_manager.go_to_next_level()
+
+func play_win_animation():	
+	is_locked = true
+	object_sprite.connect("animation_finished", self, "_on_win_finished", [], CONNECT_ONESHOT)
+	object_sprite.play("win")

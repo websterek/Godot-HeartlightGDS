@@ -8,12 +8,7 @@
 custom_solver_bias = 0.0
 radius = 62.0
 
-[node name="lvl_sphere" type="KinematicBody2D" groups=[
-"can_be_pushed",
-"sphere",
-"can_roll_down",
-"rigid",
-]]
+[node name="lvl_sphere" type="KinematicBody2D"]
 
 input_pickable = false
 collision_layer = 1

@@ -5,6 +5,7 @@ signal all_hearts_taken
 
 var tile_size = globals.tile_size
 var remainingHearts = []
+var level_filename = null
 
 func register_heart(name):
 	remainingHearts.append(name)
@@ -48,3 +49,16 @@ func calculate_bounds():
 		"height": (max_y + 1 - min_y) * tile_size.y,
 		"width": (max_x + 1 - min_x) * tile_size.x
 	}
+
+func calculate_zoom(bounds = null):
+	var screen_height = ProjectSettings.get_setting("display/window/size/height")
+	var screen_width = ProjectSettings.get_setting("display/window/size/width")
+	
+	var tilemap_bounds = bounds
+	if tilemap_bounds:
+		tilemap_bounds = calculate_bounds()
+	
+	var zoom_x = tilemap_bounds.width / screen_width
+	var zoom_y = tilemap_bounds.height / screen_height
+	return zoom_x if zoom_x > zoom_y else zoom_y
+
