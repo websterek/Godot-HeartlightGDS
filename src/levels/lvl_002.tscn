@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://src/levels/level.gd" type="Script" id=1]
 [ext_resource path="res://assets/tiles_back.tres" type="TileSet" id=2]
@@ -7,13 +7,9 @@
 [ext_resource path="res://assets/tiles_front.tres" type="TileSet" id=5]
 [ext_resource path="res://src/components/player/player_spawn_point.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/components/grenade/grenade.tscn" type="PackedScene" id=7]
-[ext_resource path="res://src/components/grenade/grenade.gd" type="Script" id=8]
-[ext_resource path="res://src/components/heart/heart.tscn" type="PackedScene" id=9]
-[ext_resource path="res://src/components/heart/heart.gd" type="Script" id=10]
-[ext_resource path="res://src/components/rock/rock.tscn" type="PackedScene" id=11]
-[ext_resource path="res://src/components/rock/rock.gd" type="Script" id=12]
-[ext_resource path="res://src/components/door/door_v.tscn" type="PackedScene" id=13]
-[ext_resource path="res://src/components/door/door.gd" type="Script" id=14]
+[ext_resource path="res://src/components/heart/heart.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/components/rock/rock.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/components/door/door_v.tscn" type="PackedScene" id=10]
 
 [node name="level" type="Node2D"]
 
@@ -92,703 +88,136 @@ tile_data = PoolIntArray( 1, 25, 0, 2, 21, 0, 3, 21, 0, 4, 21, 0, 5, 21, 0, 6, 2
 script = ExtResource( 3 )
 _sections_unfolded = [ "Cell", "Collision", "Pause", "Transform" ]
 
-[node name="character_spawn_point" type="Node2D" parent="." index="3" groups=[
-"player",
-] instance=ExtResource( 6 )]
+[node name="character_spawn_point" parent="." index="3" instance=ExtResource( 6 )]
 
 position = Vector2( 448, 448 )
 
-[node name="lvl_granade" type="RigidBody2D" parent="." index="4" groups=[
-"grenade",
-] instance=ExtResource( 7 )]
+[node name="lvl_granade" parent="." index="4" instance=ExtResource( 7 )]
 
 position = Vector2( 448, 320 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-mode = 3
-mass = 1.0
-friction = 1.0
-bounce = 0.0
-gravity_scale = 1.0
-custom_integrator = false
-continuous_cd = 2
-contacts_reported = 1
-contact_monitor = true
-sleeping = false
-can_sleep = true
-linear_velocity = Vector2( 0, 0 )
-linear_damp = -1.0
-angular_velocity = 0.0
-angular_damp = -1.0
-script = ExtResource( 8 )
-_sections_unfolded = [ "collision" ]
 
-[node name="lvl_granade2" type="RigidBody2D" parent="." index="5" groups=[
-"grenade",
-] instance=ExtResource( 7 )]
+[node name="lvl_granade2" parent="." index="5" instance=ExtResource( 7 )]
 
 position = Vector2( 960, 448 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-mode = 3
-mass = 1.0
-friction = 1.0
-bounce = 0.0
-gravity_scale = 1.0
-custom_integrator = false
-continuous_cd = 2
-contacts_reported = 1
-contact_monitor = true
-sleeping = false
-can_sleep = true
-linear_velocity = Vector2( 0, 0 )
-linear_damp = -1.0
-angular_velocity = 0.0
-angular_damp = -1.0
-script = ExtResource( 8 )
-_sections_unfolded = [ "collision" ]
 
-[node name="lvl_heart" type="RigidBody2D" parent="." index="6" instance=ExtResource( 9 )]
+[node name="lvl_heart" parent="." index="6" instance=ExtResource( 8 )]
 
 position = Vector2( 192, 832 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-mode = 3
-mass = 1.0
-friction = 1.0
-bounce = 0.0
-gravity_scale = 1.0
-custom_integrator = false
-continuous_cd = 2
-contacts_reported = 1
-contact_monitor = true
-sleeping = false
-can_sleep = true
-linear_velocity = Vector2( 0, 0 )
-linear_damp = -1.0
-angular_velocity = 0.0
-angular_damp = -1.0
-script = ExtResource( 10 )
-_sections_unfolded = [ "collision" ]
 
-[node name="lvl_heart2" type="RigidBody2D" parent="." index="7" instance=ExtResource( 9 )]
+[node name="lvl_heart2" parent="." index="7" instance=ExtResource( 8 )]
 
 position = Vector2( 320, 832 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-mode = 3
-mass = 1.0
-friction = 1.0
-bounce = 0.0
-gravity_scale = 1.0
-custom_integrator = false
-continuous_cd = 2
-contacts_reported = 1
-contact_monitor = true
-sleeping = false
-can_sleep = true
-linear_velocity = Vector2( 0, 0 )
-linear_damp = -1.0
-angular_velocity = 0.0
-angular_damp = -1.0
-script = ExtResource( 10 )
-_sections_unfolded = [ "collision" ]
 
-[node name="lvl_heart3" type="RigidBody2D" parent="." index="8" instance=ExtResource( 9 )]
+[node name="lvl_heart3" parent="." index="8" instance=ExtResource( 8 )]
 
 position = Vector2( 448, 832 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-mode = 3
-mass = 1.0
-friction = 1.0
-bounce = 0.0
-gravity_scale = 1.0
-custom_integrator = false
-continuous_cd = 2
-contacts_reported = 1
-contact_monitor = true
-sleeping = false
-can_sleep = true
-linear_velocity = Vector2( 0, 0 )
-linear_damp = -1.0
-angular_velocity = 0.0
-angular_damp = -1.0
-script = ExtResource( 10 )
-_sections_unfolded = [ "collision" ]
 
-[node name="lvl_heart4" type="RigidBody2D" parent="." index="9" instance=ExtResource( 9 )]
+[node name="lvl_heart4" parent="." index="9" instance=ExtResource( 8 )]
 
 position = Vector2( 576, 832 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-mode = 3
-mass = 1.0
-friction = 1.0
-bounce = 0.0
-gravity_scale = 1.0
-custom_integrator = false
-continuous_cd = 2
-contacts_reported = 1
-contact_monitor = true
-sleeping = false
-can_sleep = true
-linear_velocity = Vector2( 0, 0 )
-linear_damp = -1.0
-angular_velocity = 0.0
-angular_damp = -1.0
-script = ExtResource( 10 )
-_sections_unfolded = [ "collision" ]
 
-[node name="lvl_heart5" type="RigidBody2D" parent="." index="10" instance=ExtResource( 9 )]
+[node name="lvl_heart5" parent="." index="10" instance=ExtResource( 8 )]
 
 position = Vector2( 1344, 832 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-mode = 3
-mass = 1.0
-friction = 1.0
-bounce = 0.0
-gravity_scale = 1.0
-custom_integrator = false
-continuous_cd = 2
-contacts_reported = 1
-contact_monitor = true
-sleeping = false
-can_sleep = true
-linear_velocity = Vector2( 0, 0 )
-linear_damp = -1.0
-angular_velocity = 0.0
-angular_damp = -1.0
-script = ExtResource( 10 )
-_sections_unfolded = [ "collision" ]
 
-[node name="lvl_heart6" type="RigidBody2D" parent="." index="11" instance=ExtResource( 9 )]
+[node name="lvl_heart6" parent="." index="11" instance=ExtResource( 8 )]
 
 position = Vector2( 1472, 832 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-mode = 3
-mass = 1.0
-friction = 1.0
-bounce = 0.0
-gravity_scale = 1.0
-custom_integrator = false
-continuous_cd = 2
-contacts_reported = 1
-contact_monitor = true
-sleeping = false
-can_sleep = true
-linear_velocity = Vector2( 0, 0 )
-linear_damp = -1.0
-angular_velocity = 0.0
-angular_damp = -1.0
-script = ExtResource( 10 )
-_sections_unfolded = [ "collision" ]
 
-[node name="lvl_heart7" type="RigidBody2D" parent="." index="12" instance=ExtResource( 9 )]
+[node name="lvl_heart7" parent="." index="12" instance=ExtResource( 8 )]
 
 position = Vector2( 1600, 832 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-mode = 3
-mass = 1.0
-friction = 1.0
-bounce = 0.0
-gravity_scale = 1.0
-custom_integrator = false
-continuous_cd = 2
-contacts_reported = 1
-contact_monitor = true
-sleeping = false
-can_sleep = true
-linear_velocity = Vector2( 0, 0 )
-linear_damp = -1.0
-angular_velocity = 0.0
-angular_damp = -1.0
-script = ExtResource( 10 )
-_sections_unfolded = [ "collision" ]
 
-[node name="lvl_heart8" type="RigidBody2D" parent="." index="13" instance=ExtResource( 9 )]
+[node name="lvl_heart8" parent="." index="13" instance=ExtResource( 8 )]
 
 position = Vector2( 1728, 832 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-mode = 3
-mass = 1.0
-friction = 1.0
-bounce = 0.0
-gravity_scale = 1.0
-custom_integrator = false
-continuous_cd = 2
-contacts_reported = 1
-contact_monitor = true
-sleeping = false
-can_sleep = true
-linear_velocity = Vector2( 0, 0 )
-linear_damp = -1.0
-angular_velocity = 0.0
-angular_damp = -1.0
-script = ExtResource( 10 )
-_sections_unfolded = [ "collision" ]
 
-[node name="lvl_heart9" type="RigidBody2D" parent="." index="14" instance=ExtResource( 9 )]
+[node name="lvl_heart9" parent="." index="14" instance=ExtResource( 8 )]
 
 position = Vector2( 192, 960 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-mode = 3
-mass = 1.0
-friction = 1.0
-bounce = 0.0
-gravity_scale = 1.0
-custom_integrator = false
-continuous_cd = 2
-contacts_reported = 1
-contact_monitor = true
-sleeping = false
-can_sleep = true
-linear_velocity = Vector2( 0, 0 )
-linear_damp = -1.0
-angular_velocity = 0.0
-angular_damp = -1.0
-script = ExtResource( 10 )
-_sections_unfolded = [ "collision" ]
 
-[node name="lvl_heart10" type="RigidBody2D" parent="." index="15" instance=ExtResource( 9 )]
+[node name="lvl_heart10" parent="." index="15" instance=ExtResource( 8 )]
 
 position = Vector2( 320, 960 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-mode = 3
-mass = 1.0
-friction = 1.0
-bounce = 0.0
-gravity_scale = 1.0
-custom_integrator = false
-continuous_cd = 2
-contacts_reported = 1
-contact_monitor = true
-sleeping = false
-can_sleep = true
-linear_velocity = Vector2( 0, 0 )
-linear_damp = -1.0
-angular_velocity = 0.0
-angular_damp = -1.0
-script = ExtResource( 10 )
-_sections_unfolded = [ "collision" ]
 
-[node name="lvl_heart11" type="RigidBody2D" parent="." index="16" instance=ExtResource( 9 )]
+[node name="lvl_heart11" parent="." index="16" instance=ExtResource( 8 )]
 
 position = Vector2( 448, 960 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-mode = 3
-mass = 1.0
-friction = 1.0
-bounce = 0.0
-gravity_scale = 1.0
-custom_integrator = false
-continuous_cd = 2
-contacts_reported = 1
-contact_monitor = true
-sleeping = false
-can_sleep = true
-linear_velocity = Vector2( 0, 0 )
-linear_damp = -1.0
-angular_velocity = 0.0
-angular_damp = -1.0
-script = ExtResource( 10 )
-_sections_unfolded = [ "collision" ]
 
-[node name="lvl_heart12" type="RigidBody2D" parent="." index="17" instance=ExtResource( 9 )]
+[node name="lvl_heart12" parent="." index="17" instance=ExtResource( 8 )]
 
 position = Vector2( 576, 960 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-mode = 3
-mass = 1.0
-friction = 1.0
-bounce = 0.0
-gravity_scale = 1.0
-custom_integrator = false
-continuous_cd = 2
-contacts_reported = 1
-contact_monitor = true
-sleeping = false
-can_sleep = true
-linear_velocity = Vector2( 0, 0 )
-linear_damp = -1.0
-angular_velocity = 0.0
-angular_damp = -1.0
-script = ExtResource( 10 )
-_sections_unfolded = [ "collision" ]
 
-[node name="lvl_heart13" type="RigidBody2D" parent="." index="18" instance=ExtResource( 9 )]
+[node name="lvl_heart13" parent="." index="18" instance=ExtResource( 8 )]
 
 position = Vector2( 1344, 960 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-mode = 3
-mass = 1.0
-friction = 1.0
-bounce = 0.0
-gravity_scale = 1.0
-custom_integrator = false
-continuous_cd = 2
-contacts_reported = 1
-contact_monitor = true
-sleeping = false
-can_sleep = true
-linear_velocity = Vector2( 0, 0 )
-linear_damp = -1.0
-angular_velocity = 0.0
-angular_damp = -1.0
-script = ExtResource( 10 )
-_sections_unfolded = [ "collision" ]
 
-[node name="lvl_heart14" type="RigidBody2D" parent="." index="19" instance=ExtResource( 9 )]
+[node name="lvl_heart14" parent="." index="19" instance=ExtResource( 8 )]
 
 position = Vector2( 1472, 960 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-mode = 3
-mass = 1.0
-friction = 1.0
-bounce = 0.0
-gravity_scale = 1.0
-custom_integrator = false
-continuous_cd = 2
-contacts_reported = 1
-contact_monitor = true
-sleeping = false
-can_sleep = true
-linear_velocity = Vector2( 0, 0 )
-linear_damp = -1.0
-angular_velocity = 0.0
-angular_damp = -1.0
-script = ExtResource( 10 )
-_sections_unfolded = [ "collision" ]
 
-[node name="lvl_heart15" type="RigidBody2D" parent="." index="20" instance=ExtResource( 9 )]
+[node name="lvl_heart15" parent="." index="20" instance=ExtResource( 8 )]
 
 position = Vector2( 1600, 960 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-mode = 3
-mass = 1.0
-friction = 1.0
-bounce = 0.0
-gravity_scale = 1.0
-custom_integrator = false
-continuous_cd = 2
-contacts_reported = 1
-contact_monitor = true
-sleeping = false
-can_sleep = true
-linear_velocity = Vector2( 0, 0 )
-linear_damp = -1.0
-angular_velocity = 0.0
-angular_damp = -1.0
-script = ExtResource( 10 )
-_sections_unfolded = [ "collision" ]
 
-[node name="lvl_heart16" type="RigidBody2D" parent="." index="21" instance=ExtResource( 9 )]
+[node name="lvl_heart16" parent="." index="21" instance=ExtResource( 8 )]
 
 position = Vector2( 1728, 960 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-mode = 3
-mass = 1.0
-friction = 1.0
-bounce = 0.0
-gravity_scale = 1.0
-custom_integrator = false
-continuous_cd = 2
-contacts_reported = 1
-contact_monitor = true
-sleeping = false
-can_sleep = true
-linear_velocity = Vector2( 0, 0 )
-linear_damp = -1.0
-angular_velocity = 0.0
-angular_damp = -1.0
-script = ExtResource( 10 )
-_sections_unfolded = [ "collision" ]
 
-[node name="lvl_heart17" type="RigidBody2D" parent="." index="22" instance=ExtResource( 9 )]
+[node name="lvl_heart17" parent="." index="22" instance=ExtResource( 8 )]
 
 position = Vector2( 192, 1088 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-mode = 3
-mass = 1.0
-friction = 1.0
-bounce = 0.0
-gravity_scale = 1.0
-custom_integrator = false
-continuous_cd = 2
-contacts_reported = 1
-contact_monitor = true
-sleeping = false
-can_sleep = true
-linear_velocity = Vector2( 0, 0 )
-linear_damp = -1.0
-angular_velocity = 0.0
-angular_damp = -1.0
-script = ExtResource( 10 )
-_sections_unfolded = [ "collision" ]
 
-[node name="lvl_heart18" type="RigidBody2D" parent="." index="23" instance=ExtResource( 9 )]
+[node name="lvl_heart18" parent="." index="23" instance=ExtResource( 8 )]
 
 position = Vector2( 320, 1088 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-mode = 3
-mass = 1.0
-friction = 1.0
-bounce = 0.0
-gravity_scale = 1.0
-custom_integrator = false
-continuous_cd = 2
-contacts_reported = 1
-contact_monitor = true
-sleeping = false
-can_sleep = true
-linear_velocity = Vector2( 0, 0 )
-linear_damp = -1.0
-angular_velocity = 0.0
-angular_damp = -1.0
-script = ExtResource( 10 )
-_sections_unfolded = [ "collision" ]
 
-[node name="lvl_heart19" type="RigidBody2D" parent="." index="24" instance=ExtResource( 9 )]
+[node name="lvl_heart19" parent="." index="24" instance=ExtResource( 8 )]
 
 position = Vector2( 448, 1088 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-mode = 3
-mass = 1.0
-friction = 1.0
-bounce = 0.0
-gravity_scale = 1.0
-custom_integrator = false
-continuous_cd = 2
-contacts_reported = 1
-contact_monitor = true
-sleeping = false
-can_sleep = true
-linear_velocity = Vector2( 0, 0 )
-linear_damp = -1.0
-angular_velocity = 0.0
-angular_damp = -1.0
-script = ExtResource( 10 )
-_sections_unfolded = [ "collision" ]
 
-[node name="lvl_heart20" type="RigidBody2D" parent="." index="25" instance=ExtResource( 9 )]
+[node name="lvl_heart20" parent="." index="25" instance=ExtResource( 8 )]
 
 position = Vector2( 576, 1088 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-mode = 3
-mass = 1.0
-friction = 1.0
-bounce = 0.0
-gravity_scale = 1.0
-custom_integrator = false
-continuous_cd = 2
-contacts_reported = 1
-contact_monitor = true
-sleeping = false
-can_sleep = true
-linear_velocity = Vector2( 0, 0 )
-linear_damp = -1.0
-angular_velocity = 0.0
-angular_damp = -1.0
-script = ExtResource( 10 )
-_sections_unfolded = [ "collision" ]
 
-[node name="lvl_heart21" type="RigidBody2D" parent="." index="26" instance=ExtResource( 9 )]
+[node name="lvl_heart21" parent="." index="26" instance=ExtResource( 8 )]
 
 position = Vector2( 1344, 1088 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-mode = 3
-mass = 1.0
-friction = 1.0
-bounce = 0.0
-gravity_scale = 1.0
-custom_integrator = false
-continuous_cd = 2
-contacts_reported = 1
-contact_monitor = true
-sleeping = false
-can_sleep = true
-linear_velocity = Vector2( 0, 0 )
-linear_damp = -1.0
-angular_velocity = 0.0
-angular_damp = -1.0
-script = ExtResource( 10 )
-_sections_unfolded = [ "collision" ]
 
-[node name="lvl_heart22" type="RigidBody2D" parent="." index="27" instance=ExtResource( 9 )]
+[node name="lvl_heart22" parent="." index="27" instance=ExtResource( 8 )]
 
 position = Vector2( 1472, 1088 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-mode = 3
-mass = 1.0
-friction = 1.0
-bounce = 0.0
-gravity_scale = 1.0
-custom_integrator = false
-continuous_cd = 2
-contacts_reported = 1
-contact_monitor = true
-sleeping = false
-can_sleep = true
-linear_velocity = Vector2( 0, 0 )
-linear_damp = -1.0
-angular_velocity = 0.0
-angular_damp = -1.0
-script = ExtResource( 10 )
-_sections_unfolded = [ "collision" ]
 
-[node name="lvl_heart23" type="RigidBody2D" parent="." index="28" instance=ExtResource( 9 )]
+[node name="lvl_heart23" parent="." index="28" instance=ExtResource( 8 )]
 
 position = Vector2( 1600, 1088 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-mode = 3
-mass = 1.0
-friction = 1.0
-bounce = 0.0
-gravity_scale = 1.0
-custom_integrator = false
-continuous_cd = 2
-contacts_reported = 1
-contact_monitor = true
-sleeping = false
-can_sleep = true
-linear_velocity = Vector2( 0, 0 )
-linear_damp = -1.0
-angular_velocity = 0.0
-angular_damp = -1.0
-script = ExtResource( 10 )
-_sections_unfolded = [ "collision" ]
 
-[node name="lvl_heart24" type="RigidBody2D" parent="." index="29" instance=ExtResource( 9 )]
+[node name="lvl_heart24" parent="." index="29" instance=ExtResource( 8 )]
 
 position = Vector2( 1728, 1088 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-mode = 3
-mass = 1.0
-friction = 1.0
-bounce = 0.0
-gravity_scale = 1.0
-custom_integrator = false
-continuous_cd = 2
-contacts_reported = 1
-contact_monitor = true
-sleeping = false
-can_sleep = true
-linear_velocity = Vector2( 0, 0 )
-linear_damp = -1.0
-angular_velocity = 0.0
-angular_damp = -1.0
-script = ExtResource( 10 )
-_sections_unfolded = [ "collision" ]
 
-[node name="lvl_sphere" type="KinematicBody2D" parent="." index="30" instance=ExtResource( 11 )]
+[node name="lvl_sphere" parent="." index="30" instance=ExtResource( 9 )]
 
 position = Vector2( 704, 192 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-collision/safe_margin = 0.08
-script = ExtResource( 12 )
-_sections_unfolded = [ "Collision", "Transform", "collision" ]
 
-[node name="lvl_sphere2" type="KinematicBody2D" parent="." index="31" instance=ExtResource( 11 )]
+[node name="lvl_sphere2" parent="." index="31" instance=ExtResource( 9 )]
 
 position = Vector2( 1088, 320 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-collision/safe_margin = 0.08
-script = ExtResource( 12 )
-_sections_unfolded = [ "Collision", "Transform", "collision" ]
 
-[node name="lvl_sphere3" type="KinematicBody2D" parent="." index="32" instance=ExtResource( 11 )]
+[node name="lvl_sphere3" parent="." index="32" instance=ExtResource( 9 )]
 
 position = Vector2( 1216, 320 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-collision/safe_margin = 0.08
-script = ExtResource( 12 )
-_sections_unfolded = [ "Collision", "Transform", "collision" ]
 
-[node name="lvl_sphere4" type="KinematicBody2D" parent="." index="33" instance=ExtResource( 11 )]
+[node name="lvl_sphere4" parent="." index="33" instance=ExtResource( 9 )]
 
 position = Vector2( 832, 832 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-collision/safe_margin = 0.08
-script = ExtResource( 12 )
-_sections_unfolded = [ "Collision", "Transform", "collision" ]
 
-[node name="lvl_sphere5" type="KinematicBody2D" parent="." index="34" instance=ExtResource( 11 )]
+[node name="lvl_sphere5" parent="." index="34" instance=ExtResource( 9 )]
 
 position = Vector2( 1216, 832 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-collision/safe_margin = 0.08
-script = ExtResource( 12 )
-_sections_unfolded = [ "Collision", "Transform", "collision" ]
 
-[node name="door" type="StaticBody2D" parent="." index="35" groups=[
-"can_be_pushed",
-] instance=ExtResource( 13 )]
+[node name="door" parent="." index="35" instance=ExtResource( 10 )]
 
 position = Vector2( 1728, 320 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-constant_linear_velocity = Vector2( 0, 0 )
-constant_angular_velocity = 0.0
-friction = 1.0
-bounce = 0.0
-script = ExtResource( 14 )
-_sections_unfolded = [ "collision" ]
 
 

@@ -24,13 +24,6 @@ func align_camera_to_level(levelInstance, duration = 0):
 		self.set_position(new_position)
 		self.zoom = Vector2(zoom, zoom)
 	else:
-		get_tree().set_pause(true)
-		tween.connect("tween_completed",
-			self,
-			"_on_movement_finished",
-			[],
-			CONNECT_ONESHOT
-		)
 		tween.interpolate_property(
 			self,
 			"position",
@@ -50,6 +43,3 @@ func align_camera_to_level(levelInstance, duration = 0):
 			Tween.EASE_IN_OUT
 		)
 		tween.start()
-
-func _on_movement_finished(object, key):
-	get_tree().set_pause(false)

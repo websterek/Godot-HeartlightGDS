@@ -6,6 +6,7 @@ signal all_hearts_taken
 var tile_size = globals.tile_size
 var remainingHearts = []
 var level_filename = null
+onready var door_instance = $door
 
 func register_heart(name):
 	remainingHearts.append(name)
@@ -16,9 +17,9 @@ func remove_heart(name):
 	if (remainingHearts.size() <= 0):
 		emit_signal("all_hearts_taken")
 
-
 func _ready():
-	pass
+	if remainingHearts.size() <= 0:
+		door_instance.open()
 
 func calculate_bounds():
 	var used_cells = get_node("tile_front").get_used_cells()

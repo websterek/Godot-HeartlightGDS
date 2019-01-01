@@ -3,7 +3,6 @@ extends Node
 onready var mainCamera = get_node("MainCamera")
 var previousLevel = null
 var currentLevel = null
-var nextLevel = null
 var playerInstance = null
 
 func _input(event):
@@ -46,10 +45,6 @@ func go_to_next_level():
 		# Load current level and next level for smooth animation
 		currentLevel = instantiate_level("lvl_001")
 		spawn_player_at_current_level()
-
-		nextLevel = append_new_level(true)
-
-		mainCamera.align_camera_to_level(currentLevel)
 	else:
 		# Stop processing current level, set next level as a current one
 		if previousLevel != null:
@@ -57,18 +52,12 @@ func go_to_next_level():
 
 		previousLevel = currentLevel
 
-		if nextLevel:
-			currentLevel = nextLevel
-			spawn_player_at_current_level()
+		currentLevel = append_new_level()
+
+		if currentLevel:
+			spawn_player_at_current_level(true, 0.7)
 		else:
-			print("FINISHED THE GAME!")
-
-		# Queue new level
-		nextLevel = append_new_level()
-		if !nextLevel:
-			print("No more levels!")
-
-		mainCamera.align_camera_to_level(currentLevel, 0.7)    
+			printerr("No more levels!")	
 
 func win_level():
 	playerInstance.play_win_animation()
@@ -99,7 +88,7 @@ func calculate_screen_offset(level_width, zoom = 1):
 
 	if zoomed_screen_width > level_width:
 		var offset = zoomed_screen_width / 2 - level_width / 2
-		return ceil(offset / 32) * 32
+		return ceil(offset / 64) * 64
 	else:
 		return 0
 
@@ -119,7 +108,7 @@ func reset_current_level():
 	)
 	currentLevel.queue_free()
 	currentLevel = new_instance
-	spawn_player_at_current_level()
+	spawn_player_at_current_level(false)
 
 
 func create_player_instance():
@@ -128,7 +117,7 @@ func create_player_instance():
 	scene_instance.set_name("player")
 	return scene_instance
 
-func spawn_player_at_current_level():
+func spawn_player_at_current_level(alignCamera = true, transitionTime = null):
 	if playerInstance == null:
 		playerInstance = create_player_instance()
 
@@ -139,3 +128,17 @@ func spawn_player_at_current_level():
 	var spawn_point = currentLevel.get_node("character_spawn_point")
 	playerInstance.set_position(spawn_point.get_position())
 	spawn_point.get_parent().add_child(playerInstance)
+	
+	get_tree().set_pause(true)
+	if alignCamera:
+		if transitionTime:
+			var camera_animator = mainCamera.get_node("tween")
+			mainCamera.align_camera_to_level(currentLevel, transitionTime)
+			yield(camera_animator, "tween_completed")
+		else:
+			mainCamera.align_camera_to_level(currentLevel)
+	
+	yield(get_tree(), "physics_frame")
+	spawn_point.queue_free()
+	get_tree().set_pause(false)
+	

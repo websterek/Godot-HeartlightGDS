@@ -3,12 +3,9 @@ extends StaticBody2D
 onready var levelInstance = get_node("../")
 onready var gameManager = get_node("/root/Root")
 
-var is_open = true
+var is_open = false
 
-func _ready():
-	if is_open:
-		$shape.play("default")
-		
+func _ready():		
 	levelInstance.connect("heart_added", self, "close")
 	levelInstance.connect("all_hearts_taken", self, "open")
 

@@ -18,7 +18,6 @@ var movement_delay = 0.2
 # ###########
 # Helper variables
 # ###########
-var space_state = null # Current physics state
 var current_position = null # Current object position to use during one physics frame
 var is_moving = false
 var is_moving_direction = null
@@ -39,6 +38,10 @@ func _physics_process(delta):
 	if !is_moving:
 		update_world_state()
 		var collision_at_bottom = get_collision_at(globals.directions.BOTTOM)
+		
+		if !collision_at_bottom and name == "lvl_granade":
+			print(collision_at_bottom)
+		
 		if collision_at_bottom:
 			handle_bottom_collision(collision_at_bottom)
 		else:
@@ -48,7 +51,7 @@ func _physics_process(delta):
 # Physics handlers
 # ###########
 func handle_bottom_collision(collision):
-	if (can_roll()):
+	if can_roll():
 		try_rolling_sideways()
 
 func try_rolling_sideways():
@@ -112,8 +115,6 @@ func _on_movement_finished(object, key, handle_impact):
 # Physics state helpers
 # ###########
 func update_world_state():
-	# Save current physics state and Node2D position for collision detection
-	space_state = get_world_2d().direct_space_state
 	current_position = get_global_position()
 	update_grounded_state()
 
@@ -178,7 +179,7 @@ func has_space_to_roll(direction):
 
 func get_collision_at(direction):
 	var target = current_position + direction
-	var result = space_state.intersect_point(target)
+	var result = get_world_2d().direct_space_state.intersect_point(target)
 
 	if result:
 		return { "position": target, "collider": result[0].collider }
