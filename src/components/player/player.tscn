@@ -30,14 +30,14 @@ animations = [ {
 "name": "jump",
 "speed": 52.0
 }, {
-"frames": [ ExtResource( 16 ) ],
-"loop": true,
-"name": "still",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 16 ), null, ExtResource( 16 ), null, ExtResource( 16 ), null, ExtResource( 16 ), null, ExtResource( 16 ) ],
 "loop": true,
 "name": "win",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 16 ) ],
+"loop": true,
+"name": "still",
 "speed": 5.0
 } ]
 
@@ -64,7 +64,7 @@ linear_damp = -1.0
 angular_velocity = 0.0
 angular_damp = -1.0
 script = ExtResource( 1 )
-_sections_unfolded = [ "Transform" ]
+_sections_unfolded = [ "Pause", "Transform" ]
 
 [node name="coll" type="CollisionShape2D" parent="." index="0"]
 
@@ -73,8 +73,7 @@ shape = SubResource( 1 )
 [node name="shape" type="AnimatedSprite" parent="." index="1"]
 
 frames = SubResource( 2 )
-animation = "win"
-frame = 8
+animation = "jump"
 offset = Vector2( 0, -20 )
 
 [node name="twe" type="Tween" parent="." index="2"]

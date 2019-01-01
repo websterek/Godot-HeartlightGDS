@@ -13,3 +13,8 @@ func push(direction = null):
 func destroy_heart():
 	levelInstance.remove_heart(heart_name)
 	queue_free()
+
+func bottom_impact(collision):
+	var collider = collision.collider
+	if (collider.is_in_group("player")):
+		collider.kill()
