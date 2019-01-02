@@ -13,7 +13,12 @@
 0/is_autotile = false
 0/occluder_offset = Vector2( 64, 64 )
 0/navigation_offset = Vector2( 64, 64 )
-0/shapes = [  ]
+0/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"shape": null,
+"shape_transform": Transform2D( 1, 0, 0, 1, 64, 64 )
+} ]
 1/name = "006_ziemia_01"
 1/texture = ExtResource( 2 )
 1/tex_offset = Vector2( 0, 0 )
@@ -22,5 +27,10 @@
 1/is_autotile = false
 1/occluder_offset = Vector2( 64, 64 )
 1/navigation_offset = Vector2( 64, 64 )
-1/shapes = [  ]
+1/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"shape": null,
+"shape_transform": Transform2D( 1, 0, 0, 1, 64, 64 )
+} ]
 

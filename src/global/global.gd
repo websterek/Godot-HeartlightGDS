@@ -6,10 +6,21 @@ var delay = 0
 
 const tile_size = Vector2(128, 128)
 
+var directions = {
+	"TOP": Vector2(0, -tile_size.y),
+	"BOTTOM": Vector2(0, tile_size.y),
+	"LEFT": Vector2(-tile_size.x, 0),
+	"RIGHT": Vector2(tile_size.x, 0),
+	"TOP_LEFT": Vector2(-tile_size.x, -tile_size.y),
+	"TOP_RIGHT": Vector2(tile_size.x, -tile_size.y),
+	"BOTTOM_LEFT": Vector2(-tile_size.x, tile_size.y),
+	"BOTTOM_RIGHT": Vector2(tile_size.x, tile_size.y),
+}
+
 var tile_typ = {
-	"grass": range(0, 10),
-	"block": range(10, 21),
-	"wall": range(21, 32)
+	"grass": range(0, 9),
+	"block": range(10, 20),
+	"wall": range(21, 31)
 }
 
 var current_player = null

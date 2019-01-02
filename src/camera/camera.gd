@@ -12,11 +12,7 @@ func align_camera_to_level(levelInstance, duration = 0):
 	var screen_width = ProjectSettings.get_setting("display/window/size/width")
 
 	# Scale zoom to always contain whole level
-	var zoom_x = tilemap_bounds.width / screen_width
-	var zoom_y = tilemap_bounds.height / screen_height
-	var zoom = zoom_x if zoom_x > zoom_y else zoom_y
-
-	self.zoom = Vector2(zoom, zoom)
+	var zoom = levelInstance.calculate_zoom(tilemap_bounds)
 	
 	var new_position = Vector2(
 				tilemap_bounds.min.x + tilemap_bounds.width / 2 - zoom * screen_width / 2,
@@ -26,12 +22,22 @@ func align_camera_to_level(levelInstance, duration = 0):
 	# Center view to level
 	if duration <= 0:
 		self.set_position(new_position)
+		self.zoom = Vector2(zoom, zoom)
 	else:
 		tween.interpolate_property(
 			self,
 			"position",
 			self.get_position(),
 			new_position,
+			duration,
+			Tween.TRANS_LINEAR,
+			Tween.EASE_IN_OUT
+		)
+		tween.interpolate_property(
+			self,
+			"zoom",
+			self.zoom,
+			Vector2(zoom, zoom),
 			duration,
 			Tween.TRANS_LINEAR,
 			Tween.EASE_IN_OUT

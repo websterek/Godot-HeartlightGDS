@@ -2,7 +2,7 @@
 
 [ext_resource path="res://src/camera/camera.gd" type="Script" id=1]
 
-[node name="MainCamera" type="Camera2D"]
+[node name="MainCamera" type="Camera2D" index="0"]
 
 anchor_mode = 0
 rotating = false

@@ -1,19 +1,20 @@
 extends "../obj_falling.gd"
 
+onready var levelInstance = get_node("../")
+onready var heart_name = get_name()
 
 func _ready():
-	type = "heart"
+	levelInstance.register_heart(heart_name)
 
+func push(direction = null):
+	destroy_heart()
+	return true
 
-func _physics_process(delta):
-	yield(get_tree(), "physics_frame")
-	if $ray_u.is_colliding():
-		var collider = $ray_u.get_collider()
-		if collider != null:
-			if collider.is_in_group("rigid"):
-				if collider.travel_d > 0 and collider.collide_d:
-					free_me()
-
-
-func free_me():
+func destroy_heart():
+	levelInstance.remove_heart(heart_name)
 	queue_free()
+
+func bottom_impact(collision):
+	var collider = collision.collider
+	if (collider.is_in_group("player")):
+		collider.kill()

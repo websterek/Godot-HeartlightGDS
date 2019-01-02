@@ -46,10 +46,12 @@ func level_finalise():
 	
 	var tile_objects = scene.get_node("tile_objects")
 	var objects = { 0: load("res://src/components/baloon/baloon.tscn"),
-					4: load("res://src/components/player/player.tscn"),
+					4: load("res://src/components/player/player_spawn_point.tscn"),
 					1: load("res://src/components/grenade/grenade.tscn"),
 					2: load("res://src/components/heart/heart.tscn"),
-					3: load("res://src/components/rock/rock.tscn") }
+					3: load("res://src/components/rock/rock.tscn"),
+					5: load("res://src/components/door/door_h.tscn"),
+					6: load("res://src/components/door/door_v.tscn") }
 
 	for object in objects:
 		for tile in tile_objects.get_used_cells_by_id(object):

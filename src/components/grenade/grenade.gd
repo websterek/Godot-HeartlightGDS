@@ -1,41 +1,68 @@
 extends "../obj_falling.gd"
 
+const Util = preload("res://src/global/utils.gd")
+
+func _init():
+	is_rollable = false
 
 func _ready():
-	type = "granade"
-	self.connect("traveled_d", self, "explode")
+	pass
 
-var gui_position = null
-
-func explode(traveled_d, collider_input, collider_point):
-	if collider_input.get_class() == "TileMap":
-		if globals.tile_typ["grass"].has( collider_input.get_cellv( (tilemap_coll(collider_input, collider_point)) ) ) and traveled_d <= 2:
-			pass
-		else:
-			print(traveled_d)
-			boom()
+func bottom_impact(collision):
+	if is_tile_of_type(collision, "grass"):
+		pass
 	else:
-		boom()
+		explode()
 
-func boom():
-	var pos = get_position().snapped(globals.tile_size-Vector2(64, 64))
-	lock = true
-	set_position(pos)
-	yield($twe_grv,"tween_completed")
-	$twe_grv.stop_all()
+func is_tile_of_type(collision, type):
+	var tile_index = Util.get_tile_id_by_collision(collision)
+	return globals.tile_typ[type].has(tile_index)
+
+func explode():
+	var collisions = [
+		{
+			"direction": globals.directions.TOP,
+			"value": get_collision_at(globals.directions.TOP)
+		},
+		{
+			"direction": globals.directions.BOTTOM,
+			"value": get_collision_at(globals.directions.BOTTOM)
+		},
+		{
+			"direction": globals.directions.LEFT,
+			"value": get_collision_at(globals.directions.LEFT)
+		},
+		{
+			"direction": globals.directions.RIGHT,
+			"value": get_collision_at(globals.directions.RIGHT)
+		}
+	]
+
+	var grenade_position = get_position()
+
+	for collision in collisions:
+		destroy_item(collision.value, grenade_position + collision.direction)
+
+	queue_free()
+
+func destroy_item(collision, position):
+	if collision:
+		var collider = collision.collider
+		if collider.get_class() == "TileMap":
+			if !is_tile_of_type(collision, "wall"):
+				Util.destroy_tile_by_collision(collision)
+				instantiate_explosion(position)
+		elif collider.is_in_group("player"):
+			collider.kill()
+			instantiate_explosion(position)
+		elif collider.is_in_group("can_fall"):
+			collider.queue_free()
+			instantiate_explosion(position)
+ 
+func instantiate_explosion(position):
+	var level = get_parent()
+	var scene = load("res://src/components/explosion/explosion.tscn")
+	var scene_instance = scene.instance()
+	scene_instance.set_position(position)
+	level.add_child(scene_instance)
 	
-	for ray in [$ray_u, $ray_d, $ray_l, $ray_r]:
-		if ray.is_colliding():
-			var collider = ray.get_collider()
-			if collider.get_class() == "TileMap":
-				tilemap_clean(collider, ray.get_collision_point())
-			elif collider.is_in_group("rigid") or collider.is_in_group("character"):
-				collider.queue_free()
-	self.queue_free()
-
-
-func tilemap_clean(tilemap, collision_point):
-	var cell = tilemap_coll(tilemap, collision_point)
-	
-	if !globals.tile_typ["wall"].has(tilemap.get_cellv(cell)):
-		tilemap.set_cellv(cell, -1)
