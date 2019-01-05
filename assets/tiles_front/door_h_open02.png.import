@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/005_wyjscie_01_Za.png-211aa0696944a8b9de1f5702c073f16c.stex"
+path="res://.import/door_h_open02.png-57c57698897304dfedd913b10baabb1c.stex"
 
 [deps]
 
-source_file="res://assets/tiles_front/005_wyjscie_01_Za.png"
-dest_files=[ "res://.import/005_wyjscie_01_Za.png-211aa0696944a8b9de1f5702c073f16c.stex" ]
+source_file="res://assets/tiles_front/door_h_open02.png"
+dest_files=[ "res://.import/door_h_open02.png-57c57698897304dfedd913b10baabb1c.stex" ]
 
 [params]
 

@@ -2,6 +2,7 @@ extends StaticBody2D
 
 onready var levelInstance = get_node("../")
 onready var gameManager = get_node("/root/Root")
+onready var animator = get_node("AnimationPlayer")
 
 var is_open = false
 
@@ -11,10 +12,11 @@ func _ready():
 
 func open():
 	is_open = true
-	$shape.play("default")
+	animator.play("open")
 	
 func close():
 	is_open = false
+	animator.play("close")
 
 func push(direction = null):
 	if is_open:

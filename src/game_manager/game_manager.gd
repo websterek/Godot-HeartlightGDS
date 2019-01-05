@@ -43,7 +43,7 @@ func instantiate_level(level_filename, position = Vector2(0, 0), ignoreAligning 
 func go_to_next_level():
 	if currentLevel == null:
 		# Load current level and next level for smooth animation
-		currentLevel = instantiate_level("lvl_001")
+		currentLevel = instantiate_level("lvl_002")
 		spawn_player_at_current_level()
 	else:
 		# Stop processing current level, set next level as a current one

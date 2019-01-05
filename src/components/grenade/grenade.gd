@@ -43,6 +43,8 @@ func explode():
 	for collision in collisions:
 		destroy_item(collision.value, grenade_position + collision.direction)
 
+	instantiate_explosion(grenade_position)
+
 	queue_free()
 
 func destroy_item(collision, position):
@@ -58,6 +60,8 @@ func destroy_item(collision, position):
 		elif collider.is_in_group("can_fall"):
 			collider.queue_free()
 			instantiate_explosion(position)
+	else:
+		instantiate_explosion(position)
  
 func instantiate_explosion(position):
 	var level = get_parent()
