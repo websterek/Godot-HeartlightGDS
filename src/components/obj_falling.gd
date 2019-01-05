@@ -39,13 +39,12 @@ func _physics_process(delta):
 		update_world_state()
 		var collision_at_bottom = get_collision_at(globals.directions.BOTTOM)
 		
-		if !collision_at_bottom and name == "lvl_granade":
-			print(collision_at_bottom)
-		
 		if collision_at_bottom:
 			handle_bottom_collision(collision_at_bottom)
 		else:
-			move(globals.directions.BOTTOM, true)
+			var far_bottom_collision = get_collision_at(globals.directions.BOTTOM + globals.directions.BOTTOM)
+			if !far_bottom_collision or !far_bottom_collision.collider.is_in_group("balloon"):
+				move(globals.directions.BOTTOM, true)
 
 # ###########
 # Physics handlers
@@ -99,7 +98,15 @@ func push(direction):
 				move(globals.directions.LEFT)
 			"right":
 				move(globals.directions.RIGHT)
+			"top":
+				can_player_move = false
 
+	return can_player_move
+
+func elevate():
+	var can_player_move = can_be_pushed("top")
+	if can_player_move:
+		move(globals.directions.TOP)
 	return can_player_move
 
 func _on_movement_finished(object, key, handle_impact):
@@ -122,7 +129,7 @@ func update_grounded_state():
 	var collision = get_collision_at(globals.directions.BOTTOM)
 	if collision:
 		var collider = collision.collider
-		if collider.get_class() == "TileMap":
+		if collider.get_class() == "TileMap" or collider.is_in_group("balloon"):
 			is_grounded = true
 		elif collider.is_in_group("can_fall"):
 			is_grounded = collider.is_grounded
@@ -131,17 +138,21 @@ func update_grounded_state():
 
 # ###########
 # Assertions
-# ###########	
+# ###########
 func can_be_pushed(direction):
 	var side_collision = null
 	match direction:
 		"left":
 			side_collision =  get_collision_at(globals.directions.LEFT)
+			return is_grounded and !is_moving and !side_collision
 		"right":
 			side_collision =  get_collision_at(globals.directions.RIGHT)
+			return is_grounded and !is_moving and !side_collision
+		"top":
+			var top_collision =  get_collision_at(globals.directions.TOP)
+			return !is_moving and !top_collision
 		_:
 			return false
-	return is_grounded and !is_moving and !side_collision
 
 func can_roll():
 	var bottom_collision = get_collision_at(globals.directions.BOTTOM)

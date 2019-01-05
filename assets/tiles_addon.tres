@@ -5,8 +5,8 @@
 [ext_resource path="res://assets/objects/004_rzodkiewka_01.png" type="Texture" id=3]
 [ext_resource path="res://assets/objects/000_glaz_01.png" type="Texture" id=4]
 [ext_resource path="res://assets/player/007_player_still_01.png" type="Texture" id=5]
-[ext_resource path="res://assets/tiles_front/005_wyjscie_02_Za.png" type="Texture" id=6]
-[ext_resource path="res://assets/tiles_front/005_wyjscie_01_Za.png" type="Texture" id=7]
+[ext_resource path="res://assets/tiles_front/door_h_tileset_icon.png" type="Texture" id=6]
+[ext_resource path="res://assets/tiles_front/door_v_tileset_icon.png" type="Texture" id=7]
 
 [resource]
 
@@ -18,12 +18,7 @@
 0/is_autotile = false
 0/occluder_offset = Vector2( 88, 88 )
 0/navigation_offset = Vector2( 88, 88 )
-0/shapes = [ {
-"autotile_coord": Vector2( 0, 0 ),
-"one_way": false,
-"shape": null,
-"shape_transform": Transform2D( 1, 0, 0, 1, 64, 64 )
-} ]
+0/shapes = [  ]
 1/name = "granade"
 1/texture = ExtResource( 2 )
 1/tex_offset = Vector2( 0, 0 )
@@ -32,12 +27,7 @@
 1/is_autotile = false
 1/occluder_offset = Vector2( 64, 64 )
 1/navigation_offset = Vector2( 64, 64 )
-1/shapes = [ {
-"autotile_coord": Vector2( 0, 0 ),
-"one_way": false,
-"shape": null,
-"shape_transform": Transform2D( 1, 0, 0, 1, 64, 64 )
-} ]
+1/shapes = [  ]
 2/name = "heart"
 2/texture = ExtResource( 3 )
 2/tex_offset = Vector2( -24, -24 )
@@ -46,12 +36,7 @@
 2/is_autotile = false
 2/occluder_offset = Vector2( 88, 88 )
 2/navigation_offset = Vector2( 88, 88 )
-2/shapes = [ {
-"autotile_coord": Vector2( 0, 0 ),
-"one_way": false,
-"shape": null,
-"shape_transform": Transform2D( 1, 0, 0, 1, 64, 64 )
-} ]
+2/shapes = [  ]
 3/name = "rock"
 3/texture = ExtResource( 4 )
 3/tex_offset = Vector2( 0, 0 )
@@ -60,12 +45,7 @@
 3/is_autotile = false
 3/occluder_offset = Vector2( 64, 64 )
 3/navigation_offset = Vector2( 64, 64 )
-3/shapes = [ {
-"autotile_coord": Vector2( 0, 0 ),
-"one_way": false,
-"shape": null,
-"shape_transform": Transform2D( 1, 0, 0, 1, 64, 64 )
-} ]
+3/shapes = [  ]
 4/name = "character"
 4/texture = ExtResource( 5 )
 4/tex_offset = Vector2( 0.5, -8.5 )
@@ -74,12 +54,7 @@
 4/is_autotile = false
 4/occluder_offset = Vector2( 64, 64 )
 4/navigation_offset = Vector2( 64, 64 )
-4/shapes = [ {
-"autotile_coord": Vector2( 0, 0 ),
-"one_way": false,
-"shape": null,
-"shape_transform": Transform2D( 1, 0, 0, 1, 64, 64 )
-} ]
+4/shapes = [  ]
 5/name = "door"
 5/texture = ExtResource( 6 )
 5/tex_offset = Vector2( -25, -25 )
@@ -88,12 +63,7 @@
 5/is_autotile = false
 5/occluder_offset = Vector2( 64, 64 )
 5/navigation_offset = Vector2( 64, 64 )
-5/shapes = [ {
-"autotile_coord": Vector2( 0, 0 ),
-"one_way": false,
-"shape": null,
-"shape_transform": Transform2D( 1, 0, 0, 1, 64, 64 )
-} ]
+5/shapes = [  ]
 6/name = "door2"
 6/texture = ExtResource( 7 )
 6/tex_offset = Vector2( -78, -78 )
@@ -102,11 +72,6 @@
 6/is_autotile = false
 6/occluder_offset = Vector2( 64, 64 )
 6/navigation_offset = Vector2( 64, 64 )
-6/shapes = [ {
-"autotile_coord": Vector2( 0, 0 ),
-"one_way": false,
-"shape": null,
-"shape_transform": Transform2D( 1, 0, 0, 1, 64, 64 )
-} ]
-_sections_unfolded = [ "4" ]
+6/shapes = [  ]
+_sections_unfolded = [ "4", "5", "6" ]
 

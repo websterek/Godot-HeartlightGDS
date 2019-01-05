@@ -18,7 +18,7 @@ func remove_heart(name):
 		emit_signal("all_hearts_taken")
 
 func _ready():
-	if remainingHearts.size() <= 0:
+	if door_instance and remainingHearts.size() <= 0:
 		door_instance.open()
 
 func calculate_bounds():
