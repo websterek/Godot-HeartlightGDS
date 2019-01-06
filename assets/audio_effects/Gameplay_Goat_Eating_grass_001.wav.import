@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Gameplay_Goat_Eating_grass_001.wav-8a1a583ca6be063a37db68ba7196a4fe.sample"
+
+[deps]
+
+source_file="res://assets/audio_effects/Gameplay_Goat_Eating_grass_001.wav"
+dest_files=[ "res://.import/Gameplay_Goat_Eating_grass_001.wav-8a1a583ca6be063a37db68ba7196a4fe.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Assets_Stonedrop_001.wav-e9a26a7d02a1e7dd54000794421b1517.sample"
+
+[deps]
+
+source_file="res://assets/audio_effects/Assets_Stonedrop_001.wav"
+dest_files=[ "res://.import/Assets_Stonedrop_001.wav-e9a26a7d02a1e7dd54000794421b1517.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

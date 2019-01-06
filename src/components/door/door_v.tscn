@@ -1,20 +1,23 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://src/components/door/door.gd" type="Script" id=1]
-[ext_resource path="res://assets/tiles_front/door_v_closed01.png" type="Texture" id=2]
-[ext_resource path="res://assets/tiles_front/door_v_open01.png" type="Texture" id=3]
-[ext_resource path="res://assets/tiles_front/door_v_closed02.png" type="Texture" id=4]
-[ext_resource path="res://assets/tiles_front/door_v_open02.png" type="Texture" id=5]
+[ext_resource path="res://assets/tiles_front/door_v_open01.png" type="Texture" id=2]
+[ext_resource path="res://assets/objects/009_wyjscie_pion_01.png" type="Texture" id=3]
+[ext_resource path="res://assets/objects/009_wyjscie_pion_02.png" type="Texture" id=4]
+[ext_resource path="res://assets/objects/009_wyjscie_pion_03.png" type="Texture" id=5]
+[ext_resource path="res://assets/objects/009_wyjscie_pion_04.png" type="Texture" id=6]
+[ext_resource path="res://assets/tiles_front/door_v_open02.png" type="Texture" id=7]
+[ext_resource path="res://assets/audio_effects/Gameplay_Door_Open _001.wav" type="AudioStream" id=8]
 
 [sub_resource type="SpriteFrames" id=1]
 
 animations = [ {
-"frames": [ ExtResource( 2 ), ExtResource( 3 ) ],
+"frames": [ null, null, null, null, ExtResource( 2 ) ],
 "loop": false,
 "name": "top_wing",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 4 ), ExtResource( 5 ) ],
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
 "loop": true,
 "name": "bottom_wing",
 "speed": 5.0
@@ -40,8 +43,8 @@ tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 1, 0 ]
+"update": 0,
+"values": [ 4, 0 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("bottom_wing:frame")
@@ -53,7 +56,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 1, 0 ]
+"values": [ 4, 0 ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -71,8 +74,8 @@ tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 0, 1 ]
+"update": 0,
+"values": [ 0, 4 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("bottom_wing:frame")
@@ -84,10 +87,10 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 0, 1 ]
+"values": [ 0, 4 ]
 }
 
-[node name="door" type="StaticBody2D" groups=[
+[node name="door" type="StaticBody2D" index="0" groups=[
 "can_be_pushed",
 ]]
 
@@ -128,5 +131,14 @@ playback_speed = 1.0
 anims/close = SubResource( 3 )
 anims/open = SubResource( 4 )
 blend_times = [  ]
+
+[node name="audio" type="AudioStreamPlayer" parent="." index="4"]
+
+stream = ExtResource( 8 )
+volume_db = -12.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
 
 

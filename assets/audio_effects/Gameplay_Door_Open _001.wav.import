@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Gameplay_Door_Open _001.wav-9345be994b8f4d3945c20dd3c578aac1.sample"
+
+[deps]
+
+source_file="res://assets/audio_effects/Gameplay_Door_Open _001.wav"
+dest_files=[ "res://.import/Gameplay_Door_Open _001.wav-9345be994b8f4d3945c20dd3c578aac1.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

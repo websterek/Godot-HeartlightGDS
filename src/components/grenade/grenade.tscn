@@ -1,9 +1,30 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://src/components/grenade/grenade.gd" type="Script" id=1]
-[ext_resource path="res://assets/objects/001_dyniomit.png" type="Texture" id=2]
+[ext_resource path="res://assets/objects/001_dyniomit_anim_01.png" type="Texture" id=2]
+[ext_resource path="res://assets/objects/001_dyniomit_anim_02.png" type="Texture" id=3]
+[ext_resource path="res://assets/objects/001_dyniomit_anim_03.png" type="Texture" id=4]
+[ext_resource path="res://assets/objects/001_dyniomit_anim_04.png" type="Texture" id=5]
+[ext_resource path="res://assets/objects/001_dyniomit_anim_05.png" type="Texture" id=6]
+[ext_resource path="res://assets/objects/001_dyniomit_anim_06.png" type="Texture" id=7]
+[ext_resource path="res://assets/objects/001_dyniomit_anim_07.png" type="Texture" id=8]
+[ext_resource path="res://assets/objects/001_dyniomit_anim_08.png" type="Texture" id=9]
+[ext_resource path="res://assets/objects/001_dyniomit_anim_09.png" type="Texture" id=10]
+[ext_resource path="res://assets/objects/001_dyniomit_anim_10.png" type="Texture" id=11]
+[ext_resource path="res://assets/objects/001_dyniomit_anim_11.png" type="Texture" id=12]
+[ext_resource path="res://assets/objects/001_dyniomit_anim_12.png" type="Texture" id=13]
+[ext_resource path="res://assets/audio_effects/Assets_Stonedrop_001.wav" type="AudioStream" id=14]
 
-[sub_resource type="CircleShape2D" id=1]
+[sub_resource type="SpriteFrames" id=1]
+
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ) ],
+"loop": true,
+"name": "default",
+"speed": 8.0
+} ]
+
+[sub_resource type="CircleShape2D" id=2]
 
 custom_solver_bias = 0.0
 radius = 62.0
@@ -34,14 +55,17 @@ angular_damp = -1.0
 script = ExtResource( 1 )
 _sections_unfolded = [ "collision" ]
 
-[node name="shape" type="Sprite" parent="." index="0"]
+[node name="shape" type="AnimatedSprite" parent="." index="0"]
 
-texture = ExtResource( 2 )
+frames = SubResource( 1 )
+animation = "default"
+frame = 7
+playing = true
 _sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="col" type="CollisionShape2D" parent="." index="1"]
 
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="movement_animator" type="Tween" parent="." index="2"]
@@ -52,5 +76,14 @@ playback_speed = 1.0
 playback/active = false
 playback/repeat = false
 playback/speed = 1.0
+
+[node name="audio" type="AudioStreamPlayer" parent="." index="3"]
+
+stream = ExtResource( 14 )
+volume_db = -8.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
 
 

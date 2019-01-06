@@ -1,14 +1,15 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/components/heart/heart.gd" type="Script" id=1]
 [ext_resource path="res://assets/objects/004_rzodkiewka_01.png" type="Texture" id=2]
+[ext_resource path="res://assets/audio_effects/Assets_Stonedrop_001.wav" type="AudioStream" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
 radius = 64.0
 
-[node name="lvl_heart" type="RigidBody2D" index="0"]
+[node name="lvl_heart" type="RigidBody2D"]
 
 input_pickable = false
 collision_layer = 1
@@ -48,5 +49,14 @@ playback_speed = 1.0
 playback/active = false
 playback/repeat = false
 playback/speed = 1.0
+
+[node name="audio" type="AudioStreamPlayer" parent="." index="3"]
+
+stream = ExtResource( 3 )
+volume_db = -8.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
 
 

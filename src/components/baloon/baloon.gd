@@ -67,6 +67,15 @@ func move(direction):
 		Tween.TRANS_LINEAR,
 		Tween.EASE_IN_OUT
 	)
+	movement_animator.interpolate_property(
+		$shape, 
+		"frame",
+		0,
+		11,
+		movement_duration,
+		Tween.TRANS_LINEAR,
+		Tween.EASE_IN_OUT
+	)
 	movement_animator.start()
 
 func _on_movement_finished(object, key):

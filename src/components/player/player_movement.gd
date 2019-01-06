@@ -49,17 +49,20 @@ func get_tile_coordinates(dir):
 func move(direction):	
 	if !coll_test(direction):
 		set_player_position(direction)
+		$audio_nograss.play()
 	else:
 		var collider = coll_stats.get_collider()
-		if collider.is_in_group("level"):				
+		if collider.is_in_group("level"):
 			var tile_coordinates = collider.world_to_map(get_position() + direction)
 			if collider.get_cellv(tile_coordinates) in tile_typ["grass"]:
 				collider.set_cellv(tile_coordinates, -1)
 				set_player_position(direction)
+				$audio_grass.play()
 		
 		var can_push = collider.is_in_group("can_be_pushed") and collider.has_method("push")
 		var can_collider_roll = (collider.is_in_group("can_roll_down") and collider.is_grounded) or !collider.is_in_group("can_roll_down") 
 		if can_push:
+			$audio_nograss.play()
 			match direction:
 				globals.directions.TOP:
 					if collider.push("top"):

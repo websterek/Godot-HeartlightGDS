@@ -117,6 +117,7 @@ func _on_movement_finished(object, key, handle_impact):
 		var collision_after_move = get_collision_at(globals.directions.BOTTOM)
 		if collision_after_move:
 			bottom_impact(collision_after_move)
+			$audio.play()
 
 # ###########
 # Physics state helpers

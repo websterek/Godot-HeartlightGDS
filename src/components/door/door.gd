@@ -13,10 +13,12 @@ func _ready():
 func open():
 	is_open = true
 	animator.play("open")
+	$audio.play()
 	
 func close():
 	is_open = false
 	animator.play("close")
+	$audio.play()
 
 func push(direction = null):
 	if is_open:
