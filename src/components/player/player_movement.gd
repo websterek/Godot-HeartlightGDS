@@ -21,6 +21,7 @@ var movement_delay = 0.03
 var jump_anim_first_frame = 0
 var jump_anim_last_frame = 13
 
+
 func _ready():
 	movement_delay_timer.set_wait_time(movement_delay)
 
@@ -49,7 +50,6 @@ func get_tile_coordinates(dir):
 func move(direction):	
 	if !coll_test(direction):
 		set_player_position(direction)
-		$audio_nograss.play()
 	else:
 		var collider = coll_stats.get_collider()
 		if collider.is_in_group("level"):
@@ -62,7 +62,6 @@ func move(direction):
 		var can_push = collider.is_in_group("can_be_pushed") and collider.has_method("push")
 		var can_collider_roll = (collider.is_in_group("can_roll_down") and collider.is_grounded) or !collider.is_in_group("can_roll_down") 
 		if can_push:
-			$audio_nograss.play()
 			match direction:
 				globals.directions.TOP:
 					if collider.push("top"):
@@ -81,6 +80,8 @@ func set_player_position(direction):
 	is_moving = true
 	set_position(get_position() + direction)
 	anim(direction)
+	
+	$audio_nograss.play(0)
 	
 func anim(direction, add=null):
 	if direction == globals.directions.RIGHT:

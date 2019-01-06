@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Ambient_Horse_001.wav-cd12e19f12656b9162bdb2ed39c0355b.sample"
+
+[deps]
+
+source_file="res://assets/audio_ambient/Ambient_Horse_001.wav"
+dest_files=[ "res://.import/Ambient_Horse_001.wav-cd12e19f12656b9162bdb2ed39c0355b.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

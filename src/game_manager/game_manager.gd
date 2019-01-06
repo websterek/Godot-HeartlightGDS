@@ -45,6 +45,7 @@ func go_to_next_level():
 		# Load current level and next level for smooth animation
 		currentLevel = instantiate_level("lvl_001")
 		spawn_player_at_current_level()
+		play_song(currentLevel.get_name())
 	else:
 		# Stop processing current level, set next level as a current one
 		if previousLevel != null:
@@ -56,6 +57,7 @@ func go_to_next_level():
 
 		if currentLevel:
 			spawn_player_at_current_level(true, 0.7)
+			play_song(currentLevel.get_name())
 		else:
 			printerr("No more levels!")	
 
@@ -141,4 +143,21 @@ func spawn_player_at_current_level(alignCamera = true, transitionTime = null):
 	yield(get_tree(), "physics_frame")
 	spawn_point.queue_free()
 	get_tree().set_pause(false)
+
+
+func play_song(song):
+	var speech_player = AudioStreamPlayer.new()
+	var audio_file = "res://assets/audio_music/" + song + ".wav"
+	var music
+	if File.new().file_exists(audio_file):
+	    music = load(audio_file)
 	
+	if $audio.is_playing():
+		get_node("audio/twe").interpolate_property($audio, "volume_db", 0, -80, 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		get_node("audio/twe").start()
+		yield(get_node("audio/twe"), "tween_completed")
+		$audio.stop()
+	$audio.stream = music
+	$audio.play(0)
+	get_node("audio/twe").interpolate_property($audio, "volume_db", -80, 0, 0.25, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	get_node("audio/twe").start()

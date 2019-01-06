@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/lvl_003.wav-397d41561dd7aa1f589f88ade07529ba.sample"
+
+[deps]
+
+source_file="res://assets/audio_music/lvl_003.wav"
+dest_files=[ "res://.import/lvl_003.wav-397d41561dd7aa1f589f88ade07529ba.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=true
+compress/mode=0

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Menu_background_001.wav-2f5154946403fa2af1ad9a6c6a57a18a.sample"
+
+[deps]
+
+source_file="res://assets/audio_ambient/Menu_background_001.wav"
+dest_files=[ "res://.import/Menu_background_001.wav-2f5154946403fa2af1ad9a6c6a57a18a.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

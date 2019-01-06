@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://src/main.gd" type="Script" id=1]
 [ext_resource path="res://src/main_menu/main_menu.gd" type="Script" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://assets/interface/main_menu/logo.png" type="Texture" id=9]
 [ext_resource path="res://assets/interface/main_menu/menu_window.png" type="Texture" id=10]
 [ext_resource path="res://assets/themes/default_theme.tres" type="Theme" id=11]
+[ext_resource path="res://assets/audio_ambient/Menu_background_001.wav" type="AudioStream" id=12]
 
 [sub_resource type="Animation" id=1]
 
@@ -79,7 +80,7 @@ tracks/4/keys = {
 "values": [ Vector2( 757.5, 0 ), Vector2( 1500, 0 ), Vector2( 0, 0 ), Vector2( 757.5, 0 ) ]
 }
 
-[node name="Root" type="Node"]
+[node name="Root" type="Node" index="0"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Pause" ]
@@ -491,6 +492,15 @@ text = "Player 3"
 flat = false
 align = 1
 _sections_unfolded = [ "Textures", "Theme" ]
+
+[node name="audio" type="AudioStreamPlayer" parent="." index="1"]
+
+stream = ExtResource( 12 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = true
+mix_target = 0
+bus = "Master"
 
 [connection signal="pressed" from="MainCamera/HUD/Container/Panel/Margins/Menu_Main/Start" to="MainCamera/HUD" method="activateMenu" flags=6 binds= [ "Menu_Start" ]]
 

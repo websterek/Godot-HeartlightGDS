@@ -17,4 +17,22 @@ _sections_unfolded = [ "Pause" ]
 
 _sections_unfolded = [ "Pause" ]
 
+[node name="audio" type="AudioStreamPlayer" parent="." index="2"]
+
+stream = null
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="twe" type="Tween" parent="audio" index="0"]
+
+repeat = false
+playback_process_mode = 1
+playback_speed = 1.0
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
+
 

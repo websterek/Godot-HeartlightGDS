@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Ambient_Sheep_001.wav-5c5b76436c47040bb9d1542a6f95ede8.sample"
+
+[deps]
+
+source_file="res://assets/audio_ambient/Ambient_Sheep_001.wav"
+dest_files=[ "res://.import/Ambient_Sheep_001.wav-5c5b76436c47040bb9d1542a6f95ede8.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

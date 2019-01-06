@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Ambient_Chicken_001.wav-8e745e8edf20a3711cd07073ed4010c5.sample"
+
+[deps]
+
+source_file="res://assets/audio_ambient/Ambient_Chicken_001.wav"
+dest_files=[ "res://.import/Ambient_Chicken_001.wav-8e745e8edf20a3711cd07073ed4010c5.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

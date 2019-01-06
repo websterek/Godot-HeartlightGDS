@@ -10,7 +10,7 @@
 custom_solver_bias = 0.0
 radius = 64.0
 
-[node name="lvl_heart" type="RigidBody2D" index="0"]
+[node name="lvl_heart" type="RigidBody2D"]
 
 input_pickable = false
 collision_layer = 1
@@ -60,15 +60,13 @@ autoplay = false
 mix_target = 0
 bus = "Master"
 
-[node name="audio_take" type="AudioStreamPlayer2D" parent="." index="4"]
+[node name="audio_take" type="AudioStreamPlayer" parent="." index="4"]
 
 stream = ExtResource( 4 )
 volume_db = -4.0
 pitch_scale = 1.0
 autoplay = false
-max_distance = 2000.0
-attenuation = 1.0
+mix_target = 0
 bus = "Master"
-area_mask = 1
 
 
