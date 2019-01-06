@@ -1,15 +1,16 @@
-extends RigidBody2D
+extends PhysicsBody2D
 
-onready var game_manager = get_node("/root/Root")
+const Physics = preload("res://src/components/physics_utils.gd")
 
 # ###########
 # Node references
 # ###########
+onready var game_manager = get_node("/root/Root")
 onready var object_sprite = $shape
 onready var movement_animator = $twe
 onready var movement_delay_timer = $tim
+onready var temp_collision = $temp_coll
 
-var coll_stats = Physics2DTestMotionResult.new()
 var tile_size = globals.tile_size
 var tile_typ = globals.tile_typ
 
@@ -26,8 +27,9 @@ func _ready():
 	movement_delay_timer.set_wait_time(movement_delay)
 
 func kill():
-	print("Player dies")
-	game_manager.reset_current_level()
+	if !is_moving:
+		print("Player dies")
+		game_manager.reset_current_level()
 
 func _physics_process(event):
 	if !is_locked and !is_moving and movement_delay_timer.is_stopped():
@@ -40,18 +42,15 @@ func _physics_process(event):
 		elif Input.is_action_pressed("ui_right"):
 			move(globals.directions.RIGHT)
 
-func coll_test(dir, body=self):
-	return Physics2DServer.body_test_motion(body, body.get_global_transform(), dir, 0.16, coll_stats)
-
-
 func get_tile_coordinates(dir):
 	return (get_position() + dir - (tile_size/2)) / tile_size
 
-func move(direction):	
-	if !coll_test(direction):
+func move(direction):
+	var collision = Physics.get_collision_at(self, direction, get_global_position())
+	if !collision:
 		set_player_position(direction)
 	else:
-		var collider = coll_stats.get_collider()
+		var collider = collision.collider
 		if collider.is_in_group("level"):
 			var tile_coordinates = collider.world_to_map(get_position() + direction)
 			if collider.get_cellv(tile_coordinates) in tile_typ["grass"]:
@@ -79,8 +78,8 @@ func move(direction):
 func set_player_position(direction):	
 	is_moving = true
 	set_position(get_position() + direction)
-	anim(direction)
-	
+	temp_collision.set_position(-direction)
+	anim(direction)	
 	$audio_nograss.play(0)
 	
 func anim(direction, add=null):
@@ -113,6 +112,7 @@ func anim(direction, add=null):
 func _on_movement_finished(object, key):
 	is_moving = false
 	object_sprite.set_frame(0)	
+	temp_collision.set_position(Vector2(0,0))
 	movement_delay_timer.start()
 
 func _on_win_finished():	

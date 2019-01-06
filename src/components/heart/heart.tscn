@@ -10,26 +10,12 @@
 custom_solver_bias = 0.0
 radius = 64.0
 
-[node name="lvl_heart" type="RigidBody2D"]
+[node name="lvl_heart" type="KinematicBody2D"]
 
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
-mode = 3
-mass = 1.0
-friction = 1.0
-bounce = 0.0
-gravity_scale = 1.0
-custom_integrator = false
-continuous_cd = 2
-contacts_reported = 1
-contact_monitor = true
-sleeping = false
-can_sleep = true
-linear_velocity = Vector2( 0, 0 )
-linear_damp = -1.0
-angular_velocity = 0.0
-angular_damp = -1.0
+collision/safe_margin = 0.08
 script = ExtResource( 1 )
 _sections_unfolded = [ "collision" ]
 

@@ -1,21 +1,21 @@
 [gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://src/components/player/player_movement.gd" type="Script" id=1]
-[ext_resource path="res://assets/player/008_player_anim_01.png" type="Texture" id=2]
-[ext_resource path="res://assets/player/008_player_anim_02.png" type="Texture" id=3]
-[ext_resource path="res://assets/player/008_player_anim_03.png" type="Texture" id=4]
-[ext_resource path="res://assets/player/008_player_anim_04.png" type="Texture" id=5]
-[ext_resource path="res://assets/player/008_player_anim_05.png" type="Texture" id=6]
-[ext_resource path="res://assets/player/008_player_anim_06.png" type="Texture" id=7]
-[ext_resource path="res://assets/player/008_player_anim_07.png" type="Texture" id=8]
-[ext_resource path="res://assets/player/008_player_anim_08.png" type="Texture" id=9]
-[ext_resource path="res://assets/player/008_player_anim_09.png" type="Texture" id=10]
-[ext_resource path="res://assets/player/008_player_anim_10.png" type="Texture" id=11]
-[ext_resource path="res://assets/player/008_player_anim_11.png" type="Texture" id=12]
-[ext_resource path="res://assets/player/008_player_anim_12.png" type="Texture" id=13]
-[ext_resource path="res://assets/player/008_player_anim_13.png" type="Texture" id=14]
-[ext_resource path="res://assets/player/008_player_anim_14.png" type="Texture" id=15]
-[ext_resource path="res://assets/player/007_player_still_01.png" type="Texture" id=16]
+[ext_resource path="res://assets/player/007_player_still_01.png" type="Texture" id=2]
+[ext_resource path="res://assets/player/008_player_anim_01.png" type="Texture" id=3]
+[ext_resource path="res://assets/player/008_player_anim_02.png" type="Texture" id=4]
+[ext_resource path="res://assets/player/008_player_anim_03.png" type="Texture" id=5]
+[ext_resource path="res://assets/player/008_player_anim_04.png" type="Texture" id=6]
+[ext_resource path="res://assets/player/008_player_anim_05.png" type="Texture" id=7]
+[ext_resource path="res://assets/player/008_player_anim_06.png" type="Texture" id=8]
+[ext_resource path="res://assets/player/008_player_anim_07.png" type="Texture" id=9]
+[ext_resource path="res://assets/player/008_player_anim_08.png" type="Texture" id=10]
+[ext_resource path="res://assets/player/008_player_anim_09.png" type="Texture" id=11]
+[ext_resource path="res://assets/player/008_player_anim_10.png" type="Texture" id=12]
+[ext_resource path="res://assets/player/008_player_anim_11.png" type="Texture" id=13]
+[ext_resource path="res://assets/player/008_player_anim_12.png" type="Texture" id=14]
+[ext_resource path="res://assets/player/008_player_anim_13.png" type="Texture" id=15]
+[ext_resource path="res://assets/player/008_player_anim_14.png" type="Texture" id=16]
 [ext_resource path="res://assets/audio_effects/Gameplay_Goat_Eating_grass_001.wav" type="AudioStream" id=17]
 [ext_resource path="res://assets/audio_effects/Gameplay_Goat_Walking_001_no_eating_grass.wav" type="AudioStream" id=18]
 
@@ -27,44 +27,30 @@ radius = 48.0
 [sub_resource type="SpriteFrames" id=2]
 
 animations = [ {
-"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ) ],
-"loop": true,
-"name": "jump",
-"speed": 52.0
-}, {
-"frames": [ ExtResource( 16 ), null, ExtResource( 16 ), null, ExtResource( 16 ), null, ExtResource( 16 ), null, ExtResource( 16 ) ],
+"frames": [ ExtResource( 2 ), null, ExtResource( 2 ), null, ExtResource( 2 ), null, ExtResource( 2 ), null, ExtResource( 2 ) ],
 "loop": true,
 "name": "win",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 16 ) ],
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ) ],
+"loop": true,
+"name": "jump",
+"speed": 52.0
+}, {
+"frames": [ ExtResource( 2 ) ],
 "loop": true,
 "name": "still",
 "speed": 5.0
 } ]
 
-[node name="character" type="RigidBody2D" index="0" groups=[
+[node name="character" type="KinematicBody2D" groups=[
 "player",
 ]]
 
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
-mode = 3
-mass = 1.0
-friction = 1.0
-bounce = 0.0
-gravity_scale = 1.0
-custom_integrator = false
-continuous_cd = 0
-contacts_reported = 0
-contact_monitor = false
-sleeping = false
-can_sleep = true
-linear_velocity = Vector2( 0, 0 )
-linear_damp = -1.0
-angular_velocity = 0.0
-angular_damp = -1.0
+collision/safe_margin = 0.08
 script = ExtResource( 1 )
 _sections_unfolded = [ "Pause", "Transform" ]
 
@@ -72,13 +58,17 @@ _sections_unfolded = [ "Pause", "Transform" ]
 
 shape = SubResource( 1 )
 
-[node name="shape" type="AnimatedSprite" parent="." index="1"]
+[node name="temp_coll" type="CollisionShape2D" parent="." index="1"]
+
+shape = SubResource( 1 )
+
+[node name="shape" type="AnimatedSprite" parent="." index="2"]
 
 frames = SubResource( 2 )
 animation = "jump"
 offset = Vector2( 0, -20 )
 
-[node name="twe" type="Tween" parent="." index="2"]
+[node name="twe" type="Tween" parent="." index="3"]
 
 repeat = false
 playback_process_mode = 1
@@ -88,14 +78,14 @@ playback/repeat = false
 playback/speed = 1.0
 _sections_unfolded = [ "playback" ]
 
-[node name="tim" type="Timer" parent="." index="3"]
+[node name="tim" type="Timer" parent="." index="4"]
 
 process_mode = 1
 wait_time = 0.15
 one_shot = true
 autostart = false
 
-[node name="audio_grass" type="AudioStreamPlayer" parent="." index="4"]
+[node name="audio_grass" type="AudioStreamPlayer" parent="." index="5"]
 
 stream = ExtResource( 17 )
 volume_db = -24.0
@@ -104,7 +94,7 @@ autoplay = false
 mix_target = 0
 bus = "Master"
 
-[node name="audio_nograss" type="AudioStreamPlayer" parent="." index="5"]
+[node name="audio_nograss" type="AudioStreamPlayer" parent="." index="6"]
 
 stream = ExtResource( 18 )
 volume_db = -24.0

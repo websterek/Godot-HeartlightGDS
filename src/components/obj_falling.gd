@@ -1,6 +1,7 @@
 extends PhysicsBody2D
 
 const Util = preload("res://src/global/utils.gd")
+const Physics = preload("res://src/components/physics_utils.gd")
 
 # ###########
 # Node references
@@ -37,12 +38,12 @@ func _physics_process(delta):
 	# Handle object physics only if it is not currently moving
 	if !is_moving:
 		update_world_state()
-		var collision_at_bottom = get_collision_at(globals.directions.BOTTOM)
+		var collision_at_bottom = Physics.get_collision_at(self, globals.directions.BOTTOM, current_position)
 		
 		if collision_at_bottom:
 			handle_bottom_collision(collision_at_bottom)
 		else:
-			var far_bottom_collision = get_collision_at(globals.directions.BOTTOM + globals.directions.BOTTOM)
+			var far_bottom_collision = Physics.get_collision_at(self, globals.directions.BOTTOM + globals.directions.BOTTOM, current_position)
 			if !far_bottom_collision or !far_bottom_collision.collider.is_in_group("balloon"):
 				move(globals.directions.BOTTOM, true)
 
@@ -57,7 +58,7 @@ func try_rolling_sideways():
 	# First try rolling left
 	if has_space_to_roll("left"):
 		# Check if there is no element on the other side rolling to the same spot
-		var far_left_collision = get_collision_at(globals.directions.LEFT + globals.directions.LEFT)
+		var far_left_collision = Physics.get_collision_at(self, globals.directions.LEFT + globals.directions.LEFT, current_position)
 		if far_left_collision:
 			var collider = far_left_collision.collider
 			if collider.is_in_group("can_roll_down") and collider.is_moving and collider.is_moving_direction == globals.directions.RIGHT:
@@ -114,7 +115,7 @@ func _on_movement_finished(object, key, handle_impact):
 	is_moving_direction = null
 	# Add "bottom_impact" function in a script that extends obj_falling to handle impact
 	if handle_impact and has_method("bottom_impact"):
-		var collision_after_move = get_collision_at(globals.directions.BOTTOM)
+		var collision_after_move = Physics.get_collision_at(self, globals.directions.BOTTOM, current_position)
 		if collision_after_move:
 			bottom_impact(collision_after_move)
 			$audio.play()
@@ -127,7 +128,7 @@ func update_world_state():
 	update_grounded_state()
 
 func update_grounded_state():
-	var collision = get_collision_at(globals.directions.BOTTOM)
+	var collision = Physics.get_collision_at(self, globals.directions.BOTTOM, current_position)
 	if collision:
 		var collider = collision.collider
 		if collider.get_class() == "TileMap" or collider.is_in_group("balloon"):
@@ -144,19 +145,19 @@ func can_be_pushed(direction):
 	var side_collision = null
 	match direction:
 		"left":
-			side_collision =  get_collision_at(globals.directions.LEFT)
+			side_collision =  Physics.get_collision_at(self, globals.directions.LEFT, current_position)
 			return is_grounded and !is_moving and !side_collision
 		"right":
-			side_collision =  get_collision_at(globals.directions.RIGHT)
+			side_collision =  Physics.get_collision_at(self, globals.directions.RIGHT, current_position)
 			return is_grounded and !is_moving and !side_collision
 		"top":
-			var top_collision =  get_collision_at(globals.directions.TOP)
+			var top_collision =  Physics.get_collision_at(self, globals.directions.TOP, current_position)
 			return !is_moving and !top_collision
 		_:
 			return false
 
 func can_roll():
-	var bottom_collision = get_collision_at(globals.directions.BOTTOM)
+	var bottom_collision = Physics.get_collision_at(self, globals.directions.BOTTOM, current_position)
 	var is_ground_slippery = true 
 
 	if (bottom_collision.collider.get_class() == "TileMap"):
@@ -174,26 +175,19 @@ func has_space_to_roll(direction):
 	var top_collision = null
 	match direction:
 		"left":
-			side_collision =  get_collision_at(globals.directions.LEFT)
-			bottom_collision =  get_collision_at(globals.directions.BOTTOM_LEFT)
-			top_collision =  get_collision_at(globals.directions.TOP_LEFT)
+			side_collision =  Physics.get_collision_at(self, globals.directions.LEFT, current_position)
+			bottom_collision =  Physics.get_collision_at(self, globals.directions.BOTTOM_LEFT, current_position)
+			top_collision =  Physics.get_collision_at(self, globals.directions.TOP_LEFT, current_position)
 		"right":
-			side_collision =  get_collision_at(globals.directions.RIGHT)
-			bottom_collision =  get_collision_at(globals.directions.BOTTOM_RIGHT)
-			top_collision =  get_collision_at(globals.directions.TOP_RIGHT)
+			side_collision =  Physics.get_collision_at(self, globals.directions.RIGHT, current_position)
+			bottom_collision =  Physics.get_collision_at(self, globals.directions.BOTTOM_RIGHT, current_position)
+			top_collision =  Physics.get_collision_at(self, globals.directions.TOP_RIGHT, current_position)
 		_:
 			printerr("Wrong argument provided for 'has_space_to_roll' function!")
 			return false
 
 	var something_is_above = top_collision and top_collision.collider.is_in_group("can_fall")
 
+	if !side_collision and !bottom_collision and !something_is_above:
+		Physics.get_collision_at(self, globals.directions.BOTTOM, current_position, true)
 	return !side_collision and !bottom_collision and !something_is_above
-
-func get_collision_at(direction):
-	var target = current_position + direction
-	var result = get_world_2d().direct_space_state.intersect_point(target)
-
-	if result:
-		return { "position": target, "collider": result[0].collider }
-	else:
-		return {}
