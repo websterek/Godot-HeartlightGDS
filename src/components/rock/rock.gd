@@ -2,7 +2,7 @@ extends "../obj_falling.gd"
 
 # Override default obj_falling fields
 func _init():
-	movement_delay = 0.2
+	movement_duration = globals.config.get_value("rock", "movement_duration")
 
 func _ready():
 	pass

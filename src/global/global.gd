@@ -1,6 +1,5 @@
 extends Node
 
-var tictoc = 0
 var timer = 0
 var delay = 0
 
@@ -24,6 +23,7 @@ var tile_typ = {
 }
 
 var current_player = null
+var config = ConfigFile.new()
 
 func set_current_player(playerId):
 	current_player = playerId	
@@ -34,16 +34,29 @@ func get_current_player():
 	return current_player
 
 func _ready():
-	pass
+	var config_file_path = "res://settings.cfg"
+	config.load(config_file_path)	
+	set_config_values()
+	config.save(config_file_path)
 
-func _physics_process(delta):
-	delay += delta
-	if delay > 0.025:
-		tictoc_yeld()
-		delay = 0
+func set_config_values():
+	if !config.has_section_key("base", "first_level_filename"):
+		config.set_value("base", "first_level_filename", "lvl_001")
 
-func tictoc_yeld():
-	if tictoc == 2:
-		tictoc = 0
-	else:
-		tictoc += 1
+	if !config.has_section_key("player", "movement_duration"):
+		config.set_value("player", "movement_duration", 0.15)
+
+	if !config.has_section_key("player", "movement_delay"):
+		config.set_value("player", "movement_delay", 0.03)
+		
+	if !config.has_section_key("dynamic_objects", "default_movement_duration"):
+		config.set_value("dynamic_objects", "default_movement_duration", 0.2)
+		
+	if !config.has_section_key("owl", "movement_duration"):
+		config.set_value("owl", "movement_duration", 0.15)
+		
+	if !config.has_section_key("owl", "movement_delay"):
+		config.set_value("owl", "movement_delay", 0.15)
+		
+	if !config.has_section_key("rock", "movement_duration"):
+		config.set_value("rock", "movement_duration", 0.15)

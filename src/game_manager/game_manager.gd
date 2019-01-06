@@ -43,7 +43,8 @@ func instantiate_level(level_filename, position = Vector2(0, 0), ignoreAligning 
 func go_to_next_level():
 	if currentLevel == null:
 		# Load current level and next level for smooth animation
-		currentLevel = instantiate_level("lvl_001")
+		var first_level_filename = globals.config.get_value("base", "first_level_filename")
+		currentLevel = instantiate_level(first_level_filename)
 		spawn_player_at_current_level()
 		play_song(currentLevel.get_name())
 	else:

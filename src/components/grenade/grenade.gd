@@ -1,6 +1,7 @@
 extends "../obj_falling.gd"
 
 const Util = preload("res://src/global/utils.gd")
+const Physics = preload("res://src/components/physics_utils.gd")
 var is_exploding = false
 
 func _init():
@@ -24,19 +25,19 @@ func explode():
 	var collisions = [
 		{
 			"direction": globals.directions.TOP,
-			"value": get_collision_at(globals.directions.TOP)
+			"value": Physics.get_collision_at(self, globals.directions.TOP, current_position)
 		},
 		{
 			"direction": globals.directions.BOTTOM,
-			"value": get_collision_at(globals.directions.BOTTOM)
+			"value": Physics.get_collision_at(self, globals.directions.BOTTOM, current_position)
 		},
 		{
 			"direction": globals.directions.LEFT,
-			"value": get_collision_at(globals.directions.LEFT)
+			"value": Physics.get_collision_at(self, globals.directions.LEFT, current_position)
 		},
 		{
 			"direction": globals.directions.RIGHT,
-			"value": get_collision_at(globals.directions.RIGHT)
+			"value": Physics.get_collision_at(self, globals.directions.RIGHT, current_position)
 		}
 	]
 

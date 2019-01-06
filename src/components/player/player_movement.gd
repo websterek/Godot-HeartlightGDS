@@ -17,8 +17,8 @@ var tile_typ = globals.tile_typ
 var is_locked = false
 var is_moving = false
 
-var movement_duration = 0.15
-var movement_delay = 0.03
+var movement_duration = globals.config.get_value("player", "movement_duration")
+var movement_delay = globals.config.get_value("player", "movement_delay")
 var jump_anim_first_frame = 0
 var jump_anim_last_frame = 13
 

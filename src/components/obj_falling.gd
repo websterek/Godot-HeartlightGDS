@@ -14,7 +14,7 @@ onready var movement_animator = $movement_animator
 # ###########
 var is_rollable = true
 var is_pushable = true
-var movement_delay = 0.2
+var movement_duration = globals.config.get_value("player", "movement_duration")
 
 # ###########
 # Helper variables
@@ -84,7 +84,7 @@ func move(direction, handle_impact = false):
 		"position",
 		-direction,
 		Vector2(0,0),
-		movement_delay,
+		movement_duration,
 		Tween.TRANS_LINEAR,
 		Tween.EASE_IN_OUT
 	)

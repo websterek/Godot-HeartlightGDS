@@ -12,8 +12,8 @@ onready var movement_delay_timer = $timer
 # ###########
 # Object configuration
 # ###########
-var movement_duration = 0.2
-var movement_delay = 0.15
+var movement_duration = globals.config.get_value("owl", "movement_duration")
+var movement_delay = globals.config.get_value("owl", "movement_delay")
 
 # ###########
 # Helper variables
