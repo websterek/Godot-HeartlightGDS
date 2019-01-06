@@ -7,6 +7,10 @@ func _ready():
 	levelInstance.register_heart(heart_name)
 
 func push(direction = null):
+	set_visible(false)
+	$col.set_disabled(true)
+	$audio_take.play()
+	yield($audio_take, "finished")
 	destroy_heart()
 	return true
 
