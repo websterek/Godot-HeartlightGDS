@@ -5,6 +5,8 @@ var previousLevel = null
 var currentLevel = null
 var playerInstance = null
 
+signal current_level_changed(new_level)
+
 func _input(event):
     if !event:
         pass
@@ -40,11 +42,16 @@ func instantiate_level(level_filename, position = Vector2(0, 0), ignoreAligning 
 		print("No level with filename '" + level_filename + "' found.")
 		return null
 
+func set_current_level(new_level):
+	currentLevel = new_level
+	emit_signal("current_level_changed", currentLevel)
+
 func go_to_next_level():
 	if currentLevel == null:
 		# Load current level and next level for smooth animation
 		var first_level_filename = globals.config.get_value("base", "first_level_filename")
-		currentLevel = instantiate_level(first_level_filename)
+		set_current_level(instantiate_level(first_level_filename))
+		emit_signal("current_level_changed", currentLevel)
 		spawn_player_at_current_level()
 		play_song(currentLevel.get_name())
 	else:
@@ -54,7 +61,7 @@ func go_to_next_level():
 
 		previousLevel = currentLevel
 
-		currentLevel = append_new_level()
+		set_current_level(append_new_level())
 
 		if currentLevel:
 			spawn_player_at_current_level(true, 0.7)
@@ -110,7 +117,8 @@ func reset_current_level():
 		true
 	)
 	currentLevel.queue_free()
-	currentLevel = new_instance
+	set_current_level(new_instance)
+	emit_signal("current_level_changed", currentLevel)
 	spawn_player_at_current_level(false)
 
 

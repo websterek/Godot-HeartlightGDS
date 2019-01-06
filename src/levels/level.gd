@@ -1,24 +1,29 @@
 extends Node2D
 
+signal hearts_changed(remaining_h, max_h)
 signal heart_added
 signal all_hearts_taken
 
 var tile_size = globals.tile_size
-var remainingHearts = []
 var level_filename = null
+var remaining_hearts = []
+var max_hearts = 0
 onready var door_instance = $door
 
 func register_heart(name):
-	remainingHearts.append(name)
+	remaining_hearts.append(name)
+	max_hearts = max_hearts + 1
 	emit_signal("heart_added")
+	emit_signal("hearts_changed", remaining_hearts, max_hearts)
 
 func remove_heart(name):
-	remainingHearts.erase(name)
-	if (remainingHearts.size() <= 0):
+	remaining_hearts.erase(name)
+	emit_signal("hearts_changed", remaining_hearts.size(), max_hearts)
+	if (remaining_hearts.size() <= 0):
 		emit_signal("all_hearts_taken")
 
 func _ready():
-	if door_instance and remainingHearts.size() <= 0:
+	if door_instance and remaining_hearts.size() <= 0:
 		door_instance.open()
 
 func calculate_bounds():

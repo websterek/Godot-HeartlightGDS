@@ -1,9 +1,15 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://src/game_manager/game_manager.gd" type="Script" id=1]
 [ext_resource path="res://src/camera/main_camera.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/ingame_menu/ingame_menu.gd" type="Script" id=3]
+[ext_resource path="res://assets/interface/ingame_menu/01_cloud_01.png" type="Texture" id=4]
+[ext_resource path="res://assets/interface/ingame_menu/03_rzodkiewka.png" type="Texture" id=5]
+[ext_resource path="res://assets/themes/default_theme.tres" type="Theme" id=6]
+[ext_resource path="res://assets/interface/ingame_menu/01_cloud_02.png" type="Texture" id=7]
+[ext_resource path="res://assets/interface/ingame_menu/02_koniczynka_lvl.png" type="Texture" id=8]
 
-[node name="Root" type="Node2D"]
+[node name="Root" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Pause" ]
@@ -12,6 +18,185 @@ _sections_unfolded = [ "Pause" ]
 
 pause_mode = 2
 _sections_unfolded = [ "Pause" ]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="MainCamera" index="1"]
+
+layer = 1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+
+[node name="HUD" type="Container" parent="MainCamera/CanvasLayer" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = -1.0
+margin_right = 1280.0
+margin_bottom = 719.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+script = ExtResource( 3 )
+
+[node name="hearts" type="TextureRect" parent="MainCamera/CanvasLayer/HUD" index="0"]
+
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -1268.0
+margin_top = -114.0
+margin_right = -966.0
+margin_bottom = 85.0
+rect_scale = Vector2( 0.5, 0.5 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 4 )
+stretch_mode = 0
+
+[node name="icon" type="TextureRect" parent="MainCamera/CanvasLayer/HUD/hearts" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 25.0
+margin_top = 19.0
+margin_right = 117.0
+margin_bottom = 190.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 5 )
+stretch_mode = 0
+_sections_unfolded = [ "Rect" ]
+
+[node name="left" type="Label" parent="MainCamera/CanvasLayer/HUD/hearts" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 107.0
+margin_top = 49.0
+margin_right = 174.0
+margin_bottom = 151.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+theme = ExtResource( 6 )
+text = "2"
+align = 2
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Theme" ]
+
+[node name="separator" type="Label" parent="MainCamera/CanvasLayer/HUD/hearts" index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 137.0
+margin_top = 64.0
+margin_right = 204.0
+margin_bottom = 166.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+theme = ExtResource( 6 )
+text = "/"
+align = 2
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Theme" ]
+
+[node name="max" type="Label" parent="MainCamera/CanvasLayer/HUD/hearts" index="3"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 199.0
+margin_top = 47.0
+margin_right = 266.0
+margin_bottom = 149.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+theme = ExtResource( 6 )
+text = "5"
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Theme" ]
+
+[node name="levels" type="TextureRect" parent="MainCamera/CanvasLayer/HUD" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 1136.0
+margin_top = 632.0
+margin_right = 1391.0
+margin_bottom = 784.0
+rect_scale = Vector2( 0.5, 0.5 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 7 )
+stretch_mode = 0
+_sections_unfolded = [ "Rect" ]
+
+[node name="icon" type="TextureRect" parent="MainCamera/CanvasLayer/HUD/levels" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 23.0
+margin_top = 20.0
+margin_right = 106.0
+margin_bottom = 146.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 8 )
+stretch_mode = 0
 
 [node name="Levels" type="Node2D" parent="." index="1"]
 
