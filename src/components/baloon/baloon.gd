@@ -28,7 +28,6 @@ func _ready():
 
 func _physics_process(delta):
 	# Handle object physics only if it is not currently moving
-	print(movement_delay_timer.is_stopped())
 	if !is_moving and movement_delay_timer.is_stopped():
 		update_world_state()
 		var collision_at_top = get_collision_at(globals.directions.TOP)
@@ -43,7 +42,7 @@ func _physics_process(delta):
 # ###########
 func handle_top_collision(collision):
 	var collider = collision.collider
-	var can_push = collider.is_in_group("can_be_pushed") and collider.has_method("elevate")
+	var can_push = (collider.is_in_group("can_be_pushed") or collider.is_in_group("player")) and collider.has_method("elevate")
 	if can_push:
 		if collider.elevate():
 			move(globals.directions.TOP)

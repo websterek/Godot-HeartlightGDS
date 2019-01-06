@@ -75,6 +75,13 @@ func move(direction):
 					if can_collider_roll && collider.push("right"):
 						set_player_position(direction)
 
+func elevate():
+	if !is_moving and !Physics.get_collision_at(self, globals.directions.TOP, get_global_position()):		
+		move(globals.directions.TOP)
+		return true
+	else:
+		return false
+
 func set_player_position(direction):	
 	is_moving = true
 	set_position(get_position() + direction)

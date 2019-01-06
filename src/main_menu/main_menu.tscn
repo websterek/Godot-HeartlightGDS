@@ -1,17 +1,22 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://src/main.gd" type="Script" id=1]
 [ext_resource path="res://src/main_menu/main_menu.gd" type="Script" id=2]
 [ext_resource path="res://assets/interface/main_menu/background.png" type="Texture" id=3]
-[ext_resource path="res://assets/interface/main_menu/chmurka_01.png" type="Texture" id=4]
-[ext_resource path="res://assets/interface/main_menu/chmurka_02.png" type="Texture" id=5]
-[ext_resource path="res://assets/interface/main_menu/chmurka_03.png" type="Texture" id=6]
-[ext_resource path="res://assets/interface/main_menu/chmurka_05.png" type="Texture" id=7]
-[ext_resource path="res://assets/interface/main_menu/chmurka_07.png" type="Texture" id=8]
-[ext_resource path="res://assets/interface/main_menu/logo.png" type="Texture" id=9]
-[ext_resource path="res://assets/interface/main_menu/menu_window.png" type="Texture" id=10]
-[ext_resource path="res://assets/themes/default_theme.tres" type="Theme" id=11]
-[ext_resource path="res://assets/audio_ambient/Menu_background_001.wav" type="AudioStream" id=12]
+[ext_resource path="res://assets/interface/main_menu/gory_tlo.png" type="Texture" id=4]
+[ext_resource path="res://assets/interface/main_menu/chmurka_01.png" type="Texture" id=5]
+[ext_resource path="res://assets/interface/main_menu/chmurka_02.png" type="Texture" id=6]
+[ext_resource path="res://assets/interface/main_menu/chmurka_03.png" type="Texture" id=7]
+[ext_resource path="res://assets/interface/main_menu/chmurka_05.png" type="Texture" id=8]
+[ext_resource path="res://assets/interface/main_menu/chmurka_07.png" type="Texture" id=9]
+[ext_resource path="res://assets/interface/main_menu/las2.png" type="Texture" id=10]
+[ext_resource path="res://assets/interface/main_menu/las.png" type="Texture" id=11]
+[ext_resource path="res://assets/interface/main_menu/gora.png" type="Texture" id=12]
+[ext_resource path="res://assets/interface/main_menu/koza.png" type="Texture" id=13]
+[ext_resource path="res://assets/interface/main_menu/logo.png" type="Texture" id=14]
+[ext_resource path="res://assets/interface/main_menu/menu_window.png" type="Texture" id=15]
+[ext_resource path="res://assets/themes/default_theme.tres" type="Theme" id=16]
+[ext_resource path="res://assets/audio_ambient/Menu_background_001.wav" type="AudioStream" id=17]
 
 [sub_resource type="Animation" id=1]
 
@@ -125,16 +130,13 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 script = ExtResource( 2 )
-_sections_unfolded = [ "Anchor", "Rect" ]
 
 [node name="background" type="TextureRect" parent="MainCamera/HUD" index="0"]
 
-editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -183.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -143,10 +145,26 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 texture = ExtResource( 3 )
 expand = true
-stretch_mode = 7
-_sections_unfolded = [ "Material", "Transform" ]
+_sections_unfolded = [ "Anchor", "Margin", "Material", "Transform" ]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="MainCamera/HUD/background" index="0"]
+[node name="Mountains" type="TextureRect" parent="MainCamera/HUD/background" index="0"]
+
+anchor_left = 0.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -401.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 4 )
+stretch_mode = 0
+_sections_unfolded = [ "Margin", "Rect" ]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MainCamera/HUD/background" index="1"]
 
 root_node = NodePath("..")
 autoplay = "CloudsLoop"
@@ -157,53 +175,133 @@ anims/CloudsLoop = SubResource( 1 )
 blend_times = [  ]
 _sections_unfolded = [ "Pause", "Playback Options" ]
 
-[node name="chmurka_01" type="Sprite" parent="MainCamera/HUD/background" index="1"]
+[node name="chmurka_01" type="Sprite" parent="MainCamera/HUD/background" index="2"]
 
-position = Vector2( -180, 203 )
-texture = ExtResource( 4 )
+position = Vector2( -180, 53 )
+texture = ExtResource( 5 )
 centered = false
 offset = Vector2( 330, 0 )
 region_rect = Rect2( 0, 0, 1280, 720 )
 _sections_unfolded = [ "Offset", "Region", "Transform" ]
 
-[node name="chmurka_02" type="Sprite" parent="MainCamera/HUD/background" index="2"]
+[node name="chmurka_02" type="Sprite" parent="MainCamera/HUD/background" index="3"]
 
-position = Vector2( -180, 320 )
-texture = ExtResource( 5 )
+position = Vector2( -180, 170 )
+texture = ExtResource( 6 )
 centered = false
 offset = Vector2( 990, 0 )
 _sections_unfolded = [ "Offset", "Region", "Transform" ]
 
-[node name="chmurka_03" type="Sprite" parent="MainCamera/HUD/background" index="3"]
+[node name="chmurka_03" type="Sprite" parent="MainCamera/HUD/background" index="4"]
 
-position = Vector2( -171.633, 384 )
-texture = ExtResource( 6 )
+position = Vector2( -171.633, 234 )
+texture = ExtResource( 7 )
 centered = false
 offset = Vector2( 180, 0 )
 region_rect = Rect2( 0, -100, 1280, 720 )
 _sections_unfolded = [ "Offset", "Region", "Transform" ]
 
-[node name="chmurka_04" type="Sprite" parent="MainCamera/HUD/background" index="4"]
+[node name="chmurka_04" type="Sprite" parent="MainCamera/HUD/background" index="5"]
 
-position = Vector2( -180, 443 )
-texture = ExtResource( 7 )
+position = Vector2( -180, 293 )
+texture = ExtResource( 8 )
 centered = false
 offset = Vector2( 1230, 0 )
 region_rect = Rect2( 0, -100, 1280, 720 )
 _sections_unfolded = [ "Offset", "Region", "Transform" ]
 
-[node name="chmurka_05" type="Sprite" parent="MainCamera/HUD/background" index="5"]
+[node name="chmurka_05" type="Sprite" parent="MainCamera/HUD/background" index="6"]
 
-position = Vector2( -180, 523 )
-texture = ExtResource( 8 )
+position = Vector2( -180.001, 373 )
+texture = ExtResource( 9 )
 centered = false
 offset = Vector2( 757.5, 0 )
 region_rect = Rect2( 0, -100, 1280, 720 )
-_sections_unfolded = [ "Offset", "Region", "Transform" ]
+
+[node name="las2" type="TextureRect" parent="MainCamera/HUD/background" index="7"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -8.0
+margin_top = 549.0
+margin_right = 420.0
+margin_bottom = 1000.0
+rect_scale = Vector2( 0.4, 0.4 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 10 )
+stretch_mode = 0
+_sections_unfolded = [ "Rect" ]
+
+[node name="las" type="TextureRect" parent="MainCamera/HUD/background" index="8"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 426.0
+margin_top = 336.0
+margin_right = 2343.0
+margin_bottom = 1207.0
+rect_scale = Vector2( 0.45, 0.45 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 11 )
+stretch_mode = 0
+
+[node name="gora" type="TextureRect" parent="MainCamera/HUD/background" index="9"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 81.0
+margin_top = 395.0
+margin_right = 1219.0
+margin_bottom = 1492.0
+rect_scale = Vector2( 0.3, 0.3 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 12 )
+stretch_mode = 0
+_sections_unfolded = [ "Anchor", "Rect" ]
+
+[node name="koza" type="TextureRect" parent="MainCamera/HUD/background/gora" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 184.0
+margin_top = -1053.0
+margin_right = 1322.0
+margin_bottom = 147.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 13 )
+stretch_mode = 0
+_sections_unfolded = [ "Anchor", "Rect" ]
 
 [node name="Container" type="Container" parent="MainCamera/HUD" index="1"]
 
-editor/display_folded = true
 anchor_left = 0.5
 anchor_top = 0.0
 anchor_right = 1.0
@@ -217,7 +315,6 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-_sections_unfolded = [ "Anchor", "Margin", "Rect" ]
 __meta__ = {
 "_edit_lock_": true
 }
@@ -235,10 +332,9 @@ mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource( 9 )
+texture = ExtResource( 14 )
 expand = true
 stretch_mode = 6
-_sections_unfolded = [ "Anchor", "Margin" ]
 
 [node name="Panel" type="NinePatchRect" parent="MainCamera/HUD/Container" index="1"]
 
@@ -256,7 +352,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 2.0
-texture = ExtResource( 10 )
+texture = ExtResource( 15 )
 patch_margin_left = 49
 patch_margin_top = 49
 patch_margin_right = 49
@@ -280,7 +376,6 @@ custom_constants/margin_right = 20
 custom_constants/margin_top = 20
 custom_constants/margin_left = 20
 custom_constants/margin_bottom = 20
-_sections_unfolded = [ "Margin", "Theme", "custom_constants" ]
 
 [node name="Menu_Main" type="VBoxContainer" parent="MainCamera/HUD/Container/Panel/Margins" index="0"]
 
@@ -298,7 +393,7 @@ mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 7
 size_flags_vertical = 7
-theme = ExtResource( 11 )
+theme = ExtResource( 16 )
 alignment = 0
 _sections_unfolded = [ "Visibility" ]
 
@@ -319,7 +414,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme = ExtResource( 11 )
+theme = ExtResource( 16 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -349,7 +444,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme = ExtResource( 11 )
+theme = ExtResource( 16 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -377,7 +472,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme = ExtResource( 11 )
+theme = ExtResource( 16 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -405,7 +500,7 @@ mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 7
 size_flags_vertical = 7
-theme = ExtResource( 11 )
+theme = ExtResource( 16 )
 alignment = 0
 
 [node name="Player1" type="Button" parent="MainCamera/HUD/Container/Panel/Margins/Menu_Start" index="0"]
@@ -425,7 +520,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme = ExtResource( 11 )
+theme = ExtResource( 16 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -455,7 +550,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme = ExtResource( 11 )
+theme = ExtResource( 16 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -483,7 +578,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme = ExtResource( 11 )
+theme = ExtResource( 16 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -495,7 +590,7 @@ _sections_unfolded = [ "Textures", "Theme" ]
 
 [node name="audio" type="AudioStreamPlayer" parent="." index="1"]
 
-stream = ExtResource( 12 )
+stream = ExtResource( 17 )
 volume_db = 0.0
 pitch_scale = 1.0
 autoplay = true
