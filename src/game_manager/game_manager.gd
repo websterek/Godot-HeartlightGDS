@@ -5,7 +5,11 @@ var previousLevel = null
 var currentLevel = null
 var playerInstance = null
 
+var levels = []
+var passed_levels = []
+
 signal current_level_changed(new_level)
+signal level_passed(passed_l, max_l)
 
 func _input(event):
     if !event:
@@ -14,7 +18,34 @@ func _input(event):
         playerInstance.kill()
 
 func _ready():
+	get_all_levels_list()
 	go_to_next_level()
+
+# ###########
+# Level counting functions
+# ###########
+
+func get_all_levels_list():
+	var directory = Directory.new()
+	var level_number = 1
+	var found_end = false
+
+	while !found_end:
+		var level_file_name = "lvl_" + str(level_number).pad_zeros(3)
+		if directory.file_exists("res://src/levels/" + level_file_name + ".tscn"):
+			add_level_to_list(levels, level_file_name)
+		else:
+			found_end = true
+
+		level_number += 1
+	
+func add_level_to_list(list, level_name):
+	if list.find(level_name) == -1:
+		list.append(level_name)
+	
+# ###########
+# Level queue functions
+# ###########
 
 func instantiate_level(level_filename, position = Vector2(0, 0), ignoreAligning = false):
 	var scene = load("res://src/levels/" + level_filename + ".tscn")
@@ -70,6 +101,9 @@ func go_to_next_level():
 			printerr("No more levels!")	
 
 func win_level():
+	add_level_to_list(passed_levels, currentLevel.level_filename)
+	emit_signal("level_passed", passed_levels, levels)
+
 	playerInstance.play_win_animation()
 
 func append_new_level(ignoreOffset = false):
@@ -122,6 +156,10 @@ func reset_current_level():
 	spawn_player_at_current_level(false)
 
 
+# ###########
+# Player functions
+# ###########
+
 func create_player_instance():
 	var scene = load("res://src/components/player/player.tscn")
 	var scene_instance = scene.instance()
@@ -153,6 +191,9 @@ func spawn_player_at_current_level(alignCamera = true, transitionTime = null):
 	spawn_point.queue_free()
 	get_tree().set_pause(false)
 
+# ###########
+# Audio functions
+# ###########
 
 func play_song(song):
 	var speech_player = AudioStreamPlayer.new()

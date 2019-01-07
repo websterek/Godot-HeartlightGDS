@@ -12,7 +12,7 @@ onready var door_instance = $door
 
 func register_heart(name):
 	remaining_hearts.append(name)
-	max_hearts = max_hearts + 1
+	max_hearts += 1
 	emit_signal("heart_added")
 	emit_signal("hearts_changed", remaining_hearts, max_hearts)
 
