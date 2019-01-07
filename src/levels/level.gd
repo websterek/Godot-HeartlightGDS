@@ -27,13 +27,14 @@ func _ready():
 		door_instance.open()
 
 func calculate_bounds():
-	var used_cells = get_node("tile_front").get_used_cells()
+	var front_used_cells = get_node("tile_front").get_used_cells()
+	var decal_used_cells = get_node("tile_decal").get_used_cells()
 	var min_x = 0
 	var min_y = 0
 	var max_x = 1
 	var max_y = 1
 
-	for pos in used_cells:
+	for pos in front_used_cells:
 		if pos.x < min_x:
 			min_x = int(pos.x)
 		elif pos.x > max_x:
@@ -42,6 +43,16 @@ func calculate_bounds():
 			min_y = int(pos.y)
 		elif pos.y > max_y:
 			max_y = int(pos.y)
+
+	for pos in decal_used_cells:
+		if pos.x < min_x:
+			min_x = int(pos.x)
+		elif pos.x > max_x:
+			max_x = int(pos.x)
+		if pos.y < min_y:
+			min_y = int(pos.y)
+		elif pos.y > max_y:
+			max_y = int(pos.y)	
 
 	return {
 		"min": Vector2(
