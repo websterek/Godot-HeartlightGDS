@@ -4,6 +4,7 @@ onready var mainCamera = get_node("MainCamera")
 var previousLevel = null
 var currentLevel = null
 var playerInstance = null
+var volume_music = globals.config.get_value("music", "volume_db_game")
 
 var levels = []
 var passed_levels = []
@@ -20,6 +21,7 @@ func _input(event):
 func _ready():
 	get_all_levels_list()
 	go_to_next_level()
+	$audio.set_volume_db(volume_music)
 
 # ###########
 # Level counting functions
@@ -203,11 +205,11 @@ func play_song(song):
 	    music = load(audio_file)
 	
 	if $audio.is_playing():
-		get_node("audio/twe").interpolate_property($audio, "volume_db", 0, -80, 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		get_node("audio/twe").interpolate_property($audio, "volume_db", volume_music, -80, 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		get_node("audio/twe").start()
 		yield(get_node("audio/twe"), "tween_completed")
 		$audio.stop()
 	$audio.stream = music
 	$audio.play(0)
-	get_node("audio/twe").interpolate_property($audio, "volume_db", -80, 0, 0.25, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	get_node("audio/twe").interpolate_property($audio, "volume_db", -80, volume_music, 0.25, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	get_node("audio/twe").start()

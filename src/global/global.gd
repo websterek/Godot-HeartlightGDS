@@ -48,6 +48,12 @@ func set_config_values():
 
 	if !config.has_section_key("player", "movement_delay"):
 		config.set_value("player", "movement_delay", 0.03)
+
+	if !config.has_section_key("player", "volume_db_grass"):
+		config.set_value("player", "volume_db_grass", -24)
+
+	if !config.has_section_key("player", "volume_db_nograss"):
+		config.set_value("player", "volume_db_nograss", -24)
 		
 	if !config.has_section_key("dynamic_objects", "default_movement_duration"):
 		config.set_value("dynamic_objects", "default_movement_duration", 0.2)
@@ -60,3 +66,21 @@ func set_config_values():
 		
 	if !config.has_section_key("rock", "movement_duration"):
 		config.set_value("rock", "movement_duration", 0.15)
+		
+	if !config.has_section_key("rock", "volume_db"):
+		config.set_value("rock", "volume_db", -8)
+		
+	if !config.has_section_key("door", "volume_db"):
+		config.set_value("door", "volume_db", -12)
+		
+	if !config.has_section_key("explosion", "volume_db"):
+		config.set_value("explosion", "volume_db", -8)
+		
+	if !config.has_section_key("heart", "volume_db"):
+		config.set_value("heart", "volume_db", -4)
+		
+	if !config.has_section_key("music", "volume_db_game"):
+		config.set_value("music", "volume_db_game", -4)
+		
+	if !config.has_section_key("music", "volume_db_menu"):
+		config.set_value("music", "volume_db_menu", -4)

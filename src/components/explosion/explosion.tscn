@@ -22,7 +22,7 @@ animations = [ {
 "speed": 20.0
 } ]
 
-[node name="lvl_explosion" type="AnimatedSprite" index="0"]
+[node name="lvl_explosion" type="AnimatedSprite"]
 
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 1 )

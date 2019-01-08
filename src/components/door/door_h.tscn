@@ -105,7 +105,7 @@ tracks/1/keys = {
 "values": [ 0, 4 ]
 }
 
-[node name="door" type="StaticBody2D" index="0" groups=[
+[node name="door" type="StaticBody2D" groups=[
 "can_be_pushed",
 ]]
 

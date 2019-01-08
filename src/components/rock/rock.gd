@@ -3,9 +3,10 @@ extends "../obj_falling.gd"
 # Override default obj_falling fields
 func _init():
 	movement_duration = globals.config.get_value("rock", "movement_duration")
+	
 
 func _ready():
-	pass
+	$audio.set_volume_db(globals.config.get_value("rock", "volume_db"))
 
 func bottom_impact(collision):
 	var collider = collision.collider

@@ -9,6 +9,7 @@ var is_open = false
 func _ready():		
 	levelInstance.connect("heart_added", self, "close")
 	levelInstance.connect("all_hearts_taken", self, "open")
+	$audio.set_volume_db(globals.config.get_value("door", "volume_db"))
 
 func open():
 	is_open = true

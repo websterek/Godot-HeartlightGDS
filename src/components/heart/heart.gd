@@ -5,6 +5,8 @@ onready var heart_name = get_name()
 
 func _ready():
 	levelInstance.register_heart(heart_name)
+	$audio.set_volume_db(globals.config.get_value("rock", "volume_db"))
+	$audio_take.set_volume_db(globals.config.get_value("heart", "volume_db"))
 
 func push(direction = null):
 	set_visible(false)

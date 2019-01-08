@@ -25,6 +25,8 @@ var jump_anim_last_frame = 13
 
 func _ready():
 	movement_delay_timer.set_wait_time(movement_delay)
+	$audio_grass.set_volume_db(globals.config.get_value("player", "volume_db_grass"))
+	$audio_nograss.set_volume_db(globals.config.get_value("player", "volume_db_nograss"))
 
 func kill():
 	if !is_moving:
