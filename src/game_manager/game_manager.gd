@@ -197,7 +197,7 @@ func spawn_player_at_current_level(alignCamera = true, transitionTime = null):
 
 func play_song(song):
 	var speech_player = AudioStreamPlayer.new()
-	var audio_file = "res://assets/audio_music/" + song + ".wav"
+	var audio_file = "res://assets/audio_music/" + song + ".sample"
 	var music
 	if File.new().file_exists(audio_file):
 	    music = load(audio_file)

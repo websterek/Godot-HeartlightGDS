@@ -1,10 +1,11 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/game_manager/game_manager.gd" type="Script" id=1]
 [ext_resource path="res://src/camera/main_camera.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/ingame_menu/ingame_menu.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/audio_music/lvl_003.sample" type="AudioStream" id=4]
 
-[node name="Root" type="Node2D"]
+[node name="Root" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Pause" ]
@@ -22,7 +23,7 @@ _sections_unfolded = [ "Pause" ]
 
 [node name="audio" type="AudioStreamPlayer" parent="." index="2"]
 
-stream = null
+stream = ExtResource( 4 )
 volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
