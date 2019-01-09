@@ -10,6 +10,10 @@ var remaining_hearts = []
 var max_hearts = 0
 onready var door_instance = $door
 
+func get_level_number():
+	# Trim first 4 characters as for "lvl_" and convert the rest to number as for "001" to 1
+	return level_filename.substr(4, 3).to_int()
+
 func register_heart(name):
 	remaining_hearts.append(name)
 	max_hearts += 1

@@ -17,9 +17,14 @@ func _input(event):
         pass
     elif Input.is_action_pressed("ui_cancel"):
         playerInstance.kill()
+    elif Input.is_action_pressed("ui_page_up"):
+        go_to_next_level()
+    elif Input.is_action_pressed("ui_page_down"):
+        go_to_next_level(true)
 
 func _ready():
 	get_all_levels_list()
+	emit_signal("level_passed", passed_levels, levels)
 	go_to_next_level()
 	$audio.set_volume_db(volume_music)
 
@@ -49,7 +54,7 @@ func add_level_to_list(list, level_name):
 # Level queue functions
 # ###########
 
-func instantiate_level(level_filename, position = Vector2(0, 0), ignoreAligning = false):
+func instantiate_level(level_filename, position = Vector2(0, 0), ignoreAligning = false, stick_by_right_side = false):
 	var scene = load("res://src/levels/" + level_filename + ".tscn")
 	if scene:
 		var scene_instance = scene.instance()
@@ -61,8 +66,15 @@ func instantiate_level(level_filename, position = Vector2(0, 0), ignoreAligning 
 			var camera_zoom = scene_instance.calculate_zoom(scene_instance_bounds)
 			var screen_offset = calculate_screen_offset(scene_instance_bounds.width, camera_zoom)
 
+			var scene_x = 0
+
+			if !stick_by_right_side:
+				scene_x = position.x + screen_offset
+			else:
+				scene_x = position.x - scene_instance_bounds.width - screen_offset
+
 			scene_instance.set_global_position(Vector2(
-				position.x + screen_offset,
+				scene_x,
 				position.y - scene_instance_bounds.height / 2
 			))
 		else:
@@ -79,7 +91,7 @@ func set_current_level(new_level):
 	currentLevel = new_level
 	emit_signal("current_level_changed", currentLevel)
 
-func go_to_next_level():
+func go_to_next_level(previous = false):
 	if currentLevel == null:
 		# Load current level and next level for smooth animation
 		var first_level_filename = globals.config.get_value("base", "first_level_filename")
@@ -94,7 +106,7 @@ func go_to_next_level():
 
 		previousLevel = currentLevel
 
-		set_current_level(append_new_level())
+		set_current_level(append_new_level(previous))
 
 		if currentLevel:
 			spawn_player_at_current_level(true, 0.7)
@@ -105,25 +117,34 @@ func go_to_next_level():
 func win_level():
 	add_level_to_list(passed_levels, currentLevel.level_filename)
 	emit_signal("level_passed", passed_levels, levels)
-
 	playerInstance.play_win_animation()
 
-func append_new_level(ignoreOffset = false):
-	var level_filename = get_next_level_filename()
+func append_new_level(previous = false):
+	var level_filename = null
+	if !previous:
+		level_filename = get_next_level_filename()
+	else:
+		level_filename = get_previous_level_filename()
 	var old_level_bounds = currentLevel.calculate_bounds()
 
-	var screen_offset = 0
+	var camera_zoom = currentLevel.calculate_zoom(old_level_bounds)
+	var screen_offset = calculate_screen_offset(old_level_bounds.width, camera_zoom)
 
-	if !ignoreOffset:
-		var camera_zoom = currentLevel.calculate_zoom(old_level_bounds)
-		screen_offset = calculate_screen_offset(old_level_bounds.width, camera_zoom)
+	var new_x = 0
+
+	if !previous:
+		new_x = old_level_bounds.max.x + screen_offset
+	else:
+		new_x = old_level_bounds.min.x - screen_offset
 
 	var level_instance = instantiate_level(
 		level_filename, 
 		Vector2(
-			old_level_bounds.max.x + screen_offset,
+			new_x,
 			old_level_bounds.min.y + old_level_bounds.height / 2
-		)
+		),
+		false,
+		previous
 	)
 	return level_instance
 
@@ -138,13 +159,21 @@ func calculate_screen_offset(level_width, zoom = 1):
 	else:
 		return 0
 
+func get_previous_level_filename():
+	var first_level_filename = levels.front()
+	if currentLevel.level_filename == first_level_filename:
+		return levels.back()	
+	else:
+		# Return new level filename in format "lvl_000" 
+		return "lvl_" + str(currentLevel.get_level_number() - 1).pad_zeros(3)
 
 func get_next_level_filename():
-	var current_level_filename = currentLevel.level_filename
-	# Trim first 4 characters as for "lvl_" and convert the rest to number as for "001" to 1
-	var current_level_number = current_level_filename.substr(4, 3).to_int()
-	# Return new level filename in format "lvl_000" 
-	return "lvl_" + str(current_level_number + 1).pad_zeros(3)
+	var last_level_filename = levels.back()
+	if currentLevel.level_filename == last_level_filename:
+		return levels.front()	
+	else:
+		# Return new level filename in format "lvl_000" 
+		return "lvl_" + str(currentLevel.get_level_number() + 1).pad_zeros(3)
 
 func reset_current_level():
 	var new_instance = instantiate_level(
