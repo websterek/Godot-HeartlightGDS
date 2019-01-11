@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://src/levels/level.gd" type="Script" id=1]
 [ext_resource path="res://assets/tiles_back.tres" type="TileSet" id=2]
@@ -7,9 +7,13 @@
 [ext_resource path="res://assets/tiles_front.tres" type="TileSet" id=5]
 [ext_resource path="res://src/components/player/player_spawn_point.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/components/grenade/grenade.tscn" type="PackedScene" id=7]
-[ext_resource path="res://src/components/heart/heart.tscn" type="PackedScene" id=8]
-[ext_resource path="res://src/components/rock/rock.tscn" type="PackedScene" id=9]
-[ext_resource path="res://src/components/door/door_h.tscn" type="PackedScene" id=10]
+[ext_resource path="res://src/components/grenade/grenade.gd" type="Script" id=8]
+[ext_resource path="res://src/components/heart/heart.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/components/heart/heart.gd" type="Script" id=10]
+[ext_resource path="res://src/components/rock/rock.tscn" type="PackedScene" id=11]
+[ext_resource path="res://src/components/rock/rock.gd" type="Script" id=12]
+[ext_resource path="res://src/components/door/door_h.tscn" type="PackedScene" id=13]
+[ext_resource path="res://src/components/door/door.gd" type="Script" id=14]
 
 [node name="level" type="Node2D"]
 
@@ -84,176 +88,438 @@ collision_layer = 1
 collision_mask = 1
 occluder_light_mask = 1
 format = 1
-tile_data = PoolIntArray( 0, 13, 0, 1, 10, 0, 2, 10, 0, 3, 10, 0, 4, 10, 0, 5, 10, 0, 6, 10, 0, 7, 10, 0, 8, 17, 0, 9, 10, 0, 10, 10, 0, 11, 10, 0, 12, 10, 0, 13, 10, 0, 14, 10, 0, 15, 10, 0, 16, 10, 0, 17, 10, 0, 18, 10, 0, 19, 15, 0, 65536, 11, 0, 65537, 2, 0, 65538, 6, 0, 65539, 0, 0, 65541, 4, 0, 65542, 6, 0, 65544, 11, 0, 65546, 4, 0, 65547, 3, 0, 65549, 0, 0, 65550, 4, 0, 65551, 0, 0, 65552, 4, 0, 65553, 0, 0, 65555, 11, 0, 131072, 11, 0, 131074, 3, 0, 131075, 4, 0, 131077, 0, 0, 131080, 12, 0, 131081, 6, 0, 131083, 7, 0, 131084, 0, 0, 131085, 4, 0, 131086, 0, 0, 131087, 3, 0, 131088, 0, 0, 131089, 0, 0, 131090, 2, 0, 131091, 11, 0, 196608, 19, 0, 196609, 10, 0, 196610, 10, 0, 196611, 15, 0, 196614, 6, 0, 196616, 0, 0, 196617, 4, 0, 196618, 0, 0, 196619, 2, 0, 196620, 3, 0, 196622, 3, 0, 196623, 4, 0, 196624, 7, 0, 196625, 6, 0, 196626, 0, 0, 196627, 11, 0, 262144, 11, 0, 262147, 11, 0, 262151, 2, 0, 262155, 25, 0, 262156, 21, 0, 262157, 21, 0, 262158, 21, 0, 262159, 21, 0, 262160, 26, 0, 262161, 0, 0, 262162, 0, 0, 262163, 11, 0, 327680, 11, 0, 327683, 11, 0, 327685, 4, 0, 327688, 0, 0, 327691, 22, 0, 327696, 11, 0, 327698, 0, 0, 327699, 11, 0, 393216, 11, 0, 393219, 11, 0, 393222, 0, 0, 393227, 22, 0, 393232, 11, 0, 393233, 0, 0, 393234, 6, 0, 393235, 11, 0, 458752, 11, 0, 458755, 11, 0, 458759, 3, 0, 458763, 22, 0, 458768, 11, 0, 458769, 6, 0, 458770, 0, 0, 458771, 11, 0, 524288, 11, 0, 524291, 11, 0, 524293, 0, 0, 524296, 2, 0, 524299, 30, 0, 524300, 21, 0, 524301, 21, 0, 524302, 21, 0, 524303, 21, 0, 524304, 29, 0, 524305, 21, 0, 524306, 21, 0, 524307, 26, 0, 589824, 11, 0, 589827, 11, 0, 589830, 4, 0, 589835, 4, 0, 589836, 7, 0, 589837, 6, 0, 589838, 3, 0, 589839, 1, 0, 589840, 6, 0, 589841, 0, 0, 589842, 3, 0, 589843, 22, 0, 655360, 14, 0, 655361, 10, 0, 655362, 10, 0, 655363, 20, 0, 655364, 21, 0, 655365, 21, 0, 655366, 21, 0, 655367, 21, 0, 655368, 21, 0, 655369, 21, 0, 655370, 21, 0, 655371, 21, 0, 655372, 21, 0, 655373, 26, 0, 655374, 0, 0, 655375, 4, 0, 655376, 0, 0, 655377, 3, 0, 655379, 22, 0, 720909, 30, 0, 720910, 21, 0, 720911, 21, 0, 720912, 21, 0, 720913, 21, 0, 720914, 21, 0, 720915, 31, 0 )
+tile_data = PoolIntArray( 0, 13, 0, 1, 10, 0, 2, 10, 0, 3, 10, 0, 4, 10, 0, 5, 10, 0, 6, 10, 0, 7, 10, 0, 8, 17, 0, 9, 10, 0, 10, 10, 0, 11, 10, 0, 12, 10, 0, 13, 10, 0, 14, 10, 0, 15, 10, 0, 16, 10, 0, 17, 10, 0, 18, 10, 0, 19, 15, 0, 65536, 11, 0, 65537, 2, 0, 65538, 6, 0, 65539, 0, 0, 65541, 4, 0, 65542, 6, 0, 65544, 11, 0, 65546, 4, 0, 65550, 4, 0, 65551, 1, 0, 65552, 4, 0, 65553, 1, 0, 65555, 11, 0, 131072, 11, 0, 131074, 3, 0, 131075, 4, 0, 131077, 0, 0, 131080, 12, 0, 131081, 6, 0, 131083, 7, 0, 131085, 4, 0, 131086, 1, 0, 131087, 3, 0, 131088, 1, 0, 131089, 1, 0, 131090, 2, 0, 131091, 11, 0, 196608, 19, 0, 196609, 10, 0, 196610, 10, 0, 196611, 15, 0, 196614, 6, 0, 196616, 0, 0, 196617, 4, 0, 196618, 0, 0, 196619, 2, 0, 196620, 3, 0, 196622, 3, 0, 196623, 4, 0, 196624, 7, 0, 196625, 6, 0, 196626, 1, 0, 196627, 11, 0, 262144, 11, 0, 262147, 11, 0, 262151, 2, 0, 262155, 25, 0, 262156, 21, 0, 262157, 21, 0, 262158, 21, 0, 262159, 21, 0, 262160, 26, 0, 262161, 1, 0, 262162, 1, 0, 262163, 11, 0, 327680, 11, 0, 327683, 11, 0, 327685, 4, 0, 327688, 0, 0, 327691, 22, 0, 327696, 11, 0, 327698, 1, 0, 327699, 11, 0, 393216, 11, 0, 393219, 11, 0, 393222, 0, 0, 393227, 22, 0, 393232, 11, 0, 393233, 1, 0, 393234, 6, 0, 393235, 11, 0, 458752, 11, 0, 458755, 11, 0, 458759, 3, 0, 458763, 22, 0, 458768, 11, 0, 458769, 6, 0, 458770, 1, 0, 458771, 11, 0, 524288, 11, 0, 524291, 11, 0, 524293, 0, 0, 524296, 2, 0, 524299, 30, 0, 524300, 21, 0, 524301, 21, 0, 524302, 21, 0, 524303, 21, 0, 524304, 29, 0, 524305, 21, 0, 524306, 21, 0, 524307, 26, 0, 589824, 11, 0, 589827, 11, 0, 589830, 4, 0, 589835, 4, 0, 589836, 7, 0, 589837, 6, 0, 589838, 3, 0, 589839, 1, 0, 589840, 6, 0, 589841, 0, 0, 589842, 3, 0, 589843, 22, 0, 655360, 14, 0, 655361, 10, 0, 655362, 10, 0, 655363, 20, 0, 655364, 21, 0, 655365, 21, 0, 655366, 21, 0, 655367, 21, 0, 655368, 21, 0, 655369, 21, 0, 655370, 21, 0, 655371, 21, 0, 655372, 21, 0, 655373, 26, 0, 655374, 0, 0, 655375, 4, 0, 655376, 0, 0, 655377, 3, 0, 655379, 22, 0, 720909, 30, 0, 720910, 21, 0, 720911, 21, 0, 720912, 21, 0, 720913, 21, 0, 720914, 21, 0, 720915, 31, 0 )
 script = ExtResource( 3 )
 _sections_unfolded = [ "Cell", "Collision", "Pause", "Transform" ]
 
-[node name="character_spawn_point" parent="." index="3" instance=ExtResource( 6 )]
+[node name="character_spawn_point" type="KinematicBody2D" parent="." index="3" instance=ExtResource( 6 )]
 
 position = Vector2( 576, 320 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+_sections_unfolded = [ "Collision", "Transform", "collision" ]
 
-[node name="lvl_granade" parent="." index="4" instance=ExtResource( 7 )]
+[node name="lvl_granade" type="KinematicBody2D" parent="." index="4" groups=[
+"grenade",
+] instance=ExtResource( 7 )]
 
 position = Vector2( 576, 192 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 8 )
+_sections_unfolded = [ "collision" ]
 
-[node name="lvl_granade2" parent="." index="5" instance=ExtResource( 7 )]
+[node name="lvl_granade2" type="KinematicBody2D" parent="." index="5" groups=[
+"grenade",
+] instance=ExtResource( 7 )]
 
-position = Vector2( 1600, 192 )
+position = Vector2( 1472, 192 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 8 )
+_sections_unfolded = [ "collision" ]
 
-[node name="lvl_granade3" parent="." index="6" instance=ExtResource( 7 )]
+[node name="lvl_granade3" type="KinematicBody2D" parent="." index="6" groups=[
+"grenade",
+] instance=ExtResource( 7 )]
 
 position = Vector2( 1728, 448 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 8 )
+_sections_unfolded = [ "collision" ]
 
-[node name="lvl_heart" parent="." index="7" instance=ExtResource( 8 )]
+[node name="lvl_heart" type="KinematicBody2D" parent="." index="7" instance=ExtResource( 9 )]
 
 position = Vector2( 192, 576 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 10 )
+_sections_unfolded = [ "collision" ]
 
-[node name="lvl_heart2" parent="." index="8" instance=ExtResource( 8 )]
+[node name="lvl_heart2" type="KinematicBody2D" parent="." index="8" instance=ExtResource( 9 )]
 
 position = Vector2( 320, 576 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 10 )
+_sections_unfolded = [ "collision" ]
 
-[node name="lvl_heart3" parent="." index="9" instance=ExtResource( 8 )]
+[node name="lvl_heart3" type="KinematicBody2D" parent="." index="9" instance=ExtResource( 9 )]
 
 position = Vector2( 192, 704 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 10 )
+_sections_unfolded = [ "collision" ]
 
-[node name="lvl_heart4" parent="." index="10" instance=ExtResource( 8 )]
+[node name="lvl_heart4" type="KinematicBody2D" parent="." index="10" instance=ExtResource( 9 )]
 
 position = Vector2( 320, 704 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 10 )
+_sections_unfolded = [ "collision" ]
 
-[node name="lvl_heart5" parent="." index="11" instance=ExtResource( 8 )]
+[node name="lvl_heart5" type="KinematicBody2D" parent="." index="11" instance=ExtResource( 9 )]
 
 position = Vector2( 1600, 704 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 10 )
+_sections_unfolded = [ "collision" ]
 
-[node name="lvl_heart6" parent="." index="12" instance=ExtResource( 8 )]
+[node name="lvl_heart6" type="KinematicBody2D" parent="." index="12" instance=ExtResource( 9 )]
 
 position = Vector2( 1728, 704 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 10 )
+_sections_unfolded = [ "collision" ]
 
-[node name="lvl_heart7" parent="." index="13" instance=ExtResource( 8 )]
+[node name="lvl_heart7" type="KinematicBody2D" parent="." index="13" instance=ExtResource( 9 )]
 
 position = Vector2( 1856, 704 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 10 )
+_sections_unfolded = [ "collision" ]
 
-[node name="lvl_heart8" parent="." index="14" instance=ExtResource( 8 )]
+[node name="lvl_heart8" type="KinematicBody2D" parent="." index="14" instance=ExtResource( 9 )]
 
 position = Vector2( 1984, 704 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 10 )
+_sections_unfolded = [ "collision" ]
 
-[node name="lvl_heart9" parent="." index="15" instance=ExtResource( 8 )]
+[node name="lvl_heart9" type="KinematicBody2D" parent="." index="15" instance=ExtResource( 9 )]
 
 position = Vector2( 192, 832 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 10 )
+_sections_unfolded = [ "collision" ]
 
-[node name="lvl_heart10" parent="." index="16" instance=ExtResource( 8 )]
+[node name="lvl_heart10" type="KinematicBody2D" parent="." index="16" instance=ExtResource( 9 )]
 
 position = Vector2( 320, 832 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 10 )
+_sections_unfolded = [ "collision" ]
 
-[node name="lvl_heart11" parent="." index="17" instance=ExtResource( 8 )]
+[node name="lvl_heart11" type="KinematicBody2D" parent="." index="17" instance=ExtResource( 9 )]
 
 position = Vector2( 1600, 832 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 10 )
+_sections_unfolded = [ "collision" ]
 
-[node name="lvl_heart12" parent="." index="18" instance=ExtResource( 8 )]
+[node name="lvl_heart12" type="KinematicBody2D" parent="." index="18" instance=ExtResource( 9 )]
 
 position = Vector2( 1728, 832 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 10 )
+_sections_unfolded = [ "collision" ]
 
-[node name="lvl_heart13" parent="." index="19" instance=ExtResource( 8 )]
+[node name="lvl_heart13" type="KinematicBody2D" parent="." index="19" instance=ExtResource( 9 )]
 
 position = Vector2( 1856, 832 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 10 )
+_sections_unfolded = [ "collision" ]
 
-[node name="lvl_heart14" parent="." index="20" instance=ExtResource( 8 )]
+[node name="lvl_heart14" type="KinematicBody2D" parent="." index="20" instance=ExtResource( 9 )]
 
 position = Vector2( 1984, 832 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 10 )
+_sections_unfolded = [ "collision" ]
 
-[node name="lvl_heart15" parent="." index="21" instance=ExtResource( 8 )]
+[node name="lvl_heart15" type="KinematicBody2D" parent="." index="21" instance=ExtResource( 9 )]
 
 position = Vector2( 192, 960 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 10 )
+_sections_unfolded = [ "collision" ]
 
-[node name="lvl_heart16" parent="." index="22" instance=ExtResource( 8 )]
+[node name="lvl_heart16" type="KinematicBody2D" parent="." index="22" instance=ExtResource( 9 )]
 
 position = Vector2( 320, 960 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 10 )
+_sections_unfolded = [ "collision" ]
 
-[node name="lvl_heart17" parent="." index="23" instance=ExtResource( 8 )]
+[node name="lvl_heart17" type="KinematicBody2D" parent="." index="23" instance=ExtResource( 9 )]
 
 position = Vector2( 1600, 960 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 10 )
+_sections_unfolded = [ "collision" ]
 
-[node name="lvl_heart18" parent="." index="24" instance=ExtResource( 8 )]
+[node name="lvl_heart18" type="KinematicBody2D" parent="." index="24" instance=ExtResource( 9 )]
 
 position = Vector2( 1728, 960 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 10 )
+_sections_unfolded = [ "collision" ]
 
-[node name="lvl_heart19" parent="." index="25" instance=ExtResource( 8 )]
+[node name="lvl_heart19" type="KinematicBody2D" parent="." index="25" instance=ExtResource( 9 )]
 
 position = Vector2( 1856, 960 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 10 )
+_sections_unfolded = [ "collision" ]
 
-[node name="lvl_heart20" parent="." index="26" instance=ExtResource( 8 )]
+[node name="lvl_heart20" type="KinematicBody2D" parent="." index="26" instance=ExtResource( 9 )]
 
 position = Vector2( 1984, 960 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 10 )
+_sections_unfolded = [ "collision" ]
 
-[node name="lvl_heart21" parent="." index="27" instance=ExtResource( 8 )]
+[node name="lvl_heart21" type="KinematicBody2D" parent="." index="27" instance=ExtResource( 9 )]
 
 position = Vector2( 192, 1088 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 10 )
+_sections_unfolded = [ "collision" ]
 
-[node name="lvl_heart22" parent="." index="28" instance=ExtResource( 8 )]
+[node name="lvl_heart22" type="KinematicBody2D" parent="." index="28" instance=ExtResource( 9 )]
 
 position = Vector2( 320, 1088 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 10 )
+_sections_unfolded = [ "collision" ]
 
-[node name="lvl_heart23" parent="." index="29" instance=ExtResource( 8 )]
+[node name="lvl_heart23" type="KinematicBody2D" parent="." index="29" instance=ExtResource( 9 )]
 
 position = Vector2( 192, 1216 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 10 )
+_sections_unfolded = [ "collision" ]
 
-[node name="lvl_heart24" parent="." index="30" instance=ExtResource( 8 )]
+[node name="lvl_heart24" type="KinematicBody2D" parent="." index="30" instance=ExtResource( 9 )]
 
 position = Vector2( 320, 1216 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 10 )
+_sections_unfolded = [ "collision" ]
 
-[node name="lvl_sphere" parent="." index="31" instance=ExtResource( 9 )]
+[node name="lvl_sphere" type="KinematicBody2D" parent="." index="31" instance=ExtResource( 11 )]
 
 position = Vector2( 1216, 192 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 12 )
+_sections_unfolded = [ "Collision", "Transform", "collision" ]
 
-[node name="lvl_sphere2" parent="." index="32" instance=ExtResource( 9 )]
+[node name="lvl_sphere2" type="KinematicBody2D" parent="." index="32" instance=ExtResource( 11 )]
 
 position = Vector2( 2368, 192 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 12 )
+_sections_unfolded = [ "Collision", "Transform", "collision" ]
 
-[node name="lvl_sphere3" parent="." index="33" instance=ExtResource( 9 )]
+[node name="lvl_sphere3" type="KinematicBody2D" parent="." index="33" instance=ExtResource( 11 )]
 
 position = Vector2( 192, 320 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 12 )
+_sections_unfolded = [ "Collision", "Transform", "collision" ]
 
-[node name="lvl_sphere4" parent="." index="34" instance=ExtResource( 9 )]
+[node name="lvl_sphere4" type="KinematicBody2D" parent="." index="34" instance=ExtResource( 11 )]
 
 position = Vector2( 832, 320 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 12 )
+_sections_unfolded = [ "Collision", "Transform", "collision" ]
 
-[node name="lvl_sphere5" parent="." index="35" instance=ExtResource( 9 )]
+[node name="lvl_sphere5" type="KinematicBody2D" parent="." index="35" instance=ExtResource( 11 )]
 
 position = Vector2( 1344, 320 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 12 )
+_sections_unfolded = [ "Collision", "Transform", "collision" ]
 
-[node name="lvl_sphere6" parent="." index="36" instance=ExtResource( 9 )]
+[node name="lvl_sphere6" type="KinematicBody2D" parent="." index="36" instance=ExtResource( 11 )]
 
 position = Vector2( 960, 448 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 12 )
+_sections_unfolded = [ "Collision", "Transform", "collision" ]
 
-[node name="lvl_sphere7" parent="." index="37" instance=ExtResource( 9 )]
+[node name="lvl_sphere7" type="KinematicBody2D" parent="." index="37" instance=ExtResource( 11 )]
 
 position = Vector2( 832, 704 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 12 )
+_sections_unfolded = [ "Collision", "Transform", "collision" ]
 
-[node name="lvl_sphere8" parent="." index="38" instance=ExtResource( 9 )]
+[node name="lvl_sphere8" type="KinematicBody2D" parent="." index="38" instance=ExtResource( 11 )]
 
 position = Vector2( 2240, 704 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 12 )
+_sections_unfolded = [ "Collision", "Transform", "collision" ]
 
-[node name="lvl_sphere9" parent="." index="39" instance=ExtResource( 9 )]
+[node name="lvl_sphere9" type="KinematicBody2D" parent="." index="39" instance=ExtResource( 11 )]
 
 position = Vector2( 960, 832 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 12 )
+_sections_unfolded = [ "Collision", "Transform", "collision" ]
 
-[node name="lvl_sphere10" parent="." index="40" instance=ExtResource( 9 )]
+[node name="lvl_sphere10" type="KinematicBody2D" parent="." index="40" instance=ExtResource( 11 )]
 
 position = Vector2( 704, 960 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 12 )
+_sections_unfolded = [ "Collision", "Transform", "collision" ]
 
-[node name="lvl_sphere11" parent="." index="41" instance=ExtResource( 9 )]
+[node name="lvl_sphere11" type="KinematicBody2D" parent="." index="41" instance=ExtResource( 11 )]
 
 position = Vector2( 1088, 960 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 12 )
+_sections_unfolded = [ "Collision", "Transform", "collision" ]
 
-[node name="lvl_sphere12" parent="." index="42" instance=ExtResource( 9 )]
+[node name="lvl_sphere12" type="KinematicBody2D" parent="." index="42" instance=ExtResource( 11 )]
 
 position = Vector2( 832, 1088 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 12 )
+_sections_unfolded = [ "Collision", "Transform", "collision" ]
 
-[node name="lvl_sphere13" parent="." index="43" instance=ExtResource( 9 )]
+[node name="lvl_sphere13" type="KinematicBody2D" parent="." index="43" instance=ExtResource( 11 )]
 
 position = Vector2( 960, 1216 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 12 )
+_sections_unfolded = [ "Collision", "Transform", "collision" ]
 
-[node name="door" parent="." index="44" instance=ExtResource( 10 )]
+[node name="door" type="StaticBody2D" parent="." index="44" groups=[
+"can_be_pushed",
+] instance=ExtResource( 13 )]
 
 position = Vector2( 2368, 1344 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+script = ExtResource( 14 )
+_sections_unfolded = [ "collision" ]
 
 

@@ -33,7 +33,7 @@ _sections_unfolded = [ "Transform" ]
 [node name="audio" type="AudioStreamPlayer" parent="." index="0"]
 
 stream = ExtResource( 12 )
-volume_db = -8.0
+volume_db = -24.0
 pitch_scale = 1.0
 autoplay = false
 mix_target = 0

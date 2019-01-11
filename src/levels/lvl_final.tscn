@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://src/levels/level.gd" type="Script" id=1]
 [ext_resource path="res://assets/tiles_back.tres" type="TileSet" id=2]
@@ -13,7 +13,6 @@
 [ext_resource path="res://assets/decals/012_stodoła.png" type="Texture" id=11]
 [ext_resource path="res://src/components/player/player_spawn_point.tscn" type="PackedScene" id=12]
 [ext_resource path="res://src/components/cutscene_portal/cutscene_portal.tscn" type="PackedScene" id=13]
-[ext_resource path="res://src/components/cutscene_portal/cutscene_portal.gd" type="Script" id=14]
 
 [node name="level" type="Node2D"]
 
@@ -366,28 +365,12 @@ texture = ExtResource( 10 )
 position = Vector2( 1963.89, -213.67 )
 texture = ExtResource( 9 )
 
-[node name="character_spawn_point" type="KinematicBody2D" parent="." index="56" instance=ExtResource( 12 )]
+[node name="character_spawn_point" parent="." index="56" instance=ExtResource( 12 )]
 
 position = Vector2( 64, 1088 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-collision/safe_margin = 0.08
-_sections_unfolded = [ "Collision", "Transform", "collision" ]
 
-[node name="cutscene_portal" type="StaticBody2D" parent="." index="57" groups=[
-"can_be_pushed",
-] instance=ExtResource( 13 )]
+[node name="cutscene_portal" parent="." index="57" instance=ExtResource( 13 )]
 
 position = Vector2( 2368, 832 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-constant_linear_velocity = Vector2( 0, 0 )
-constant_angular_velocity = 0.0
-friction = 1.0
-bounce = 0.0
-script = ExtResource( 14 )
-_sections_unfolded = [ "collision" ]
 
 

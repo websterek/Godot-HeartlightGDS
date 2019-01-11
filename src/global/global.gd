@@ -71,16 +71,16 @@ func set_config_values():
 		config.set_value("rock", "volume_db", -8)
 		
 	if !config.has_section_key("door", "volume_db"):
-		config.set_value("door", "volume_db", -12)
+		config.set_value("door", "volume_db", -30)
 		
 	if !config.has_section_key("explosion", "volume_db"):
-		config.set_value("explosion", "volume_db", -8)
+		config.set_value("explosion", "volume_db", -26)
 		
 	if !config.has_section_key("heart", "volume_db"):
 		config.set_value("heart", "volume_db", -4)
 		
 	if !config.has_section_key("music", "volume_db_game"):
-		config.set_value("music", "volume_db_game", -4)
+		config.set_value("music", "volume_db_game", -20)
 		
 	if !config.has_section_key("music", "volume_db_menu"):
 		config.set_value("music", "volume_db_menu", -4)

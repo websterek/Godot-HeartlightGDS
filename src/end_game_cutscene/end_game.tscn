@@ -103,13 +103,13 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 6, 20 ),
+"times": PoolRealArray( 0, 6, 22 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 383, 764 ), Vector2( 383, 764 ), Vector2( 383, -1585 ) ]
+"values": [ Vector2( 383, 764 ), Vector2( 383, 764 ), Vector2( 383, -2051 ) ]
 }
 
-[node name="end_game" type="CanvasLayer"]
+[node name="end_game" type="CanvasLayer" index="0"]
 
 layer = 1
 offset = Vector2( 0, 0 )
@@ -136,9 +136,10 @@ _sections_unfolded = [ "Anchor", "Margin" ]
 
 [node name="koza1" type="AnimatedSprite" parent="." index="1"]
 
-position = Vector2( -75, 540 )
+position = Vector2( 490, 540 )
 frames = SubResource( 1 )
 animation = "jump"
+frame = 14
 _sections_unfolded = [ "Transform" ]
 
 [node name="koza2" type="AnimatedSprite" parent="." index="2"]
@@ -180,9 +181,9 @@ anchor_top = 0.1
 anchor_right = 0.7
 anchor_bottom = 0.9
 margin_left = -1.0
-margin_top = 692.0
+margin_top = -2123.0
 margin_right = -1.0
-margin_bottom = 2162.0
+margin_bottom = -653.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = true
 mouse_filter = 0

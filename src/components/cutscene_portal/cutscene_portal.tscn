@@ -7,7 +7,7 @@
 custom_solver_bias = 0.0
 radius = 62.0
 
-[node name="cutscene_portal" type="StaticBody2D" index="0" groups=[
+[node name="cutscene_portal" type="StaticBody2D" groups=[
 "can_be_pushed",
 ]]
 
