@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Assets_Dyniomit_explosion_002_classic02.wav-21cc4c796f47d54ce05c1361be2976f1.sample"
+
+[deps]
+
+source_file="res://assets/audio_effects/Assets_Dyniomit_explosion_002_classic02.wav"
+dest_files=[ "res://.import/Assets_Dyniomit_explosion_002_classic02.wav-21cc4c796f47d54ce05c1361be2976f1.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

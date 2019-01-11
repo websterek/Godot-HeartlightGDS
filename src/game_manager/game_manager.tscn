@@ -5,7 +5,7 @@
 [ext_resource path="res://src/ingame_menu/ingame_menu.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/audio_music/lvl_003.sample" type="AudioStream" id=4]
 
-[node name="Root" type="Node2D"]
+[node name="Root" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Pause" ]

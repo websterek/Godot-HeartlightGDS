@@ -3,14 +3,14 @@
 [ext_resource path="res://src/components/heart/heart.gd" type="Script" id=1]
 [ext_resource path="res://assets/objects/004_rzodkiewka_01.png" type="Texture" id=2]
 [ext_resource path="res://assets/audio_effects/Assets_Stonedrop_001.wav" type="AudioStream" id=3]
-[ext_resource path="res://assets/audio_effects/Gameplay_Raddish_Collected_001.wav" type="AudioStream" id=4]
+[ext_resource path="res://assets/audio_effects/Gameplay_Raddish_collected_002.wav" type="AudioStream" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
 radius = 64.0
 
-[node name="lvl_heart" type="KinematicBody2D"]
+[node name="lvl_heart" type="KinematicBody2D" index="0"]
 
 input_pickable = false
 collision_layer = 1
@@ -44,15 +44,15 @@ volume_db = -8.0
 pitch_scale = 1.0
 autoplay = false
 mix_target = 0
-bus = "Master"
+bus = "objects"
 
 [node name="audio_take" type="AudioStreamPlayer" parent="." index="4"]
 
 stream = ExtResource( 4 )
-volume_db = -4.0
+volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
 mix_target = 0
-bus = "Master"
+bus = "character"
 
 

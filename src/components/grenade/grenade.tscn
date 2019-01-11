@@ -29,7 +29,7 @@ animations = [ {
 custom_solver_bias = 0.0
 radius = 62.0
 
-[node name="lvl_granade" type="KinematicBody2D" groups=[
+[node name="lvl_granade" type="KinematicBody2D" index="0" groups=[
 "grenade",
 ]]
 
@@ -45,7 +45,7 @@ _sections_unfolded = [ "collision" ]
 
 frames = SubResource( 1 )
 animation = "default"
-frame = 5
+frame = 7
 playing = true
 _sections_unfolded = [ "Transform", "Visibility" ]
 
@@ -70,6 +70,6 @@ volume_db = -8.0
 pitch_scale = 1.0
 autoplay = false
 mix_target = 0
-bus = "Master"
+bus = "objects"
 
 

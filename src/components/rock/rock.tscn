@@ -9,7 +9,7 @@
 custom_solver_bias = 0.0
 radius = 62.0
 
-[node name="lvl_sphere" type="KinematicBody2D"]
+[node name="lvl_sphere" type="KinematicBody2D" index="0"]
 
 input_pickable = false
 collision_layer = 1
@@ -44,6 +44,6 @@ volume_db = -8.0
 pitch_scale = 1.0
 autoplay = false
 mix_target = 0
-bus = "Master"
+bus = "objects"
 
 

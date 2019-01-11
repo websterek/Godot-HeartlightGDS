@@ -1,39 +1,39 @@
 [gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://src/components/door/door.gd" type="Script" id=1]
-[ext_resource path="res://assets/tiles_front/door_h_open02.png" type="Texture" id=2]
-[ext_resource path="res://assets/tiles_front/door_v_closed01.png" type="Texture" id=3]
-[ext_resource path="res://assets/tiles_front/door_v_open01.png" type="Texture" id=4]
-[ext_resource path="res://assets/objects/010_wyjscie_poziome_01.png" type="Texture" id=5]
-[ext_resource path="res://assets/objects/010_wyjscie_poziome_02.png" type="Texture" id=6]
-[ext_resource path="res://assets/objects/010_wyjscie_poziome_03.png" type="Texture" id=7]
-[ext_resource path="res://assets/objects/010_wyjscie_poziome_04.png" type="Texture" id=8]
-[ext_resource path="res://assets/tiles_front/door_h_open01.png" type="Texture" id=9]
-[ext_resource path="res://assets/tiles_front/door_v_closed02.png" type="Texture" id=10]
-[ext_resource path="res://assets/tiles_front/door_v_open02.png" type="Texture" id=11]
+[ext_resource path="res://assets/tiles_front/door_v_closed01.png" type="Texture" id=2]
+[ext_resource path="res://assets/tiles_front/door_v_open01.png" type="Texture" id=3]
+[ext_resource path="res://assets/tiles_front/door_h_open02.png" type="Texture" id=4]
+[ext_resource path="res://assets/tiles_front/door_v_closed02.png" type="Texture" id=5]
+[ext_resource path="res://assets/tiles_front/door_v_open02.png" type="Texture" id=6]
+[ext_resource path="res://assets/objects/010_wyjscie_poziome_01.png" type="Texture" id=7]
+[ext_resource path="res://assets/objects/010_wyjscie_poziome_02.png" type="Texture" id=8]
+[ext_resource path="res://assets/objects/010_wyjscie_poziome_03.png" type="Texture" id=9]
+[ext_resource path="res://assets/objects/010_wyjscie_poziome_04.png" type="Texture" id=10]
+[ext_resource path="res://assets/tiles_front/door_h_open01.png" type="Texture" id=11]
 [ext_resource path="res://assets/audio_effects/Gameplay_Door_Open _001.wav" type="AudioStream" id=12]
 
 [sub_resource type="SpriteFrames" id=1]
 
 animations = [ {
-"frames": [ null, null, null, null, ExtResource( 2 ) ],
-"loop": true,
-"name": "right_wing",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 3 ), ExtResource( 4 ) ],
+"frames": [ ExtResource( 2 ), ExtResource( 3 ) ],
 "loop": false,
 "name": "top_wing",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
+"frames": [ null, null, null, null, ExtResource( 4 ) ],
 "loop": true,
-"name": "left_wing",
+"name": "right_wing",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 10 ), ExtResource( 11 ) ],
+"frames": [ ExtResource( 5 ), ExtResource( 6 ) ],
 "loop": true,
 "name": "bottom_wing",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ],
+"loop": true,
+"name": "left_wing",
 "speed": 5.0
 } ]
 _sections_unfolded = [ "Resource" ]
@@ -105,7 +105,7 @@ tracks/1/keys = {
 "values": [ 0, 4 ]
 }
 
-[node name="door" type="StaticBody2D" groups=[
+[node name="door" type="StaticBody2D" index="0" groups=[
 "can_be_pushed",
 ]]
 
@@ -154,6 +154,6 @@ volume_db = -12.0
 pitch_scale = 1.0
 autoplay = false
 mix_target = 0
-bus = "Master"
+bus = "objects"
 
 

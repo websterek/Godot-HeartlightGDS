@@ -11,7 +11,7 @@
 [ext_resource path="res://assets/objects/002_explosion_11.png" type="Texture" id=9]
 [ext_resource path="res://assets/objects/002_explosion_12.png" type="Texture" id=10]
 [ext_resource path="res://src/components/explosion/explosion.gd" type="Script" id=11]
-[ext_resource path="res://assets/audio_effects/Assets_Dyniomit_Explosion_002_classic.wav" type="AudioStream" id=12]
+[ext_resource path="res://assets/audio_effects/Assets_Dyniomit_explosion_002_classic02.wav" type="AudioStream" id=12]
 
 [sub_resource type="SpriteFrames" id=1]
 
@@ -22,7 +22,7 @@ animations = [ {
 "speed": 20.0
 } ]
 
-[node name="lvl_explosion" type="AnimatedSprite"]
+[node name="lvl_explosion" type="AnimatedSprite" index="0"]
 
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 1 )
@@ -37,6 +37,6 @@ volume_db = -8.0
 pitch_scale = 1.0
 autoplay = false
 mix_target = 0
-bus = "Master"
+bus = "objects"
 
 
