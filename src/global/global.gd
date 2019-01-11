@@ -17,9 +17,9 @@ var directions = {
 }
 
 var tile_typ = {
-	"grass": range(0, 9),
+	"grass": range(0, 10),
 	"block": range(10, 20),
-	"wall": range(21, 31)
+	"wall": range(21, 32)
 }
 
 var current_player = null

@@ -7,7 +7,7 @@
 [ext_resource path="res://assets/tiles_front.tres" type="TileSet" id=5]
 [ext_resource path="res://assets/tiles_addon.tres" type="TileSet" id=6]
 
-[node name="level" type="Node2D" index="0"]
+[node name="level" type="Node2D"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Pause" ]

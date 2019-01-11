@@ -8,6 +8,12 @@ var tile_size = globals.tile_size
 var level_filename = null
 var remaining_hearts = []
 var max_hearts = 0
+
+var top_margin = 2
+var bottom_margin = 3
+var left_margin = 2
+var right_margin = 2
+
 onready var door_instance = $door
 
 func get_level_number():
@@ -32,7 +38,6 @@ func _ready():
 
 func calculate_bounds():
 	var front_used_cells = get_node("tile_front").get_used_cells()
-	var decal_used_cells = get_node("tile_decal").get_used_cells()
 	var min_x = 0
 	var min_y = 0
 	var max_x = 1
@@ -48,27 +53,24 @@ func calculate_bounds():
 		elif pos.y > max_y:
 			max_y = int(pos.y)
 
-	for pos in decal_used_cells:
-		if pos.x < min_x:
-			min_x = int(pos.x)
-		elif pos.x > max_x:
-			max_x = int(pos.x)
-		if pos.y < min_y:
-			min_y = int(pos.y)
-		elif pos.y > max_y:
-			max_y = int(pos.y)	
+	var width = (max_x + 1 - min_x + left_margin + right_margin) * tile_size.x
+	var height = (max_y + 1 - min_y + top_margin + bottom_margin) * tile_size.y
 
 	return {
 		"min": Vector2(
-			min_x * tile_size.x + self.position.x, 
-			min_y * tile_size.y + self.position.y
+			self.position.x, 
+			self.position.y
 		),
 		"max": Vector2(
-			(max_x + 1) * tile_size.x + self.position.x,
-			(max_y + 1) * tile_size.y + self.position.y
+			self.position.x + width,
+			self.position.y + height
 		),
-		"height": (max_y + 1 - min_y) * tile_size.y,
-		"width": (max_x + 1 - min_x) * tile_size.x
+		"offset": Vector2(
+			(min_x - left_margin) * tile_size.x,
+			(min_y - top_margin) * tile_size.y
+		),
+		"height": height,
+		"width": width
 	}
 
 func calculate_zoom(bounds = null):

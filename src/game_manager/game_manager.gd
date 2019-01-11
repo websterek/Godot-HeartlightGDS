@@ -8,19 +8,19 @@ var volume_music = globals.config.get_value("music", "volume_db_game")
 
 var levels = []
 var passed_levels = []
+var end_game = false
 
 signal current_level_changed(new_level)
 signal level_passed(passed_l, max_l)
 
 func _input(event):
-    if !event:
-        pass
-    elif Input.is_action_pressed("ui_cancel"):
-        playerInstance.kill()
-    elif Input.is_action_pressed("ui_page_up"):
-        go_to_next_level()
-    elif Input.is_action_pressed("ui_page_down"):
-        go_to_next_level(true)
+	if !end_game and event:
+		if Input.is_action_pressed("ui_cancel"):
+			playerInstance.kill()
+		elif Input.is_action_pressed("ui_page_up"):
+			go_to_next_level()
+		elif Input.is_action_pressed("ui_page_down"):
+			go_to_next_level(true)
 
 func _ready():
 	get_all_levels_list()
@@ -69,13 +69,13 @@ func instantiate_level(level_filename, position = Vector2(0, 0), ignoreAligning 
 			var scene_x = 0
 
 			if !stick_by_right_side:
-				scene_x = position.x + screen_offset
+				scene_x = position.x - scene_instance_bounds.offset.x + screen_offset
 			else:
-				scene_x = position.x - scene_instance_bounds.width - screen_offset
+				scene_x = position.x - scene_instance_bounds.offset.x - scene_instance_bounds.width - screen_offset
 
 			scene_instance.set_global_position(Vector2(
 				scene_x,
-				position.y - scene_instance_bounds.height / 2
+				position.y - scene_instance_bounds.offset.y - scene_instance_bounds.height / 2
 			))
 		else:
 			scene_instance.set_global_position(position)
@@ -111,8 +111,6 @@ func go_to_next_level(previous = false):
 		if currentLevel:
 			spawn_player_at_current_level(true, 0.7)
 			play_song(currentLevel.get_name())
-		else:
-			printerr("No more levels!")	
 
 func win_level():
 	add_level_to_list(passed_levels, currentLevel.level_filename)
@@ -133,15 +131,15 @@ func append_new_level(previous = false):
 	var new_x = 0
 
 	if !previous:
-		new_x = old_level_bounds.max.x + screen_offset
+		new_x = old_level_bounds.min.x + old_level_bounds.offset.x + old_level_bounds.width + screen_offset
 	else:
-		new_x = old_level_bounds.min.x - screen_offset
+		new_x = old_level_bounds.min.x + old_level_bounds.offset.x - screen_offset
 
 	var level_instance = instantiate_level(
 		level_filename, 
 		Vector2(
 			new_x,
-			old_level_bounds.min.y + old_level_bounds.height / 2
+			old_level_bounds.min.y + old_level_bounds.offset.y + old_level_bounds.height / 2
 		),
 		false,
 		previous
@@ -169,11 +167,15 @@ func get_previous_level_filename():
 
 func get_next_level_filename():
 	var last_level_filename = levels.back()
-	if currentLevel.level_filename == last_level_filename:
-		return levels.front()	
+	if passed_levels.size() == levels.size():
+		end_game = true
+		return "lvl_final"
 	else:
-		# Return new level filename in format "lvl_000" 
-		return "lvl_" + str(currentLevel.get_level_number() + 1).pad_zeros(3)
+		if currentLevel.level_filename == last_level_filename:
+			return levels.front()	
+		else:
+			# Return new level filename in format "lvl_000" 
+			return "lvl_" + str(currentLevel.get_level_number() + 1).pad_zeros(3)
 
 func reset_current_level():
 	var new_instance = instantiate_level(
@@ -212,9 +214,8 @@ func spawn_player_at_current_level(alignCamera = true, transitionTime = null):
 	get_tree().set_pause(true)
 	if alignCamera:
 		if transitionTime:
-			var camera_animator = mainCamera.get_node("tween")
 			mainCamera.align_camera_to_level(currentLevel, transitionTime)
-			yield(camera_animator, "tween_completed")
+			yield(mainCamera, "transition_completed")
 		else:
 			mainCamera.align_camera_to_level(currentLevel)
 	

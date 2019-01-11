@@ -4,7 +4,7 @@
 [ext_resource path="res://src/camera/main_camera.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/ingame_menu/ingame_menu.tscn" type="PackedScene" id=3]
 
-[node name="Root" type="Node2D" index="0"]
+[node name="Root" type="Node2D"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Pause" ]
@@ -12,7 +12,8 @@ _sections_unfolded = [ "Pause" ]
 [node name="MainCamera" parent="." index="0" instance=ExtResource( 2 )]
 
 pause_mode = 2
-_sections_unfolded = [ "Pause" ]
+anchor_mode = 1
+_sections_unfolded = [ "Pause", "Visibility" ]
 
 [node name="ingame_menu" parent="MainCamera" index="1" instance=ExtResource( 3 )]
 

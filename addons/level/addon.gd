@@ -51,7 +51,8 @@ func level_finalise():
 					2: load("res://src/components/heart/heart.tscn"),
 					3: load("res://src/components/rock/rock.tscn"),
 					5: load("res://src/components/door/door_h.tscn"),
-					6: load("res://src/components/door/door_v.tscn") }
+					6: load("res://src/components/door/door_v.tscn"),
+					7: load("res://src/components/cutscene_portal/cutscene_portal.tscn") }
 
 	for object in objects:
 		for tile in tile_objects.get_used_cells_by_id(object):
