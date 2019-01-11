@@ -23,10 +23,10 @@ func _input(event):
 			go_to_next_level(true)
 
 func _ready():
+	play_song()
 	get_all_levels_list()
 	emit_signal("level_passed", passed_levels, levels)
 	go_to_next_level()
-	$audio.set_volume_db(volume_music)
 
 # ###########
 # Level counting functions
@@ -98,7 +98,6 @@ func go_to_next_level(previous = false):
 		set_current_level(instantiate_level(first_level_filename))
 		emit_signal("current_level_changed", currentLevel)
 		spawn_player_at_current_level()
-		play_song(currentLevel.get_name())
 	else:
 		# Stop processing current level, set next level as a current one
 		if previousLevel != null:
@@ -110,7 +109,6 @@ func go_to_next_level(previous = false):
 
 		if currentLevel:
 			spawn_player_at_current_level(true, 0.7)
-			play_song(currentLevel.get_name())
 
 func win_level():
 	add_level_to_list(passed_levels, currentLevel.level_filename)
@@ -227,19 +225,15 @@ func spawn_player_at_current_level(alignCamera = true, transitionTime = null):
 # Audio functions
 # ###########
 
-func play_song(song):
+func play_song():
 	var speech_player = AudioStreamPlayer.new()
-	var audio_file = "res://assets/audio_music/" + song + ".sample"
-	var music
-	if File.new().file_exists(audio_file):
-	    music = load(audio_file)
-	
+	var audio_file = "res://assets/audio_music/lvl_003.sample"
+	var music = load(audio_file)
+	$audio.set_volume_db(-80)
 	if $audio.is_playing():
-		get_node("audio/twe").interpolate_property($audio, "volume_db", volume_music, -80, 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		pass
+	else:
+		$audio.play(0)
+		get_node("audio/twe").interpolate_property($audio, "volume_db", -80, volume_music, 1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		get_node("audio/twe").start()
-		yield(get_node("audio/twe"), "tween_completed")
-		$audio.stop()
-	$audio.stream = music
-	$audio.play(0)
-	get_node("audio/twe").interpolate_property($audio, "volume_db", -80, volume_music, 0.25, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-	get_node("audio/twe").start()
+
