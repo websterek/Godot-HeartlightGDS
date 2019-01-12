@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://src/end_game_cutscene/end_game.gd" type="Script" id=1]
 [ext_resource path="res://assets/cutscene/end_scene.png" type="Texture" id=2]
@@ -23,7 +23,8 @@
 [ext_resource path="res://assets/player2/013_player2_anim_04.png" type="Texture" id=21]
 [ext_resource path="res://assets/player2/013_player2_anim_05.png" type="Texture" id=22]
 [ext_resource path="res://assets/player2/013_player2_anim_06.png" type="Texture" id=23]
-[ext_resource path="res://assets/themes/default_theme.tres" type="Theme" id=24]
+[ext_resource path="res://assets/cutscene/heart.png" type="Texture" id=24]
+[ext_resource path="res://assets/themes/default_theme.tres" type="Theme" id=25]
 
 [sub_resource type="SpriteFrames" id=1]
 
@@ -45,7 +46,7 @@ animations = [ {
 
 [sub_resource type="Animation" id=3]
 
-length = 23.0
+length = 30.0
 loop = false
 step = 0.05
 tracks/0/type = "value"
@@ -79,7 +80,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 1, 17, 20 ),
+"times": PoolRealArray( 0, 1, 27.05, 30.05 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ) ]
@@ -103,10 +104,46 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 6, 22 ),
+"times": PoolRealArray( 0, 8, 27 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( 383, 764 ), Vector2( 383, 764 ), Vector2( 383, -2051 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("heart:rotation_degrees")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 5 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("heart:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 5, 8.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 621.256, 518.329 ), Vector2( 621.256, 518.329 ), Vector2( 621.256, 430.15 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("heart:scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 5, 6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1e-005, 1e-005 ), Vector2( 1e-005, 1e-005 ), Vector2( 1, 1 ) ]
 }
 
 [node name="end_game" type="CanvasLayer" index="0"]
@@ -160,19 +197,11 @@ anims/cutscene = SubResource( 3 )
 blend_times = [  ]
 _sections_unfolded = [ "Playback Options" ]
 
-[node name="ColorRect" type="ColorRect" parent="." index="4"]
+[node name="heart" type="Sprite" parent="." index="4"]
 
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-color = Color( 0, 0, 0, 1 )
+position = Vector2( 621.256, 430.15 )
+texture = ExtResource( 24 )
+_sections_unfolded = [ "Transform" ]
 
 [node name="RichTextLabel" type="RichTextLabel" parent="." index="5"]
 
@@ -183,14 +212,14 @@ anchor_bottom = 0.9
 margin_left = -1.0
 margin_top = -2123.0
 margin_right = -1.0
-margin_bottom = -653.0
+margin_bottom = -651.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = true
 mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-theme = ExtResource( 24 )
+theme = ExtResource( 25 )
 bbcode_enabled = true
 bbcode_text = "[center][color=#FFFFFF][font=res://assets/themes/credits_h1.tres]The End[/font]
 
@@ -261,5 +290,20 @@ scroll_following = false
 selection_enabled = false
 override_selected_font_color = false
 _sections_unfolded = [ "BBCode", "Rect" ]
+
+[node name="ColorRect" type="ColorRect" parent="." index="6"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+color = Color( 0, 0, 0, 0 )
+_sections_unfolded = [ "Focus", "Margin" ]
 
 
