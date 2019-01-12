@@ -131,31 +131,37 @@ _sections_unfolded = [ "Transform" ]
 [node name="005_sosna_01" type="Sprite" parent="." index="5"]
 
 position = Vector2( 207.179, -258.004 )
+z_index = 1
 texture = ExtResource( 8 )
 
 [node name="005_sosna_02" type="Sprite" parent="." index="6"]
 
 position = Vector2( 301.369, -166.04 )
+z_index = 1
 texture = ExtResource( 8 )
 
 [node name="005_sosna_03" type="Sprite" parent="." index="7"]
 
 position = Vector2( 798.706, -122.331 )
+z_index = 1
 texture = ExtResource( 8 )
 
 [node name="005_sosna_04" type="Sprite" parent="." index="8"]
 
 position = Vector2( 1006.37, 354.991 )
+z_index = 1
 texture = ExtResource( 8 )
 
 [node name="005_sosna_05" type="Sprite" parent="." index="9"]
 
 position = Vector2( 113.613, 28.6771 )
+z_index = 1
 texture = ExtResource( 8 )
 
 [node name="005_sosna_06" type="Sprite" parent="." index="10"]
 
 position = Vector2( 1509.23, 1192.51 )
+z_index = 1
 texture = ExtResource( 8 )
 
 [node name="001_kamienie_tlo_3" type="Sprite" parent="." index="11"]
@@ -181,146 +187,175 @@ texture = ExtResource( 9 )
 [node name="012_stodoła" type="Sprite" parent="." index="15"]
 
 position = Vector2( 3060.2, 686.292 )
+z_index = 1
 texture = ExtResource( 12 )
 
 [node name="005_sosna_08" type="Sprite" parent="." index="16"]
 
 position = Vector2( -252.931, 1161.2 )
+z_index = 1
 texture = ExtResource( 8 )
 
 [node name="005_sosna_10" type="Sprite" parent="." index="17"]
 
 position = Vector2( -51.6012, 1156.04 )
+z_index = 1
 texture = ExtResource( 8 )
 
 [node name="005_sosna_09" type="Sprite" parent="." index="18"]
 
 position = Vector2( 818.248, 1540.63 )
+z_index = 1
 texture = ExtResource( 8 )
 
 [node name="005_sosna_07" type="Sprite" parent="." index="19"]
 
 position = Vector2( -129.036, 1256.71 )
+z_index = 1
 texture = ExtResource( 8 )
 
 [node name="005_sosna_11" type="Sprite" parent="." index="20"]
 
 position = Vector2( -224.538, 1359.95 )
+z_index = 1
 texture = ExtResource( 8 )
 
 [node name="005_sosna_12" type="Sprite" parent="." index="21"]
 
 position = Vector2( -139.36, 1514.82 )
+z_index = 1
 texture = ExtResource( 8 )
 
 [node name="005_sosna_13" type="Sprite" parent="." index="22"]
 
 position = Vector2( -758.837, 1176.69 )
+z_index = 1
 texture = ExtResource( 8 )
 
 [node name="005_sosna_14" type="Sprite" parent="." index="23"]
 
 position = Vector2( -647.848, 1225.73 )
+z_index = 1
 texture = ExtResource( 8 )
 
 [node name="005_sosna_15" type="Sprite" parent="." index="24"]
 
 position = Vector2( -511.047, 1184.44 )
+z_index = 1
 texture = ExtResource( 8 )
 
 [node name="005_sosna_16" type="Sprite" parent="." index="25"]
 
 position = Vector2( -405.219, 1228.32 )
+z_index = 1
 texture = ExtResource( 8 )
 
 [node name="005_sosna_17" type="Sprite" parent="." index="26"]
 
 position = Vector2( -725.282, 1383.18 )
+z_index = 1
 texture = ExtResource( 8 )
 
 [node name="005_sosna_18" type="Sprite" parent="." index="27"]
 
 position = Vector2( -580.738, 1439.97 )
+z_index = 1
 texture = ExtResource( 8 )
 
 [node name="005_sosna_25" type="Sprite" parent="." index="28"]
 
 position = Vector2( 87.4665, 1423.91 )
+z_index = 1
 texture = ExtResource( 8 )
 
 [node name="005_sosna_20" type="Sprite" parent="." index="29"]
 
 position = Vector2( -734.852, 1647.41 )
+z_index = 1
 texture = ExtResource( 8 )
 
 [node name="005_sosna_19" type="Sprite" parent="." index="30"]
 
 position = Vector2( -435.438, 1471.89 )
+z_index = 1
 texture = ExtResource( 8 )
 
 [node name="005_sosna_21" type="Sprite" parent="." index="31"]
 
 position = Vector2( -595.47, 1797.12 )
+z_index = 1
 texture = ExtResource( 8 )
 
 [node name="005_sosna_22" type="Sprite" parent="." index="32"]
 
 position = Vector2( -441.607, 1871.15 )
+z_index = 1
 texture = ExtResource( 8 )
 
 [node name="005_sosna_23" type="Sprite" parent="." index="33"]
 
 position = Vector2( -267.663, 1776.47 )
+z_index = 1
 texture = ExtResource( 8 )
 
 [node name="005_sosna_24" type="Sprite" parent="." index="34"]
 
 position = Vector2( 6.04349, 1732.63 )
+z_index = 1
 texture = ExtResource( 8 )
 
 [node name="005_sosna_26" type="Sprite" parent="." index="35"]
 
 position = Vector2( 376.501, 1231.62 )
+z_index = 1
 texture = ExtResource( 8 )
 
 [node name="005_sosna_27" type="Sprite" parent="." index="36"]
 
 position = Vector2( 290.701, 1594.84 )
+z_index = 1
 texture = ExtResource( 8 )
 
 [node name="005_sosna_28" type="Sprite" parent="." index="37"]
 
 position = Vector2( 267.821, 2083.9 )
+z_index = 1
 texture = ExtResource( 8 )
 
 [node name="005_sosna_29" type="Sprite" parent="." index="38"]
 
 position = Vector2( 722.562, 1074.32 )
+z_index = 1
 texture = ExtResource( 8 )
 
 [node name="005_sosna_30" type="Sprite" parent="." index="39"]
 
 position = Vector2( 668.222, 472.447 )
+z_index = 1
 texture = ExtResource( 8 )
 
 [node name="005_sosna_31" type="Sprite" parent="." index="40"]
 
 position = Vector2( -623.227, -300.615 )
+z_index = 1
 texture = ExtResource( 8 )
 
 [node name="005_sosna_33" type="Sprite" parent="." index="41"]
 
 position = Vector2( -539.777, 495.862 )
+z_index = 1
 texture = ExtResource( 8 )
 
 [node name="005_sosna_34" type="Sprite" parent="." index="42"]
 
 position = Vector2( -531.47, -188.632 )
+z_index = 1
 texture = ExtResource( 8 )
 
 [node name="005_sosna_32" type="Sprite" parent="." index="43"]
 
 position = Vector2( -177.689, 675.733 )
+z_index = 1
 texture = ExtResource( 8 )
 
 [node name="001_kamienie_tlo_5" type="Sprite" parent="." index="44"]

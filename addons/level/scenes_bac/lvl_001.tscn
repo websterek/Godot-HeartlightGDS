@@ -203,7 +203,7 @@ texture = ExtResource( 9 )
 
 [node name="005_sosna_05" type="Sprite" parent="." index="20"]
 
-position = Vector2( 386.377, 1923.71 )
+position = Vector2( 466.266, 1772.34 )
 texture = ExtResource( 8 )
 
 [node name="005_sosna_06" type="Sprite" parent="." index="21"]
@@ -230,5 +230,55 @@ texture = ExtResource( 11 )
 
 position = Vector2( -609.029, -104.552 )
 texture = ExtResource( 9 )
+
+[node name="005_sosna_07" type="Sprite" parent="." index="26"]
+
+position = Vector2( 1716.13, 1857.92 )
+texture = ExtResource( 8 )
+
+[node name="005_sosna_09" type="Sprite" parent="." index="27"]
+
+position = Vector2( 2805.14, 352.636 )
+texture = ExtResource( 8 )
+
+[node name="005_sosna_08" type="Sprite" parent="." index="28"]
+
+position = Vector2( 307.552, 1904.17 )
+texture = ExtResource( 8 )
+
+[node name="005_sosna_10" type="Sprite" parent="." index="29"]
+
+position = Vector2( -739.419, 810.948 )
+texture = ExtResource( 8 )
+
+[node name="005_sosna_11" type="Sprite" parent="." index="30"]
+
+position = Vector2( 2212.28, 1614.05 )
+texture = ExtResource( 8 )
+
+[node name="001_kamienie_tlo_16" type="Sprite" parent="." index="31"]
+
+position = Vector2( 3042.94, 1043.24 )
+texture = ExtResource( 9 )
+
+[node name="001_kamienie_tlo_17" type="Sprite" parent="." index="32"]
+
+position = Vector2( 2690.03, 1574.5 )
+texture = ExtResource( 11 )
+
+[node name="001_kamienie_tlo_18" type="Sprite" parent="." index="33"]
+
+position = Vector2( 2519.27, 1870.49 )
+texture = ExtResource( 12 )
+
+[node name="001_kamienie_tlo_19" type="Sprite" parent="." index="34"]
+
+position = Vector2( 3077.1, -68.6194 )
+texture = ExtResource( 10 )
+
+[node name="001_kamienie_tlo_20" type="Sprite" parent="." index="35"]
+
+position = Vector2( 3107.45, 1730.09 )
+texture = ExtResource( 11 )
 
 
